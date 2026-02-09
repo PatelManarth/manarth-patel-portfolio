@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Manarth Patel | Cybersecurity & IT Professional (SOC / Blue Team)</title>
-  <meta name="description" content="Cybersecurity & IT Professional focused on SOC operations, SIEM monitoring, log analysis, Windows AD labs, and defensive automation. Available for entry-level roles and freelance security/IT projects." />
+  <meta name="description" content="Cybersecurity & IT Professional focused on SOC operations, SIEM monitoring, log analysis, Windows AD labs, pfSense segmentation, and defensive automation. Available for entry-level roles and freelance security/IT projects." />
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0B0F14" />
+  <meta name="theme-color" content="#070A0F" />
 
   <!-- Canonical (update to your final domain when live) -->
   <link rel="canonical" href="https://your-domain.example/" />
@@ -22,9 +22,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicon (optional) -->
   <link rel="icon" href="assets/img/logo-placeholder.svg" type="image/svg+xml" />
-
   <link rel="stylesheet" href="css/styles.css" />
 
   <!-- JSON-LD (SEO) -->
@@ -36,8 +34,8 @@
     "jobTitle": "Cybersecurity & IT Professional",
     "url": "https://your-domain.example/",
     "sameAs": [
-      "https://www.linkedin.com/in/manarthpatel/",
-      "https://github.com/PatelManarth"
+      "https://www.linkedin.com/in/YOUR-LINKEDIN",
+      "https://github.com/YOUR-GITHUB"
     ],
     "knowsAbout": [
       "SOC Operations",
@@ -57,9 +55,28 @@
 </head>
 
 <body>
-  <!-- Background effects -->
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- Cyber visuals -->
   <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-scanlines" aria-hidden="true"></div>
   <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- Animated network canvas -->
+  <canvas class="net-canvas" data-net-canvas aria-hidden="true"></canvas>
+
+  <!-- Top HUD -->
+  <div class="hud container" aria-hidden="true">
+    <div class="hud__left">
+      <span class="hud__dot"></span>
+      <span class="hud__label">STATUS: <strong class="hud__ok">OPERATIONAL</strong></span>
+    </div>
+    <div class="hud__right">
+      <span class="hud__label">ROLE: SOC / BLUE TEAM</span>
+      <span class="hud__sep">•</span>
+      <span class="hud__label">MODE: DEFENSIVE</span>
+    </div>
+  </div>
 
   <!-- Header -->
   <header class="site-header" id="top">
@@ -68,6 +85,11 @@
         <img src="assets/img/logo-placeholder.svg" alt="Logo" class="brand__logo" />
         <span class="brand__text">Manarth Patel</span>
       </a>
+
+      <div class="nav__meta">
+        <span class="nav__chip">Ontario, CA</span>
+        <span class="nav__chip nav__chip--pulse">Available</span>
+      </div>
 
       <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false">
         <span class="nav__toggle-line"></span>
@@ -79,7 +101,7 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <a href="#experience">Experience & Labs</a>
+        <a href="#experience">Labs</a>
         <a href="#education">Education</a>
         <a href="#services">Services</a>
         <a href="#contact" class="nav__cta">Contact</a>
@@ -87,13 +109,18 @@
     </nav>
   </header>
 
-  <main>
+  <main id="content">
     <!-- HERO -->
     <section class="hero container section" aria-label="Hero">
       <div class="hero__content reveal">
-        <p class="eyebrow">SOC-ready • Blue Team • Defensive Automation</p>
+        <p class="eyebrow">
+          <span class="eyebrow__tag">SOC-ready</span>
+          <span class="eyebrow__tag">Wazuh + Sysmon</span>
+          <span class="eyebrow__tag">pfSense + AD</span>
+          <span class="eyebrow__tag">Automation</span>
+        </p>
 
-        <h1 class="hero__title">
+        <h1 class="hero__title glitch" data-text="Manarth Patel">
           Manarth Patel
         </h1>
 
@@ -102,8 +129,8 @@
         </h2>
 
         <p class="hero__tagline">
-          I build practical, detection-first security: hardened networks, real log visibility, and automation that reduces response time.
-          <span class="tagline__second">Ready for entry-level SOC / IT Support roles and small business security projects.</span>
+          Detection-first security with real operational thinking: segmented networks, endpoint telemetry, and automation that reduces triage time.
+          <span class="tagline__second">Open to entry-level SOC / IT Support roles and freelance security projects.</span>
         </p>
 
         <div class="hero__actions">
@@ -113,56 +140,104 @@
           <a class="btn btn--ghost" href="#contact">
             Contact Me
           </a>
+          <a class="btn btn--ghost btn--icon" href="#projects" aria-label="View Projects">
+            <span class="btn__icon">↓</span>
+            View Work
+          </a>
         </div>
 
-        <div class="hero__meta">
-          <div class="pill">Ontario, Canada</div>
-          <div class="pill">Wazuh + Sysmon</div>
-          <div class="pill">pfSense + AD</div>
-          <div class="pill">Python Automation</div>
+        <!-- Terminal panel -->
+        <div class="terminal reveal" aria-label="Terminal demo">
+          <div class="terminal__top">
+            <span class="terminal__dot dot--red"></span>
+            <span class="terminal__dot dot--yellow"></span>
+            <span class="terminal__dot dot--green"></span>
+            <span class="terminal__title">soc-session — triage</span>
+          </div>
+          <div class="terminal__body">
+            <div class="tline"><span class="tuser">analyst</span>@<span class="thost">hydra-soc</span>:<span class="tpath">~</span>$ <span data-typewriter></span><span class="caret">█</span></div>
+            <div class="tline dim">Tip: keep it real, keep it repeatable.</div>
+          </div>
+        </div>
+
+        <!-- Quick proof strip -->
+        <div class="proof reveal" aria-label="Proof highlights">
+          <div class="proof__item">
+            <div class="proof__k">Visibility</div>
+            <div class="proof__v">Sysmon → Wazuh pipeline</div>
+          </div>
+          <div class="proof__item">
+            <div class="proof__k">Network</div>
+            <div class="proof__v">WAN/DMZ/LAN segmentation</div>
+          </div>
+          <div class="proof__item">
+            <div class="proof__k">Identity</div>
+            <div class="proof__v">AD + GPO lab scenarios</div>
+          </div>
         </div>
       </div>
 
       <aside class="hero__card reveal" aria-label="Profile">
         <div class="profile">
-          <img
-            src="assets/img/profile-placeholder.jpg"
-            alt="Profile placeholder"
-            class="profile__img"
-            loading="lazy"
-            width="560"
-            height="560"
-          />
+          <div class="profile__frame">
+            <img
+              src="assets/img/profile-placeholder.jpg"
+              alt="Profile placeholder"
+              class="profile__img"
+              loading="lazy"
+              width="560"
+              height="560"
+            />
+            <div class="profile__ring" aria-hidden="true"></div>
+          </div>
+
           <div class="profile__info">
-            <p class="profile__headline">Detection-first mindset.</p>
+            <p class="profile__headline">Blue Team mindset.</p>
             <p class="profile__text">
-              Hands-on labs built like real enterprise environments—segmented networks, Windows domains, telemetry pipelines,
-              and repeatable attack/defence playbooks.
+              I build labs like enterprise environments—controlled telemetry, clean documentation, and practical response workflows.
+              Recruiter-friendly summaries, technical proof for hiring managers.
             </p>
 
             <div class="profile__links">
-              <a class="link" href="https://www.linkedin.com/in/manarthpatel/" target="_blank" rel="noreferrer">
+              <a class="link link--bright" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer">
                 LinkedIn ↗
               </a>
-              <a class="link" href="https://github.com/PatelManarth" target="_blank" rel="noreferrer">
+              <a class="link" href="https://github.com/YOUR-GITHUB" target="_blank" rel="noreferrer">
                 GitHub ↗
               </a>
             </div>
           </div>
         </div>
 
-        <div class="hero__stats">
+        <div class="hero__stats" aria-label="Highlights">
           <div class="stat">
-            <div class="stat__num">5+</div>
-            <div class="stat__label">Featured projects</div>
+            <div class="stat__num">SOC</div>
+            <div class="stat__label">Triage + tuning (lab)</div>
           </div>
           <div class="stat">
             <div class="stat__num">SIEM</div>
-            <div class="stat__label">Wazuh lab pipeline</div>
+            <div class="stat__label">Wazuh detections</div>
           </div>
           <div class="stat">
             <div class="stat__num">AD</div>
-            <div class="stat__label">Windows domain labs</div>
+            <div class="stat__label">GPO + identity labs</div>
+          </div>
+        </div>
+
+        <div class="microcards" aria-label="Micro skills">
+          <div class="micro">
+            <div class="micro__icon">⦿</div>
+            <div class="micro__text">
+              <strong>Signal over noise</strong>
+              <span>Alert quality focus</span>
+            </div>
+          </div>
+          <div class="micro">
+            <div class="micro__icon">⦿</div>
+            <div class="micro__text">
+              <strong>Repeatable builds</strong>
+              <span>Scripts + documentation</span>
+            </div>
           </div>
         </div>
       </aside>
@@ -173,41 +248,40 @@
       <div class="section__head reveal">
         <h3 class="section__title">About</h3>
         <p class="section__subtitle">
-          I focus on practical security operations—visibility, detection, and controlled response—supported by strong IT fundamentals.
+          Security that looks like production: measurable visibility, clean logs, realistic scenarios, and clear remediation.
         </p>
       </div>
 
       <div class="about grid reveal">
         <div class="card">
-          <h4>What I do</h4>
+          <h4>Professional summary</h4>
           <p>
-            I specialise in SOC-style monitoring and defensive engineering: building telemetry pipelines, tuning detections,
-            analysing logs, and validating controls through realistic red/blue simulations.
+            Cybersecurity and IT professional with a SOC-focused approach: endpoint visibility, log analysis, incident triage,
+            and foundational hardening across Windows and Linux environments.
           </p>
           <p>
-            I’m comfortable across Windows and Linux, networking fundamentals, and automation—so I can troubleshoot quickly,
-            document clearly, and keep environments stable.
+            My work is hands-on and operational: I build the lab, validate detections, document outcomes, and iterate to improve signal quality.
           </p>
         </div>
 
         <div class="card">
-          <h4>How I work</h4>
+          <h4>What you can expect</h4>
           <ul class="list">
-            <li><strong>Detection-first:</strong> logging, baselines, alert quality, and triage workflows.</li>
-            <li><strong>Repeatable labs:</strong> versioned configs, scripts, and screenshots for evidence.</li>
-            <li><strong>Operational mindset:</strong> reduce noise, improve coverage, and automate the boring parts.</li>
-            <li><strong>Professional communication:</strong> clean reports, clear timelines, actionable remediation.</li>
+            <li><strong>Fast troubleshooting:</strong> networking, endpoints, permissions, and services.</li>
+            <li><strong>Security-first delivery:</strong> logging and controls before “cool tools”.</li>
+            <li><strong>Clean reporting:</strong> timelines, evidence, and actionable fixes.</li>
+            <li><strong>Automation mindset:</strong> scripts that reduce repetitive manual tasks.</li>
           </ul>
         </div>
 
         <div class="card card--accent">
-          <h4>Currently looking for</h4>
+          <h4>Target roles</h4>
           <p>
-            Entry-level <strong>SOC Analyst</strong>, <strong>Cybersecurity Analyst</strong>, and <strong>IT Support</strong> roles where I can contribute immediately
-            with log analysis, endpoint visibility, incident triage, and reliable troubleshooting.
+            Entry-level <strong>SOC Analyst (Tier 1)</strong>, <strong>Cybersecurity Analyst</strong>, and <strong>IT Support</strong> roles.
+            Open to building security foundations for small businesses as freelance work.
           </p>
           <div class="mini-cta">
-            <a class="link link--bright" href="#projects">See featured work →</a>
+            <a class="link link--bright" href="#contact">Let’s talk →</a>
           </div>
         </div>
       </div>
@@ -218,26 +292,32 @@
       <div class="section__head reveal">
         <h3 class="section__title">Skills & Tools</h3>
         <p class="section__subtitle">
-          Focused on security operations, endpoint visibility, and enterprise-style lab environments.
+          Built around SOC workflows: telemetry, analysis, tuning, and reliable systems administration fundamentals.
         </p>
       </div>
 
       <div class="skills grid reveal">
-        <div class="card">
-          <h4>Cybersecurity</h4>
+        <div class="card skillcard">
+          <div class="skillcard__top">
+            <h4>Cybersecurity</h4>
+            <span class="skillcard__tag">Detection</span>
+          </div>
           <div class="chips">
             <span class="chip">SIEM</span>
             <span class="chip">Wazuh</span>
             <span class="chip">Sysmon</span>
             <span class="chip">Sigma rules</span>
             <span class="chip">Incident triage</span>
-            <span class="chip">Threat hunting (lab)</span>
+            <span class="chip">Hunting (lab)</span>
             <span class="chip">Hardening</span>
           </div>
         </div>
 
-        <div class="card">
-          <h4>Operating Systems</h4>
+        <div class="card skillcard">
+          <div class="skillcard__top">
+            <h4>Operating Systems</h4>
+            <span class="skillcard__tag">Endpoints</span>
+          </div>
           <div class="chips">
             <span class="chip">Windows 10/11</span>
             <span class="chip">Windows Server</span>
@@ -247,8 +327,11 @@
           </div>
         </div>
 
-        <div class="card">
-          <h4>Networking</h4>
+        <div class="card skillcard">
+          <div class="skillcard__top">
+            <h4>Networking</h4>
+            <span class="skillcard__tag">Control</span>
+          </div>
           <div class="chips">
             <span class="chip">TCP/IP</span>
             <span class="chip">DNS</span>
@@ -260,19 +343,26 @@
           </div>
         </div>
 
-        <div class="card">
-          <h4>Programming & Automation</h4>
+        <div class="card skillcard">
+          <div class="skillcard__top">
+            <h4>Programming & Automation</h4>
+            <span class="skillcard__tag">Efficiency</span>
+          </div>
           <div class="chips">
             <span class="chip">Python</span>
             <span class="chip">Bash</span>
             <span class="chip">PowerShell (basics)</span>
             <span class="chip">JavaScript</span>
+            <span class="chip">Log parsing</span>
             <span class="chip">Automation scripts</span>
           </div>
         </div>
 
-        <div class="card">
-          <h4>Cloud & Dev</h4>
+        <div class="card skillcard">
+          <div class="skillcard__top">
+            <h4>Cloud & Dev</h4>
+            <span class="skillcard__tag">Delivery</span>
+          </div>
           <div class="chips">
             <span class="chip">Git</span>
             <span class="chip">GitHub</span>
@@ -282,14 +372,17 @@
           </div>
         </div>
 
-        <div class="card">
-          <h4>Enterprise Fundamentals</h4>
+        <div class="card skillcard">
+          <div class="skillcard__top">
+            <h4>Enterprise Fundamentals</h4>
+            <span class="skillcard__tag">Identity</span>
+          </div>
           <div class="chips">
             <span class="chip">Active Directory</span>
             <span class="chip">Group Policy</span>
             <span class="chip">Access controls</span>
+            <span class="chip">Ticket workflow</span>
             <span class="chip">Asset troubleshooting</span>
-            <span class="chip">Ticket-style workflow</span>
           </div>
         </div>
       </div>
@@ -300,16 +393,17 @@
       <div class="section__head reveal">
         <h3 class="section__title">Featured Projects</h3>
         <p class="section__subtitle">
-          Realistic security builds with clear outcomes: visibility, detection, and controlled response.
+          Built like real incident stories: clear entry point, observable telemetry, and defensible mitigation.
         </p>
       </div>
 
       <div class="projects reveal">
-        <!-- Project: Operation Hydra -->
         <article class="project card">
           <div class="project__media">
             <img src="assets/img/project-hydra.jpg" alt="Operation Hydra thumbnail placeholder" loading="lazy" />
+            <div class="project__overlay" aria-hidden="true"></div>
           </div>
+
           <div class="project__body">
             <div class="project__top">
               <h4 class="project__title">Operation Hydra — APT Simulation (Red/Blue)</h4>
@@ -322,29 +416,55 @@
             </div>
 
             <p class="project__desc">
-              A multi-stage, enterprise-style breach simulation: external entry → pivoting → credential access → lateral movement →
-              SIEM detection → containment and hardening.
+              Multi-stage breach simulation: external entry → pivoting → credential access → lateral movement → SIEM detection → containment and hardening.
             </p>
 
-            <ul class="project__bullets">
-              <li><strong>Problem it solves:</strong> demonstrates end-to-end SOC thinking—telemetry, detection fidelity, triage, and mitigation.</li>
-              <li><strong>What I built:</strong> segmented lab, Windows domain, endpoint telemetry pipeline, alerting and investigation workflow.</li>
-              <li><strong>Outcome:</strong> repeatable attack/defence walkthrough with evidence, detections, and remediation steps.</li>
-            </ul>
+            <div class="project__grid">
+              <div class="kpi">
+                <div class="kpi__k">Focus</div>
+                <div class="kpi__v">SOC triage + detection quality</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi__k">Telemetry</div>
+                <div class="kpi__v">Sysmon + Wazuh investigation filters</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi__k">Infra</div>
+                <div class="kpi__v">Segmented lab network</div>
+              </div>
+            </div>
+
+            <details class="case">
+              <summary class="case__summary">
+                View mini case study <span class="case__chev">›</span>
+              </summary>
+
+              <div class="case__body">
+                <ul class="project__bullets">
+                  <li><strong>Problem solved:</strong> proves end-to-end SOC thinking, not just tool usage.</li>
+                  <li><strong>What I built:</strong> log pipeline, domain environment, network boundaries, and a repeatable storyline.</li>
+                  <li><strong>Outcome:</strong> defensible remediation steps mapped to observed behaviour and alerts.</li>
+                </ul>
+
+                <div class="case__note">
+                  Add diagram screenshot later: <span class="mono">assets/img/hydra-architecture.png</span>
+                </div>
+              </div>
+            </details>
 
             <div class="project__links">
-              <a class="link link--bright" href="https://github.com/PatelManarth/operation-hydra" target="_blank" rel="noreferrer">
+              <a class="link link--bright" href="https://github.com/YOUR-GITHUB/operation-hydra" target="_blank" rel="noreferrer">
                 GitHub (placeholder) ↗
               </a>
-              <a class="link" href="#contact">Request a walkthrough →</a>
+              <a class="link" href="#contact">Request walkthrough →</a>
             </div>
           </div>
         </article>
 
-        <!-- Project: RAT Detection -->
         <article class="project card">
           <div class="project__media">
             <img src="assets/img/project-rat.jpg" alt="RAT Detection System thumbnail placeholder" loading="lazy" />
+            <div class="project__overlay" aria-hidden="true"></div>
           </div>
           <div class="project__body">
             <div class="project__top">
@@ -352,32 +472,28 @@
               <div class="project__badges">
                 <span class="badge">Python</span>
                 <span class="badge">Windows</span>
-                <span class="badge">Behaviour signals</span>
+                <span class="badge">Signals</span>
               </div>
             </div>
-
             <p class="project__desc">
-              A defensive monitoring approach to detect suspicious RAT-like behaviours and indicators on Windows endpoints.
+              Defensive monitoring approach to detect RAT-like behaviours and suspicious indicators on Windows endpoints.
             </p>
-
             <ul class="project__bullets">
-              <li><strong>Problem it solves:</strong> helps identify abnormal activity early when traditional controls are bypassed.</li>
-              <li><strong>What I built:</strong> monitoring logic + detection heuristics designed for demonstration and learning.</li>
-              <li><strong>Outcome:</strong> improved triage signals and incident storytelling for SOC-style reporting.</li>
+              <li><strong>Problem solved:</strong> early warning signals when user endpoints behave abnormally.</li>
+              <li><strong>Outcome:</strong> structured findings for triage, plus cleaner incident storytelling.</li>
             </ul>
-
             <div class="project__links">
-              <a class="link link--bright" href="https://github.com/PatelManarth/rat-detection-system" target="_blank" rel="noreferrer">
+              <a class="link link--bright" href="https://github.com/YOUR-GITHUB/rat-detection-system" target="_blank" rel="noreferrer">
                 GitHub (placeholder) ↗
               </a>
             </div>
           </div>
         </article>
 
-        <!-- Project: Honeypot -->
         <article class="project card">
           <div class="project__media">
             <img src="assets/img/project-honeypot.jpg" alt="Honeypot Deployment thumbnail placeholder" loading="lazy" />
+            <div class="project__overlay" aria-hidden="true"></div>
           </div>
           <div class="project__body">
             <div class="project__top">
@@ -388,29 +504,25 @@
                 <span class="badge">Linux</span>
               </div>
             </div>
-
             <p class="project__desc">
-              Deployed an SSH honeypot to capture attacker behaviour and route telemetry into a central analysis stack.
+              SSH honeypot deployed to capture attacker behaviour and route telemetry to a central analysis stack.
             </p>
-
             <ul class="project__bullets">
-              <li><strong>Problem it solves:</strong> improves visibility into opportunistic scanning and brute-force behaviour.</li>
-              <li><strong>What I built:</strong> honeypot logging + ingestion pipeline + dashboards for review and learning.</li>
-              <li><strong>Outcome:</strong> clearer patterns in attack sources, usernames/passwords tried, and session activity.</li>
+              <li><strong>Problem solved:</strong> visibility into opportunistic scanning and brute-force behaviour.</li>
+              <li><strong>Outcome:</strong> captured sessions + patterns to support detection learning.</li>
             </ul>
-
             <div class="project__links">
-              <a class="link link--bright" href="https://github.com/PatelManarth/honeypot-early-detection" target="_blank" rel="noreferrer">
+              <a class="link link--bright" href="https://github.com/YOUR-GITHUB/honeypot-early-detection" target="_blank" rel="noreferrer">
                 GitHub (placeholder) ↗
               </a>
             </div>
           </div>
         </article>
 
-        <!-- Project: SmartAttend -->
         <article class="project card">
           <div class="project__media">
             <img src="assets/img/project-smartattend.jpg" alt="SmartAttend thumbnail placeholder" loading="lazy" />
+            <div class="project__overlay" aria-hidden="true"></div>
           </div>
           <div class="project__body">
             <div class="project__top">
@@ -421,29 +533,25 @@
                 <span class="badge">Streamlit</span>
               </div>
             </div>
-
             <p class="project__desc">
-              Built an AI-enabled attendance workflow with practical engineering constraints: capture, processing, records, and reporting.
+              AI-enabled attendance workflow designed with practical engineering constraints: capture, processing, and auditable reporting.
             </p>
-
             <ul class="project__bullets">
-              <li><strong>Problem it solves:</strong> reduces manual attendance overhead while keeping records auditable.</li>
-              <li><strong>What I built:</strong> backend APIs, UI flows, storage strategy, and reporting outputs.</li>
-              <li><strong>Outcome:</strong> a production-minded prototype with real system design trade-offs.</li>
+              <li><strong>Problem solved:</strong> reduces manual attendance overhead with maintainable data flow.</li>
+              <li><strong>Outcome:</strong> production-minded prototype with system design trade-offs.</li>
             </ul>
-
             <div class="project__links">
-              <a class="link link--bright" href="https://github.com/PatelManarth/smartattend" target="_blank" rel="noreferrer">
+              <a class="link link--bright" href="https://github.com/YOUR-GITHUB/smartattend" target="_blank" rel="noreferrer">
                 GitHub (placeholder) ↗
               </a>
             </div>
           </div>
         </article>
 
-        <!-- Project: Backup Automation -->
         <article class="project card">
           <div class="project__media">
             <img src="assets/img/project-backup.jpg" alt="Secure Backup Automation thumbnail placeholder" loading="lazy" />
+            <div class="project__overlay" aria-hidden="true"></div>
           </div>
           <div class="project__body">
             <div class="project__top">
@@ -454,19 +562,15 @@
                 <span class="badge">Cron</span>
               </div>
             </div>
-
             <p class="project__desc">
-              Designed a secure, automated backup workflow with encryption and repeatable restore considerations.
+              Automated backup workflow with encryption and restore considerations designed for small business reliability.
             </p>
-
             <ul class="project__bullets">
-              <li><strong>Problem it solves:</strong> protects against data loss and supports recovery after incidents.</li>
-              <li><strong>What I built:</strong> scripted backups, scheduling, and security-first handling for stored data.</li>
-              <li><strong>Outcome:</strong> reliable, low-maintenance backups suitable for small business environments.</li>
+              <li><strong>Problem solved:</strong> reduces risk of data loss and supports recovery after incidents.</li>
+              <li><strong>Outcome:</strong> reliable backups with minimal maintenance burden.</li>
             </ul>
-
             <div class="project__links">
-              <a class="link link--bright" href="https://github.com/PatelManarth/secure-backup-automation" target="_blank" rel="noreferrer">
+              <a class="link link--bright" href="https://github.com/YOUR-GITHUB/secure-backup-automation" target="_blank" rel="noreferrer">
                 GitHub (placeholder) ↗
               </a>
             </div>
@@ -480,36 +584,67 @@
       <div class="section__head reveal">
         <h3 class="section__title">Experience & Labs</h3>
         <p class="section__subtitle">
-          Built to mirror real enterprise conditions: segmentation, identity, endpoint telemetry, and incident workflows.
+          SOC-style lab work that mirrors production thinking: segmentation, identity, endpoint telemetry, and response workflows.
         </p>
       </div>
 
       <div class="grid reveal">
         <div class="card">
-          <h4>Home Lab (Enterprise-style)</h4>
+          <h4>Enterprise-style Home Lab</h4>
           <ul class="list">
-            <li>Segmented networks (WAN / DMZ / LAN) with <strong>pfSense</strong> and controlled routing.</li>
-            <li><strong>Windows Server</strong> domain: AD users, policies, and access control scenarios.</li>
-            <li>Security telemetry pipeline: <strong>Sysmon → Wazuh</strong> with investigation filters and tuning.</li>
+            <li>Segmentation using <strong>pfSense</strong> (WAN/DMZ/LAN) and controlled routing policies.</li>
+            <li><strong>Windows Server</strong> domain environment: users, groups, and policy scenarios.</li>
+            <li>Telemetry: <strong>Sysmon → Wazuh</strong>, filters and tuning aligned to investigation workflows.</li>
           </ul>
         </div>
 
         <div class="card">
-          <h4>SOC-style Monitoring</h4>
+          <h4>SOC Workflow Practice</h4>
           <ul class="list">
-            <li>Log review and triage flow: identify signal vs noise and prioritise actionable alerts.</li>
-            <li>Baseline thinking: what “normal” looks like, then detect deviations.</li>
-            <li>Clear incident notes: timeline, affected assets, observed IOCs, and recommended actions.</li>
+            <li>Alert triage: prioritise signals, summarise impact, and recommend containment steps.</li>
+            <li>Baseline thinking: define normal, then detect deviations.</li>
+            <li>Clear notes: timeline, evidence, IOCs, and remediation.</li>
           </ul>
         </div>
 
         <div class="card">
-          <h4>Red/Blue Simulations (Learning-driven)</h4>
+          <h4>Red/Blue Simulations (Controlled)</h4>
           <ul class="list">
-            <li>Validated detections with controlled test activity and documented outcomes.</li>
-            <li>Mapped actions to defensive controls: hardening, visibility gaps, and response steps.</li>
-            <li>Improved alert quality by refining rules and reducing false positives.</li>
+            <li>Validate detections with controlled test activity and documented outcomes.</li>
+            <li>Map actions to controls: visibility gaps, hardening, and response steps.</li>
+            <li>Improve alert quality by refining rules and reducing false positives.</li>
           </ul>
+        </div>
+      </div>
+
+      <div class="timeline reveal" aria-label="Lab timeline">
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <strong>Build</strong>
+            <span>Segment network • AD domain • endpoint telemetry</span>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <strong>Simulate</strong>
+            <span>Controlled adversary actions with observable artefacts</span>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <strong>Detect</strong>
+            <span>Wazuh alerts • investigation filters • evidence</span>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <strong>Harden</strong>
+            <span>Policy fixes • access control • logging improvements</span>
+          </div>
         </div>
       </div>
     </section>
@@ -519,7 +654,7 @@
       <div class="section__head reveal">
         <h3 class="section__title">Education</h3>
         <p class="section__subtitle">
-          Strong foundation across IT, AI, and cybersecurity—with lab-first learning and real implementations.
+          Strong foundation across IT, AI, and cybersecurity—lab-first learning and real implementations.
         </p>
       </div>
 
@@ -528,8 +663,8 @@
           <h4>Postgraduate Certificate — Cybersecurity</h4>
           <p class="muted">Durham College (Canada)</p>
           <ul class="list">
-            <li>Hands-on labs: incident handling, monitoring, access controls, and security auditing.</li>
-            <li>Practical tooling across Windows, Linux, networking, and security operations.</li>
+            <li>Hands-on labs: incident handling, monitoring, access controls, auditing.</li>
+            <li>Practical tooling across Windows, Linux, networking, and SOC workflows.</li>
           </ul>
         </div>
 
@@ -537,8 +672,8 @@
           <h4>Postgraduate Certificate — Artificial Intelligence</h4>
           <p class="muted">Durham College (Canada)</p>
           <ul class="list">
-            <li>ML foundations and applied system design (automation mindset + practical builds).</li>
-            <li>Projects combining engineering and reliable deployment patterns.</li>
+            <li>ML foundations + applied system design (automation mindset).</li>
+            <li>Projects with reliable engineering and deployment thinking.</li>
           </ul>
         </div>
 
@@ -546,15 +681,15 @@
           <h4>Bachelor’s Degree — Information Technology Engineering</h4>
           <p class="muted">CHARUSAT University (India)</p>
           <ul class="list">
-            <li>Software development fundamentals, networking, databases, and systems thinking.</li>
+            <li>Core fundamentals: software, networking, databases, and systems.</li>
           </ul>
         </div>
 
         <div class="card card--accent">
           <h4>Certifications</h4>
-          <p class="muted">Add yours here when ready.</p>
+          <p class="muted">Add yours here when ready (or list “In Progress”).</p>
           <ul class="list">
-            <li>Example: Security+ (planned) / CCNA (planned) / Azure fundamentals (planned)</li>
+            <li>Security+ (planned) / CCNA (planned) / Azure/AWS fundamentals (planned)</li>
           </ul>
         </div>
       </div>
@@ -565,53 +700,58 @@
       <div class="section__head reveal">
         <h3 class="section__title">Services</h3>
         <p class="section__subtitle">
-          Freelance-friendly offerings for small businesses and teams that want stronger security fundamentals.
+          Freelance-ready offerings for small businesses that want stronger security fundamentals.
         </p>
       </div>
 
       <div class="grid reveal">
-        <div class="card">
+        <div class="card service">
+          <div class="service__icon">▣</div>
           <h4>Basic Security Assessments</h4>
-          <p class="muted">Quick wins, clear remediation.</p>
+          <p class="muted">Clear quick wins, prioritised fixes.</p>
           <ul class="list">
-            <li>Baseline review: patching, accounts, backups, and exposure points</li>
-            <li>Simple risk report with prioritised fixes</li>
+            <li>Baseline review: patching, accounts, backups, exposure</li>
+            <li>Short risk report with practical remediation</li>
           </ul>
         </div>
 
-        <div class="card">
+        <div class="card service">
+          <div class="service__icon">▣</div>
           <h4>SIEM Setup & Monitoring (Small Scale)</h4>
-          <p class="muted">Visibility that actually helps.</p>
+          <p class="muted">Visibility that stays usable.</p>
           <ul class="list">
-            <li>Centralised logging + alert review workflow</li>
-            <li>Noise reduction and tuning for practicality</li>
+            <li>Centralised logging + review workflow</li>
+            <li>Tuning to reduce noise and improve alerts</li>
           </ul>
         </div>
 
-        <div class="card">
+        <div class="card service">
+          <div class="service__icon">▣</div>
           <h4>Log Analysis & Incident Triage</h4>
           <p class="muted">Fast, structured analysis.</p>
           <ul class="list">
             <li>Investigate suspicious activity and summarise findings</li>
-            <li>Actionable recommendations and containment steps</li>
+            <li>Containment and next-step recommendations</li>
           </ul>
         </div>
 
-        <div class="card">
+        <div class="card service">
+          <div class="service__icon">▣</div>
           <h4>Small Business IT Support</h4>
-          <p class="muted">Reliable troubleshooting.</p>
+          <p class="muted">Reliable endpoints and users.</p>
           <ul class="list">
-            <li>Endpoint setup, security hygiene, and account management</li>
+            <li>Endpoint setup, access management, troubleshooting</li>
             <li>Documentation so issues don’t repeat</li>
           </ul>
         </div>
 
-        <div class="card">
+        <div class="card service">
+          <div class="service__icon">▣</div>
           <h4>Automation Scripts</h4>
-          <p class="muted">Reduce manual work.</p>
+          <p class="muted">Reduce repetitive work.</p>
           <ul class="list">
-            <li>Python/Bash helpers for backups, log parsing, and reporting</li>
-            <li>Simple tools that support repeatable operations</li>
+            <li>Python/Bash helpers for backups, parsing, reporting</li>
+            <li>Simple tooling aligned to operations</li>
           </ul>
         </div>
       </div>
@@ -622,7 +762,7 @@
       <div class="section__head reveal">
         <h3 class="section__title">Contact</h3>
         <p class="section__subtitle">
-          For roles, collaborations, or freelance work—send a message and I’ll reply promptly.
+          Recruiters, hiring managers, and clients—send a message and I’ll reply promptly.
         </p>
       </div>
 
@@ -642,23 +782,20 @@
               <span class="contact__value">linkedin.com/in/YOUR-LINKEDIN</span>
             </a>
 
-            <a class="contact__item" href="https://github.com/PatelManarth" target="_blank" rel="noreferrer">
+            <a class="contact__item" href="https://github.com/YOUR-GITHUB" target="_blank" rel="noreferrer">
               <span class="contact__label">GitHub</span>
-              <span class="contact__value">github.com/PatelManarth</span>
+              <span class="contact__value">github.com/YOUR-GITHUB</span>
             </a>
           </div>
 
           <div class="note">
-            <p><strong>Tip:</strong> Replace the placeholders above and your résumé PDF to make this site immediately recruiter-ready.</p>
+            <p><strong>Replace placeholders</strong> (email/links/resume/images) and you’re live.</p>
           </div>
         </div>
 
-        <!-- Static-friendly form:
-             Option A: Netlify Forms (works on Netlify by default)
-             Option B: Formspree (replace action URL)
-        -->
+        <!-- Netlify form. For GitHub Pages, switch to Formspree (see instructions below). -->
         <div class="card">
-          <h4>Message me</h4>
+          <h4>Send a message</h4>
 
           <form class="form" name="contact" method="POST" data-netlify="true">
             <input type="hidden" name="form-name" value="contact" />
@@ -696,9 +833,8 @@
     <!-- Footer -->
     <footer class="footer container">
       <div class="footer__left">
-        <p>© <span id="year"></span> Manarth Patel. Built for security-focused hiring.</p>
+        <p>© <span id="year"></span> Manarth Patel. Built with a SOC-first mindset.</p>
       </div>
-
       <div class="footer__right">
         <a class="link" href="#top">Back to top ↑</a>
       </div>
