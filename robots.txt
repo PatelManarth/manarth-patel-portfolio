@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-domain.example/sitemap.xml
+Sitemap: https://patelmanarth.github.io/manarth-patel-portfolio/sitemap.xml
