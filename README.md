@@ -20,7 +20,7 @@ This repository contains the source code for my personal portfolio website.
 - Automation and scripting
 
 ## Live Site
-👉 (Add URL after deployment)
+👉 https://patelmanarth.github.io/manarth-patel-portfolio/
 
 ## Notes
 All security simulations and demonstrations were performed in isolated lab environments for learning and validation purposes.
