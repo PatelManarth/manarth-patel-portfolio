@@ -35,11 +35,11 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const lines = [
-    'wazuh-query --agent WS01 --filter "sysmon.process:create"',
-    'triage --alert "suspicious-powershell" --severity high',
-    'baseline --host DC01 --window 24h',
-    'splunk-search --index security --keyword "failed logon"',
-    'report --timeline --evidence --recommendations'
+    'review-auth-logs --scope troubleshooting --document findings',
+    'm365-access-check --mfa --groups --permissions',
+    'wazuh-lab --events sysmon --write detection-notes',
+    'nmap-scan --test-system --report sanitized',
+    'portfolio-proof --separate production-work from lab-work'
   ];
 
   if (prefersReduced) {
@@ -205,7 +205,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   const animateCounter = (el) => {
     const target = parseInt(el.dataset.counter, 10);
-    const duration = 1200;
+    const duration = 900;
     const startTime = performance.now();
 
     function update(now) {
@@ -239,11 +239,11 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   if (!feed) return;
 
   const alerts = [
-    { sev: 'HIGH', cls: 'high', title: 'Suspicious PowerShell execution', meta: 'WS01 • Sysmon Event ID 1 • Review initiated' },
-    { sev: 'MED', cls: 'medium', title: 'Service creation detected', meta: 'DC01 • Validation recommended' },
-    { sev: 'LOW', cls: 'low', title: 'Multiple failed logons', meta: 'FS01 • Source correlation pending' },
-    { sev: 'MED', cls: 'medium', title: 'Unusual scheduled task activity', meta: 'WS02 • Investigation queued' },
-    { sev: 'HIGH', cls: 'high', title: 'Encoded command observed', meta: 'Endpoint visibility escalated' }
+    { sev: 'IAM', cls: 'high', title: 'Microsoft 365 access support', meta: 'Account support • MFA assistance • permission checks' },
+    { sev: 'LOG', cls: 'medium', title: 'Authentication log review', meta: 'Troubleshooting context • findings documented' },
+    { sev: 'LAB', cls: 'low', title: 'Wazuh and Sysmon detection notes', meta: 'Capstone evidence • Windows telemetry' },
+    { sev: 'NET', cls: 'medium', title: 'Nmap and OpenVAS review workflow', meta: 'Test systems • sanitized reporting' },
+    { sev: 'DOC', cls: 'high', title: 'Incident and resolution documentation', meta: 'Repeatable support • clear handoff notes' }
   ];
 
   let index = 0;
@@ -265,7 +265,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     while (feed.children.length > 4) {
       feed.removeChild(feed.lastElementChild);
     }
-  }, 3200);
+  }, 3600);
 })();
 
 (function modalViewer(){
@@ -284,108 +284,76 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     hydra: {
       tag: 'Featured Case Study',
       title: 'Operation Hydra — Corporate APT Simulation',
-      desc: 'A realistic enterprise-style red/blue team simulation demonstrating attack progression, detection, incident handling, isolation, and hardening.',
-      meta: ['MITRE ATT&CK aligned', 'Wazuh + Sysmon', 'pfSense segmentation', 'Active Directory', 'Incident Response'],
+      desc: 'A Durham College capstone simulating attack progression, detection, documentation, and hardening validation in a controlled lab.',
+      meta: ['Durham College capstone', 'Wazuh', 'Sysmon', 'Windows Event Logs', 'Active Directory', 'Hardening validation'],
       body: `
         <h4>Overview</h4>
-        <p>Operation Hydra was designed to simulate a real-world corporate breach lifecycle from initial compromise through detection, investigation, containment, and security hardening.</p>
-        <h4>Attack and defence flow</h4>
+        <p>Operation Hydra was built as an end-to-end attack-and-defense lab, not as a claim of production SOC ownership. The goal was to practice how an analyst documents attack behavior, maps evidence, and validates defensive improvements.</p>
+        <h4>Objective</h4>
         <ul>
-          <li>Simulated SQL injection, privilege escalation, and lateral movement.</li>
-          <li>Used Wazuh SIEM and Sysmon telemetry to identify malicious activity.</li>
-          <li>Performed incident response actions including system isolation and security hardening.</li>
-          <li>Validated end-to-end attack and defence thinking aligned with SOC workflows.</li>
+          <li>Simulate credential access, privilege escalation, and lateral movement in a controlled environment.</li>
+          <li>Review Windows Event Logs, Sysmon telemetry, and Wazuh alerts to identify suspicious activity.</li>
+          <li>Document findings, evidence, and recommended defensive actions.</li>
+          <li>Validate that hardening steps reduced the success of repeated attack attempts.</li>
         </ul>
-        <h4>Why this matters</h4>
+        <h4>Tools and environment</h4>
         <ul>
-          <li>Shows I understand both offensive activity and defensive visibility.</li>
-          <li>Demonstrates practical SIEM investigation value, not just tool familiarity.</li>
-          <li>Proves I can think in terms of workflow, evidence, and remediation.</li>
+          <li>Wazuh, Sysmon, Windows Event Logs, Active Directory, pfSense segmentation, Windows endpoints, and attacker lab tooling.</li>
+        </ul>
+        <h4>Outcome</h4>
+        <ul>
+          <li>Created a repeatable attack-detection-hardening workflow.</li>
+          <li>Improved documentation discipline around evidence, likely cause, and remediation.</li>
+          <li>Built interview-ready proof of security operations thinking while keeping the scope clearly project-based.</li>
         </ul>
       `
     },
     honeypot: {
       tag: 'Case Study',
       title: 'Honeypot Deployment & Early Threat Monitoring',
-      desc: 'A threat-monitoring project designed to observe attack behaviour and document defensive patterns.',
-      meta: ['Cowrie', 'Linux', 'Monitoring', 'Threat Observation'],
+      desc: 'A capstone project focused on honeypot deployment, brute-force monitoring, attacker behavior review, and defensive reporting.',
+      meta: ['Cowrie', 'Linux', 'ELK', 'Threat observation', 'Reporting'],
       body: `
         <h4>Overview</h4>
-        <p>This project focused on early threat monitoring through honeypot deployment and analysis of attacker behaviour.</p>
-        <h4>What I built</h4>
+        <p>This project focused on early threat monitoring through honeypot deployment and analysis of captured interaction attempts.</p>
+        <h4>Objective</h4>
         <ul>
-          <li>Deployed honeypots to capture interaction attempts and intrusion behaviour.</li>
-          <li>Observed patterns such as scans, login attempts, and attacker probing.</li>
-          <li>Documented defensive takeaways from collected activity.</li>
+          <li>Deploy a honeypot to capture brute-force and unauthorized access attempts.</li>
+          <li>Review repeated attacker behavior and summarize useful patterns.</li>
+          <li>Translate technical observations into concise defensive recommendations.</li>
+        </ul>
+        <h4>Evidence and reporting</h4>
+        <ul>
+          <li>Dashboard-style views, attacker pattern notes, and sanitized findings summaries.</li>
+          <li>Redaction priority: remove real IPs, usernames, hostnames, and unnecessary metadata before publishing screenshots.</li>
+        </ul>
+        <h4>Outcome</h4>
+        <ul>
+          <li>Improved practical understanding of brute-force behavior, repeated probing, and the value of clear monitoring reports.</li>
         </ul>
       `
     },
     riskscanner: {
       tag: 'Case Study',
       title: 'Personal Cyber Risk Scanner',
-      desc: 'A lightweight security assessment tool for detecting open ports and weak configurations with simple reporting.',
-      meta: ['Python', 'Nmap', 'Streamlit', 'Reporting'],
+      desc: 'A Python-, Nmap-, and Streamlit-based security project for open-port checks, weak-configuration review, and repeatable reporting.',
+      meta: ['Python', 'Nmap', 'Streamlit', 'Security review', 'Automated reporting'],
       body: `
         <h4>Overview</h4>
-        <p>Built as an independent project to provide quick visibility into open ports and basic configuration weaknesses.</p>
-        <h4>What I built</h4>
+        <p>The Personal Cyber Risk Scanner was built to connect simple vulnerability review with usable reporting. It was designed for test systems and small controlled environments.</p>
+        <h4>Objective</h4>
         <ul>
-          <li>Integrated Nmap with Python for scanning workflows.</li>
-          <li>Created a Streamlit interface for simple usability.</li>
-          <li>Added automated reporting to make results easier to review.</li>
+          <li>Run Nmap-based checks through a Python workflow.</li>
+          <li>Present results through a Streamlit interface.</li>
+          <li>Generate repeatable security review notes that are easier to understand than raw scan output.</li>
         </ul>
-      `
-    },
-    rat: {
-      tag: 'Case Study',
-      title: 'RAT Detection System',
-      desc: 'A defensive endpoint project focused on suspicious RAT-like behaviours and useful detection signals.',
-      meta: ['Python', 'Windows', 'Detection Logic'],
-      body: `
-        <h4>Overview</h4>
-        <p>This project explored how to identify abnormal endpoint behaviours commonly associated with remote access malware.</p>
-        <h4>Highlights</h4>
+        <h4>Tools and method</h4>
         <ul>
-          <li>Behaviour-focused detection thinking.</li>
-          <li>Better triage signals for analyst review.</li>
-          <li>Improved incident storytelling and reporting structure.</li>
+          <li>Python for orchestration, Nmap for scanning, Streamlit for the interface, and structured output for reporting.</li>
         </ul>
-      `
-    },
-    smartattend: {
-      tag: 'Case Study',
-      title: 'SmartAttend — AI Attendance System',
-      desc: 'An AI-enabled system combining computer vision, backend APIs, user workflows, and auditable reporting.',
-      meta: ['YOLOv8', 'FastAPI', 'Streamlit', 'Computer Vision'],
-      body: `
-        <h4>Overview</h4>
-        <p>SmartAttend was built as a production-minded AI system rather than just a model demo.</p>
-        <h4>What it includes</h4>
+        <h4>Outcome</h4>
         <ul>
-          <li>AI-based attendance processing using computer vision.</li>
-          <li>Backend API logic for workflows and records.</li>
-          <li>Frontend interaction and reporting support.</li>
-        </ul>
-        <h4>Why it matters</h4>
-        <ul>
-          <li>Shows full-stack thinking alongside AI/ML ability.</li>
-          <li>Demonstrates system design beyond pure model training.</li>
-        </ul>
-      `
-    },
-    backup: {
-      tag: 'Case Study',
-      title: 'Secure Backup Automation',
-      desc: 'A repeatable backup workflow designed for resilience, consistency, and restore readiness.',
-      meta: ['Linux', 'Automation', 'Recovery'],
-      body: `
-        <h4>Overview</h4>
-        <p>This project focused on building reliable backup processes with a security-first mindset.</p>
-        <h4>Highlights</h4>
-        <ul>
-          <li>Repeatable automation flow.</li>
-          <li>Security-conscious handling of backup data.</li>
-          <li>Useful for small environments that need dependable recovery support.</li>
+          <li>Demonstrates practical scripting, basic vulnerability assessment, and the ability to convert technical output into readable findings.</li>
         </ul>
       `
     }
