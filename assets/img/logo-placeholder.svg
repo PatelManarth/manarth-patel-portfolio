@@ -1,0 +1,42 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Manarth Patel portfolio logo</title>
+  <desc id="desc">A cybersecurity-focused MP monogram inside a shield with circuit-inspired accents.</desc>
+  <defs>
+    <linearGradient id="bg" x1="18" y1="10" x2="112" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="20" y1="12" x2="108" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6EB2FF"/>
+      <stop offset="0.48" stop-color="#2D7CFF"/>
+      <stop offset="1" stop-color="#1BE98C"/>
+    </linearGradient>
+    <filter id="glow" x="-24" y="-24" width="176" height="176" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.176 0 0 0 0 0.486 0 0 0 0 1 0 0 0 0.5 0"/>
+      <feBlend in="SourceGraphic" mode="normal"/>
+    </filter>
+  </defs>
+
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#bg)"/>
+  <rect x="8.75" y="8.75" width="110.5" height="110.5" rx="25.25" stroke="url(#edge)" stroke-width="1.5" opacity="0.95"/>
+
+  <g filter="url(#glow)">
+    <path d="M64 20L96 31.5V57.4C96 78.4 84.2 96.8 64 108C43.8 96.8 32 78.4 32 57.4V31.5L64 20Z" fill="#07111F" stroke="url(#edge)" stroke-width="3" stroke-linejoin="round"/>
+  </g>
+
+  <path d="M43 82V48.5C43 46.6 45.4 45.8 46.6 47.2L63.7 67.2C64.5 68.1 65.9 68.1 66.7 67.2L83.8 47.2C85 45.8 87.4 46.6 87.4 48.5V82" stroke="#F8FAFC" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M44 82V47L65 71L86 47V82" stroke="url(#edge)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+
+  <path d="M27 42H18" stroke="#2D7CFF" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+  <circle cx="17" cy="42" r="3" fill="#6EB2FF"/>
+  <path d="M101 42H110" stroke="#2D7CFF" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+  <circle cx="111" cy="42" r="3" fill="#6EB2FF"/>
+  <path d="M28 86H20" stroke="#1BE98C" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+  <circle cx="19" cy="86" r="3" fill="#1BE98C"/>
+  <path d="M100 86H108" stroke="#1BE98C" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+  <circle cx="109" cy="86" r="3" fill="#1BE98C"/>
+
+  <path d="M52 96H76" stroke="#6EB2FF" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <path d="M57 101H71" stroke="#1BE98C" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+</svg>
