@@ -1,0 +1,44 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Manarth Patel portfolio preview</title>
+  <desc id="desc">Open Graph preview image for Manarth Patel, Cybersecurity and IT Analyst.</desc>
+  <defs>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 84) rotate(47) scale(550 330)">
+      <stop stop-color="#2D7CFF" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#2D7CFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1020 520) rotate(140) scale(500 300)">
+      <stop stop-color="#1BE98C" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#1BE98C" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="856" y1="104" x2="1058" y2="344" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6EB2FF"/>
+      <stop offset="0.5" stop-color="#2D7CFF"/>
+      <stop offset="1" stop-color="#1BE98C"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#070A0F"/>
+  <rect width="1200" height="630" fill="url(#glowA)"/>
+  <rect width="1200" height="630" fill="url(#glowB)"/>
+
+  <g opacity="0.16">
+    <path d="M0 120H1200M0 240H1200M0 360H1200M0 480H1200M120 0V630M240 0V630M360 0V630M480 0V630M600 0V630M720 0V630M840 0V630M960 0V630M1080 0V630" stroke="#EAF3FF" stroke-width="1"/>
+  </g>
+
+  <rect x="72" y="72" width="1056" height="486" rx="34" fill="#0B1320" fill-opacity="0.78" stroke="#1B3557" stroke-width="2"/>
+  <rect x="92" y="92" width="1016" height="446" rx="26" stroke="#2D7CFF" stroke-opacity="0.28" stroke-width="1"/>
+
+  <text x="116" y="178" fill="#6EB2FF" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="5">PORTFOLIO • CYBERSECURITY • IT</text>
+  <text x="116" y="282" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800">Manarth Patel</text>
+  <text x="116" y="348" fill="#DDEBFF" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">Cybersecurity &amp; IT Analyst</text>
+  <text x="116" y="414" fill="#A8BED8" font-family="Arial, Helvetica, sans-serif" font-size="27">Microsoft 365 • Identity &amp; Access • Endpoint Support • SIEM Labs</text>
+  <text x="116" y="478" fill="#7BFFC1" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">manarthpatel.com</text>
+
+  <path d="M960 116L1052 150V222C1052 282 1018 330 960 360C902 330 868 282 868 222V150L960 116Z" fill="#081526" stroke="url(#edge)" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M907 279V194C907 190 912 188 915 191L960 242L1005 191C1008 188 1013 190 1013 194V279" stroke="#EAF3FF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M960 242H997C1016 242 1028 232 1028 216C1028 200 1016 190 997 190H982V279" stroke="#EAF3FF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="858" cy="172" r="5" fill="#6EB2FF"/>
+  <circle cx="1064" cy="300" r="5" fill="#1BE98C"/>
+  <path d="M858 172H814M1064 300H1098" stroke="#6EB2FF" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+</svg>
