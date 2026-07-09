@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow: /
 
-Sitemap: https://manarthpatel.com/sitemap.xml
+# Staging preview only. Production robots.txt should remain indexable.
