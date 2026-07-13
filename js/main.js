@@ -1,233 +1,31 @@
-const toggleBtn = document.querySelector('.nav__toggle');
-const navLinks = document.querySelector('[data-nav-links]');
-
-if (toggleBtn && navLinks) {
-  toggleBtn.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('is-open');
-    toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      navLinks.classList.remove('is-open');
-      toggleBtn.setAttribute('aria-expanded', 'false');
-    });
-  });
-}
-
-(function themeSwitcher(){
-  const html = document.documentElement;
-  const saved = localStorage.getItem('portfolio-theme') || html.getAttribute('data-theme') || 'blue';
-  html.setAttribute('data-theme', saved === 'green' ? 'green' : 'blue');
-
-  document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
-    const nameEl = btn.querySelector('[data-theme-name]') || document.querySelector('[data-theme-name]');
-    if (nameEl) nameEl.textContent = html.getAttribute('data-theme') === 'green' ? 'Green' : 'Blue';
-
-    btn.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme') || 'blue';
-      const next = current === 'blue' ? 'green' : 'blue';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('portfolio-theme', next);
-      document.querySelectorAll('[data-theme-name]').forEach(el => {
-        el.textContent = next === 'green' ? 'Green' : 'Blue';
-      });
-    });
-  });
-})();
-
-const reveals = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window) {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.14 });
-  reveals.forEach(el => io.observe(el));
-} else {
-  reveals.forEach(el => el.classList.add('is-visible'));
-}
-
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-(function terminalTypewriter(){
-  const el = document.querySelector('[data-typewriter]');
-  if (!el) return;
-
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const lines = [
-    'evidence-console --profile cybersecurity-it --status live',
-    'm365-access-review --mfa --identity --document findings',
-    'wazuh-lab --events sysmon --triage alerts',
-    'nmap-review --approved-scope --report clear',
-    'case-files --sanitize evidence --publish safely'
-  ];
-
-  if (prefersReduced) {
-    el.textContent = lines[0];
-    return;
-  }
-
-  let lineIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
-
-  function tick() {
-    const current = lines[lineIndex];
-
-    if (!deleting) {
-      el.textContent = current.slice(0, charIndex++);
-      if (charIndex > current.length) {
-        deleting = true;
-        setTimeout(tick, 950);
-        return;
-      }
-      setTimeout(tick, 24);
-    } else {
-      el.textContent = current.slice(0, charIndex--);
-      if (charIndex < 0) {
-        deleting = false;
-        lineIndex = (lineIndex + 1) % lines.length;
-        charIndex = 0;
-      }
-      setTimeout(tick, 12);
-    }
-  }
-
-  tick();
-})();
-
-(function networkCanvas(){
-  const canvas = document.querySelector('[data-net-canvas]');
-  if (!canvas) return;
-
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) return;
-
-  const ctx = canvas.getContext('2d');
-  const DPR = Math.min(window.devicePixelRatio || 1, 2);
-
-  let w = 0, h = 0;
-  let nodes = [];
-  let mouse = { x: null, y: null };
-
-  function getAccentRGB() {
-    const theme = document.documentElement.getAttribute('data-theme');
-    return theme === 'green' ? '27,233,140' : '45,124,255';
-  }
-
-  function resize(){
-    w = Math.floor(window.innerWidth);
-    h = Math.floor(window.innerHeight);
-    canvas.width = Math.floor(w * DPR);
-    canvas.height = Math.floor(h * DPR);
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 'px';
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-
-    const count = Math.max(45, Math.min(95, Math.floor((w * h) / 18000)));
-    nodes = new Array(count).fill(0).map(() => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-      r: 1.2 + Math.random() * 1.2
-    }));
-  }
-
-  window.addEventListener('resize', resize);
-  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-  window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-
-  resize();
-
-  function draw(){
-    const accent = getAccentRGB();
-    ctx.clearRect(0,0,w,h);
-    ctx.fillStyle = 'rgba(7,10,15,0.18)';
-    ctx.fillRect(0,0,w,h);
-
-    for (let i = 0; i < nodes.length; i++){
-      const a = nodes[i];
-      a.x += a.vx;
-      a.y += a.vy;
-      if (a.x < 0 || a.x > w) a.vx *= -1;
-      if (a.y < 0 || a.y > h) a.vy *= -1;
-
-      for (let j = i+1; j < nodes.length; j++){
-        const b = nodes[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        const maxDist = 140;
-        if (dist < maxDist){
-          const alpha = (1 - dist / maxDist) * 0.28;
-          ctx.strokeStyle = `rgba(${accent},${alpha})`;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-        }
-      }
-
-      if (mouse.x !== null){
-        const dxm = mouse.x - a.x;
-        const dym = mouse.y - a.y;
-        const dm = Math.sqrt(dxm*dxm + dym*dym);
-        if (dm > 0 && dm < 180){
-          a.vx += (dxm / dm) * 0.0022;
-          a.vy += (dym / dm) * 0.0022;
-        }
-      }
-
-      ctx.fillStyle = `rgba(${accent},0.85)`;
-      ctx.beginPath();
-      ctx.arc(a.x, a.y, a.r, 0, Math.PI*2);
-      ctx.fill();
-    }
-
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-})();
-
-(function counters(){
-  const counters = document.querySelectorAll('[data-counter]');
-  if (!counters.length) return;
-
-  const animateCounter = (el) => {
-    const target = parseInt(el.dataset.counter, 10);
-    const duration = 900;
-    const startTime = performance.now();
-
-    function update(now) {
-      const progress = Math.min((now - startTime) / duration, 1);
-      const value = Math.floor(progress * target);
-      el.textContent = value;
-      if (progress < 1) requestAnimationFrame(update);
-      else el.textContent = target;
-    }
-
-    requestAnimationFrame(update);
-  };
-
-  if ('IntersectionObserver' in window) {
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    counters.forEach(counter => counterObserver.observe(counter));
-  } else {
-    counters.forEach(counter => animateCounter(counter));
-  }
+const toggleBtn=document.querySelector('.nav__toggle');const navLinks=document.querySelector('[data-nav-links]');if(toggleBtn&&navLinks){toggleBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('is-open');toggleBtn.setAttribute('aria-expanded',open?'true':'false')});navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('is-open');toggleBtn.setAttribute('aria-expanded','false')}))}
+(function(){const html=document.documentElement;const saved=localStorage.getItem('portfolio-theme')||html.getAttribute('data-theme')||'blue';html.setAttribute('data-theme',saved==='green'?'green':'blue');const sync=()=>document.querySelectorAll('[data-theme-name]').forEach(el=>el.textContent=html.getAttribute('data-theme')==='green'?'Green':'Blue');sync();document.querySelectorAll('[data-theme-toggle]').forEach(btn=>btn.addEventListener('click',()=>{const next=html.getAttribute('data-theme')==='green'?'blue':'green';html.setAttribute('data-theme',next);localStorage.setItem('portfolio-theme',next);sync()}))})();
+const reveals=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');io.unobserve(entry.target)}}),{threshold:.12});reveals.forEach(el=>io.observe(el))}else reveals.forEach(el=>el.classList.add('is-visible'));
+const yearEl=document.getElementById('year');if(yearEl)yearEl.textContent=new Date().getFullYear();
+(function(){const el=document.querySelector('[data-typewriter]');if(!el)return;const lines=['triage-alert --collect context --document decision','wazuh-lab --sysmon --map mitre-attck','entra-review --mfa --conditional-access','aws-iam --validate policy --reduce privilege','publish-evidence --sanitize --explain clearly'];if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=lines[0];return}let li=0,ci=0,del=false;function tick(){const s=lines[li];el.textContent=s.slice(0,ci);if(!del){ci++;if(ci>s.length){del=true;setTimeout(tick,900);return}}else{ci--;if(ci<0){del=false;li=(li+1)%lines.length;ci=0}}setTimeout(tick,del?12:25)}tick()})();
+(function(){const canvas=document.querySelector('[data-net-canvas]');if(!canvas||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const ctx=canvas.getContext('2d');let w,h,nodes=[];const resize=()=>{w=innerWidth;h=innerHeight;canvas.width=w;canvas.height=h;nodes=Array.from({length:Math.max(36,Math.min(76,Math.floor(w*h/22000)))},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}))};addEventListener('resize',resize);resize();(function draw(){ctx.clearRect(0,0,w,h);const rgb=document.documentElement.getAttribute('data-theme')==='green'?'27,233,140':'45,124,255';nodes.forEach((a,i)=>{a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>w)a.vx*=-1;if(a.y<0||a.y>h)a.vy*=-1;ctx.fillStyle=`rgba(${rgb},.75)`;ctx.beginPath();ctx.arc(a.x,a.y,1.5,0,Math.PI*2);ctx.fill();for(let j=i+1;j<nodes.length;j++){const b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);if(d<130){ctx.strokeStyle=`rgba(${rgb},${(1-d/130)*.18})`;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}});requestAnimationFrame(draw)})()})();
+(function experience(){if(!document.querySelector('link[href="/css/experience.css"]')){const l=document.createElement('link');l.rel='stylesheet';l.href='/css/experience.css';document.head.appendChild(l)}
+const searchItems=[
+{title:'Home — Cybersecurity Evidence Console',url:'/',tags:'home recruiter soc iam cybersecurity it'},
+{title:'About Manarth Patel',url:'/about/',tags:'profile career education skills'},
+{title:'Cybersecurity Projects',url:'/projects/',tags:'wazuh sysmon atomic red team entra aws guardduty cloudtrail iam'},
+{title:'Active Lab Workspace',url:'/labs/',tags:'building progress endpoint detection zero trust cloud security'},
+{title:'Practical Cybersecurity Services',url:'/services/',tags:'m365 mfa dns email security support'},
+{title:'Resume',url:'/resume/',tags:'resume cv experience education jobs'},
+{title:'Cybersecurity Blog',url:'/blog/',tags:'articles soc iam detection cloud security'},
+{title:'LinkedIn Activity Hub',url:'/linkedin/',tags:'linkedin posts updates professional activity'},
+{title:'Cybersecurity Glossary',url:'/glossary/',tags:'soc siem iam mfa mitre zero trust logs alerts incidents'},
+{title:'Contact Manarth',url:'/contact/',tags:'email linkedin github contact'},
+{title:'Endpoint Detection Engineering Lab',url:'/projects/',tags:'wazuh windows 11 sysmon atomic red team mitre attck detection engineering'},
+{title:'Microsoft Entra IAM and Zero Trust Lab',url:'/projects/',tags:'entra id conditional access mfa sign-in logs zero trust'},
+{title:'AWS Cloud Security and Least Privilege Lab',url:'/projects/',tags:'aws cloudtrail guardduty access analyzer policy least privilege'}];
+const tools=document.querySelector('.nav__tools');if(tools){const b=document.createElement('button');b.className='search-trigger';b.type='button';b.innerHTML='Search <kbd>Ctrl K</kbd>';b.setAttribute('aria-label','Search this website');tools.prepend(b)}
+const shell=document.createElement('div');shell.className='command-backdrop';shell.innerHTML='<div class="command-panel" role="dialog" aria-modal="true" aria-label="Website search"><div class="command-head"><input type="search" placeholder="Search projects, tools, skills, blogs..." aria-label="Search website"><button class="command-close" aria-label="Close search">×</button></div><div class="command-results"></div></div>';document.body.appendChild(shell);const input=shell.querySelector('input'),results=shell.querySelector('.command-results');
+function render(q=''){const query=q.trim().toLowerCase();const found=searchItems.filter(x=>(x.title+' '+x.tags).toLowerCase().includes(query)).slice(0,8);if(found.length){results.innerHTML=found.map(x=>`<a class="command-result" href="${x.url}"><strong>${x.title}</strong><span>${x.tags.split(' ').slice(0,7).join(' · ')}</span></a>`).join('')}else{const enc=encodeURIComponent(q);results.innerHTML=`<div class="command-empty">No matching page was found on this website.</div><div class="command-actions"><a href="https://www.google.com/search?q=site%3Amanarthpatel.com+${enc}" target="_blank" rel="noreferrer">Search this site on Google ↗</a><a href="https://www.google.com/search?q=${enc}" target="_blank" rel="noreferrer">Search Google ↗</a><a href="/contact/">Ask Manarth</a></div>`}}
+const open=()=>{shell.classList.add('is-open');input.value='';render();setTimeout(()=>input.focus(),20)},close=()=>shell.classList.remove('is-open');document.querySelector('.search-trigger')?.addEventListener('click',open);shell.querySelector('.command-close').addEventListener('click',close);shell.addEventListener('click',e=>{if(e.target===shell)close()});input.addEventListener('input',()=>render(input.value));addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();open()}if(e.key==='Escape')close()});
+const greet=document.querySelector('[data-console-greeting]');if(greet){const msgs=['Welcome, Analyst. Evidence routes are online.','Recruiter route ready: resume → projects → contact.','Curious visitor detected. Simple explanations are available.','SOC route ready: detection → investigation → response.'];greet.textContent=msgs[Math.floor(Math.random()*msgs.length)]}
+document.querySelectorAll('[data-audience]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-audience]').forEach(x=>x.classList.remove('is-active'));btn.classList.add('is-active');const out=document.querySelector('[data-route-output]');const routes={recruiter:['Recruiter route','Resume → About → Priority Projects → Contact'],technical:['Technical manager route','Projects → Labs → Detection notes → GitHub'],learner:['Learning route','Glossary → Blog → Lab workspace → Projects'],business:['Small-business route','Services → Plain-English guidance → Contact']};const r=routes[btn.dataset.audience];if(out)out.innerHTML=`<h3>${r[0]}</h3><p>${r[1]}</p>`}));
+document.querySelectorAll('[data-depth-button]').forEach(btn=>btn.addEventListener('click',()=>{const depth=btn.dataset.depthButton;document.documentElement.setAttribute('data-depth',depth);localStorage.setItem('portfolio-depth',depth);document.querySelectorAll('[data-depth-button]').forEach(x=>x.classList.toggle('is-active',x===btn))}));const depth=localStorage.getItem('portfolio-depth')||'simple';document.documentElement.setAttribute('data-depth',depth);document.querySelector(`[data-depth-button="${depth}"]`)?.classList.add('is-active');
+const nist={govern:['Govern','Define priorities, responsibilities, acceptable risk, and evidence standards.'],identify:['Identify','Understand assets, users, systems, exposure, and business context.'],protect:['Protect','Apply MFA, Conditional Access, least privilege, hardening, and secure configuration.'],detect:['Detect','Collect telemetry, map behavior, validate alerts, and tune detections.'],respond:['Respond','Triage, investigate, contain, communicate, and document decisions.'],recover:['Recover','Restore safely, validate controls, learn, and improve the environment.']};document.querySelectorAll('[data-nist]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-nist]').forEach(x=>x.classList.remove('is-active'));btn.classList.add('is-active');const d=nist[btn.dataset.nist],box=document.querySelector('[data-nist-detail]');if(box)box.innerHTML=`<h3>${d[0]}</h3><p>${d[1]}</p>`}));
+const feedback=document.querySelector('[data-triage-feedback]');document.querySelectorAll('[data-triage-choice]').forEach(btn=>btn.addEventListener('click',()=>{const good=btn.dataset.triageChoice==='context';if(feedback)feedback.innerHTML=good?'<strong>Best first step.</strong> Review source IP, username, timestamp, MFA status, location, endpoint activity, and repetition before choosing containment.':'<strong>Not the best first step.</strong> An analyst should gather context and validate confidence before ignoring the alert or taking disruptive action.'}));
 })();
