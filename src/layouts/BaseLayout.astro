@@ -9,7 +9,9 @@ const {
   image = '/assets/img/og-preview.svg',
   noindex = false
 } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const siteBase = Astro.site ?? new URL(Astro.url.origin);
+const canonical = new URL(Astro.url.pathname, siteBase);
+const socialImage = new URL(image, siteBase);
 ---
 <!doctype html>
 <html lang="en-CA" data-theme="blue" data-depth="simple">
@@ -25,7 +27,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image" content={socialImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
     <script is:inline>
