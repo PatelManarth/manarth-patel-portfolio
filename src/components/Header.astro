@@ -1,0 +1,32 @@
+---
+import { navigation } from '../data/navigation';
+const { pathname = '/' } = Astro.props;
+const active = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
+---
+<header class="site-header">
+  <nav class="nav shell" aria-label="Primary navigation">
+    <a class="brand" href="/" aria-label="Manarth Patel home">
+      <span class="brand-name">Manarth Patel</span>
+      <span class="brand-subtitle">Evidence Console</span>
+    </a>
+
+    <div class="nav-actions">
+      <button class="search-trigger" type="button" data-search-open aria-label="Search website">Search <kbd>Ctrl K</kbd></button>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">Theme <strong data-theme-name>Blue</strong></button>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-menu">Menu</button>
+    </div>
+
+    <div class="nav-menu" id="site-menu" data-menu>
+      {navigation.map((item) => item.children ? (
+        <details class="nav-group" open={active(item.href)}>
+          <summary class:list={[active(item.href) && 'is-active']}>{item.label}</summary>
+          <div class="nav-dropdown">
+            {item.children.map((child) => <a class:list={[active(child.href) && 'is-active']} href={child.href}>{child.label}</a>)}
+          </div>
+        </details>
+      ) : (
+        <a class:list={[active(item.href) && 'is-active', item.label === 'Contact' && 'nav-contact']} href={item.href}>{item.label}</a>
+      ))}
+    </div>
+  </nav>
+</header>
