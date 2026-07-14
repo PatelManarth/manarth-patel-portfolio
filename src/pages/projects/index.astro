@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+const projects = (await getCollection('projects')).sort((a,b)=>a.data.order-b.data.order);
+---
+<BaseLayout title="Cybersecurity Projects | Manarth Patel" description="Evidence-focused cybersecurity projects covering endpoint detection, Microsoft Entra IAM, AWS cloud security, investigation and remediation.">
+  <section class="section shell">
+    <span class="eyebrow">Project Programme</span>
+    <h1 class="page-title">Projects built around evidence of thinking</h1>
+    <p class="page-intro">Each project uses the same structured record for its status, tools, summaries, milestones, search result and individual detail page.</p>
+    <div class="filter-bar" aria-label="Project filters">
+      <button class="is-active" type="button" data-project-filter="all">All</button>
+      <button type="button" data-project-filter="SOC">SOC</button>
+      <button type="button" data-project-filter="IAM">IAM</button>
+      <button type="button" data-project-filter="Cloud Security">Cloud</button>
+    </div>
+    <div class="project-grid" data-project-grid>{projects.map(project => <div data-project-track={project.data.track}><ProjectCard project={project} /></div>)}</div>
+  </section>
+  <script is:inline>
+    document.querySelectorAll('[data-project-filter]').forEach(button=>button.addEventListener('click',()=>{
+      document.querySelectorAll('[data-project-filter]').forEach(item=>item.classList.toggle('is-active',item===button));
+      document.querySelectorAll('[data-project-track]').forEach(card=>card.hidden=button.dataset.projectFilter!=='all'&&card.dataset.projectTrack!==button.dataset.projectFilter);
+    }));
+  </script>
+</BaseLayout>
