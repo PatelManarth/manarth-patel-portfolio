@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+const projects = (await getCollection('projects')).sort((a,b)=>a.data.order-b.data.order);
+---
+<BaseLayout>
+  <section class="section shell hero">
+    <div>
+      <span class="eyebrow">Interactive Cybersecurity Evidence Console</span>
+      <h1>Cybersecurity &amp; IT Analyst</h1>
+      <p class="hero-copy simple-copy">I connect day-to-day IT operations with stronger account, access, endpoint, documentation, and security practices.</p>
+      <p class="hero-copy technical-copy">My portfolio connects identity controls, endpoint telemetry, detection validation, cloud IAM, investigation, remediation, and evidence mapped to professional frameworks.</p>
+      <div class="mode-switch" aria-label="Explanation depth">
+        <button type="button" data-depth="simple">Simple view</button>
+        <button type="button" data-depth="technical">Technical view</button>
+      </div>
+      <div class="hero-actions">
+        <a class="button button--primary" href="/projects/">Explore projects</a>
+        <a class="button" href="/services/">View services</a>
+        <a class="button" href="/resume/">View resume</a>
+      </div>
+    </div>
+    <aside class="console-panel">
+      <h2>Evidence-first portfolio</h2>
+      <div class="console-lines">
+        <p><strong>Production base:</strong> Microsoft 365, identity, MFA, endpoint and user support</p>
+        <p><strong>Security evidence:</strong> SOC, IAM and cloud labs with documented decisions</p>
+        <p><strong>Location:</strong> Oshawa / GTA, Ontario</p>
+        <p><strong>Availability:</strong> Remote, hybrid and onsite</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section shell">
+    <div class="section-head"><h2>Choose your route</h2><p>Your choice persists across the visit and changes the recommended next step.</p></div>
+    <div class="route-grid">
+      <button class="route-card" data-route="recruiter"><strong>Recruiter</strong><br><span>Resume, profile, evidence and contact</span></button>
+      <button class="route-card" data-route="technical"><strong>Technical manager</strong><br><span>Architecture, logs, detections and decisions</span></button>
+      <button class="route-card" data-route="learner"><strong>Cybersecurity learner</strong><br><span>Glossary, articles, simulations and labs</span></button>
+      <button class="route-card" data-route="business"><strong>Small-business visitor</strong><br><span>Services, scope, guidance and contact</span></button>
+    </div>
+    <div class="route-output" data-route-output aria-live="polite"><strong>General route</strong><p>Projects → Labs → Resume → Contact</p></div>
+  </section>
+
+  <section class="section shell">
+    <div class="section-head"><h2>Current project programme</h2><p>Statuses and progress are generated from one structured project record, not copied between pages.</p></div>
+    <div class="project-grid">{projects.map(project => <ProjectCard project={project} />)}</div>
+  </section>
+</BaseLayout>
