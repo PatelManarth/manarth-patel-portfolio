@@ -1,0 +1,57 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const {
+  title = 'Manarth Patel | Cybersecurity & IT Analyst',
+  description = 'Interactive cybersecurity portfolio for Manarth Patel covering SOC analysis, IAM, cloud security, endpoint detection, IT operations, and documented evidence.',
+  image = '/assets/img/og-preview.svg',
+  noindex = false
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en-CA" data-theme="blue" data-depth="simple">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="theme-color" content="#070A0F" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || 'blue';
+        document.documentElement.dataset.depth = localStorage.getItem('portfolio-depth') || 'simple';
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="background-grid" aria-hidden="true"></div>
+    <div class="background-glow" aria-hidden="true"></div>
+    <canvas class="network-canvas" data-network aria-hidden="true"></canvas>
+    <Header pathname={Astro.url.pathname} />
+    <main id="content"><slot /></main>
+    <Footer />
+    <dialog class="search-dialog" data-search-dialog aria-label="Search this website">
+      <form method="dialog" class="search-panel">
+        <div class="search-head">
+          <input type="search" data-search-input placeholder="Search projects, skills, articles, services..." aria-label="Search website" />
+          <button value="close" aria-label="Close search">×</button>
+        </div>
+        <div class="search-results" data-search-results aria-live="polite"></div>
+      </form>
+    </dialog>
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>
