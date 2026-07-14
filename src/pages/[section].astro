@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { sections } from '../data/sections';
+
+export function getStaticPaths(){
+  return Object.entries(sections).map(([section,data])=>({params:{section},props:{data}}));
+}
+const { data } = Astro.props;
+---
+<BaseLayout title={`${data.title} | Manarth Patel`} description={data.description}>
+  <section class="section shell">
+    <span class="eyebrow">{data.eyebrow}</span>
+    <h1 class="page-title">{data.title}</h1>
+    <p class="page-intro">{data.description}</p>
+    <div class="info-panel"><p>{data.body}</p><p class="simple-copy">This page currently establishes the shared V2 structure and will receive its content collection during migration.</p><p class="technical-copy">The route is generated through the shared Astro layout and centralized data model; content collections will replace this transitional record during migration.</p></div>
+    <div class="hero-actions"><a class="button button--primary" href="/projects/">Review projects</a><a class="button" href="/contact/">Contact</a></div>
+  </section>
+</BaseLayout>
