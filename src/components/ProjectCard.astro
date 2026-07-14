@@ -1,0 +1,27 @@
+---
+const { project, compact = false } = Astro.props;
+const data = project.data;
+const completed = data.milestones.filter((item: { complete: boolean }) => item.complete).length;
+const progress = data.milestones.length ? Math.round((completed / data.milestones.length) * 100) : 0;
+const statusLabel = data.status.replace('-', ' ').replace(/\b\w/g, (letter: string) => letter.toUpperCase());
+---
+<article class:list={['project-card', compact && 'project-card--compact']}>
+  <div class="project-card__top">
+    <span class={`status status--${data.status}`}>{statusLabel}</span>
+    <span class="project-card__updated">Updated {data.updated.toLocaleDateString('en-CA', { year: 'numeric', month: 'short' })}</span>
+  </div>
+  <h3><a href={`/projects/${data.slug}/`}>{data.title}</a></h3>
+  <p class="simple-copy">{data.simpleSummary}</p>
+  <p class="technical-copy">{data.technicalSummary}</p>
+  <dl class="project-labels">
+    <div><dt>Track</dt><dd>{data.track}</dd></div>
+    <div><dt>Focus</dt><dd>{data.focus}</dd></div>
+    <div><dt>Progress</dt><dd>{progress}%</dd></div>
+  </dl>
+  <div class="progress" aria-label={`${progress}% complete`}><span style={`width:${progress}%`}></span></div>
+  <div class="tags">{data.tools.map((tool: string) => <span>{tool}</span>)}</div>
+  <div class="card-actions">
+    <a class="button button--primary" href={`/projects/${data.slug}/`}>Open project</a>
+    <a class="button" href={`/labs/#${data.slug}`}>View lab status</a>
+  </div>
+</article>
