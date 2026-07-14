@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const projects = (await getCollection('projects')).sort((a,b)=>a.data.order-b.data.order);
+---
+<BaseLayout title="Cybersecurity Lab Workspace | Manarth Patel" description="Live project build workspace showing honest milestone-based progress for cybersecurity labs.">
+  <section class="section shell">
+    <span class="eyebrow">Active Build Workspace</span>
+    <h1 class="page-title">Lab progress generated from milestones</h1>
+    <p class="page-intro">Progress is calculated from completed project milestones. Updating one project file updates this workspace, the homepage, project index, search and individual project page.</p>
+    <div class="project-grid">
+      {projects.map(project => {
+        const complete = project.data.milestones.filter(item=>item.complete).length;
+        const total = project.data.milestones.length;
+        const progress = total ? Math.round(complete / total * 100) : 0;
+        return <article class="project-card" id={project.data.slug}>
+          <div class="project-card__top"><span class={`status status--${project.data.status}`}>{project.data.status.replace('-',' ')}</span><span>{complete}/{total} milestones</span></div>
+          <h2><a href={`/projects/${project.data.slug}/`}>{project.data.title}</a></h2>
+          <p class="simple-copy">{project.data.simpleSummary}</p><p class="technical-copy">{project.data.technicalSummary}</p>
+          <div class="progress" aria-label={`${progress}% complete`}><span style={`width:${progress}%`}></span></div>
+          <ul>{project.data.milestones.map(item=><li>{item.complete ? '✓' : '○'} {item.label}</li>)}</ul>
+          <div class="card-actions"><a class="button button--primary" href={`/projects/${project.data.slug}/`}>Open project</a></div>
+        </article>;
+      })}
+    </div>
+  </section>
+</BaseLayout>
