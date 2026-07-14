@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# portfolio-v2 staging preview only
