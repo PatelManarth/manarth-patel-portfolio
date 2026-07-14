@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+export async function getStaticPaths(){const projects=await getCollection('projects');return projects.map(project=>({params:{slug:project.data.slug},props:{project}}))}
+const { project } = Astro.props;
+const { Content } = await render(project);
+const complete = project.data.milestones.filter((item:{complete:boolean})=>item.complete).length;
+const progress = project.data.milestones.length ? Math.round(complete/project.data.milestones.length*100) : 0;
+---
+<BaseLayout title={`${project.data.title} | Manarth Patel`} description={project.data.simpleSummary}>
+  <article class="section shell">
+    <span class={`status status--${project.data.status}`}>{project.data.status.replace('-',' ')}</span>
+    <h1 class="page-title">{project.data.title}</h1>
+    <p class="page-intro simple-copy">{project.data.simpleSummary}</p>
+    <p class="page-intro technical-copy">{project.data.technicalSummary}</p>
+    <div class="project-labels"><div><dt>Track</dt><dd>{project.data.track}</dd></div><div><dt>Focus</dt><dd>{project.data.focus}</dd></div><div><dt>Progress</dt><dd>{progress}%</dd></div></div>
+    <div class="progress"><span style={`width:${progress}%`}></span></div>
+    <section class="info-panel"><h2>Project note</h2><Content /></section>
+    <section class="info-panel"><h2>Milestones</h2><ul>{project.data.milestones.map((item:{label:string,complete:boolean})=><li>{item.complete?'✓':'○'} {item.label}</li>)}</ul></section>
+    <section class="info-panel"><h2>Planned public evidence</h2><ul>{project.data.evidence.map((item:string)=><li>{item}</li>)}</ul></section>
+    <section class="info-panel"><h2>Frameworks and tools</h2><div class="tags">{[...project.data.frameworks,...project.data.tools].map((item:string)=><span>{item}</span>)}</div></section>
+  </article>
+</BaseLayout>
