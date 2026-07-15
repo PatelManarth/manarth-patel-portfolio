@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort((a,b) => b.data.updated.getTime() - a.data.updated.getTime());
+---
+<BaseLayout title="Cybersecurity Blog | Manarth Patel" description="Evidence-linked cybersecurity writing by Manarth Patel covering SOC analysis, IAM, cloud security, detection engineering, and practical security concepts.">
+  <section class="section shell page-hero">
+    <span class="eyebrow">Knowledge Base</span>
+    <h1 class="page-title">Cybersecurity Blog</h1>
+    <p class="page-intro">Articles are independent Markdown records. Drafts and planned topics can be updated without changing page layout, navigation, search, or other content.</p>
+    <div class="content-grid">
+      {posts.map(post => <article class="content-card">
+        <span class="content-card__label">{post.data.status.replace('-', ' ')}</span>
+        <h2>{post.data.title}</h2>
+        <p>{post.data.summary}</p>
+        <div class="tags">{post.data.tags.map(tag => <span>{tag}</span>)}</div>
+        <div class="card-actions">
+          <a class="button button--primary" href={`/blog/${post.data.slug}/`}>Open article</a>
+          {post.data.relatedProject && <a class="button" href={`/projects/${post.data.relatedProject}/`}>Related project</a>}
+        </div>
+      </article>)}
+    </div>
+  </section>
+</BaseLayout>
