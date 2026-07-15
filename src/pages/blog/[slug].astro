@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths(){
+  const posts = await getCollection('blog');
+  return posts.map(post => ({ params: { slug: post.data.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<BaseLayout title={`${post.data.title} | Manarth Patel`} description={post.data.summary}>
+  <article class="section shell article-page">
+    <span class="eyebrow">{post.data.status.replace('-', ' ')}</span>
+    <h1 class="page-title">{post.data.title}</h1>
+    <p class="page-intro">{post.data.summary}</p>
+    <div class="article-meta">
+      <span>Updated {post.data.updated.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+      <div class="tags">{post.data.tags.map(tag => <span>{tag}</span>)}</div>
+    </div>
+    <section class="info-panel article-content"><Content /></section>
+    <div class="hero-actions">
+      <a class="button" href="/blog/">Back to blog</a>
+      {post.data.relatedProject && <a class="button button--primary" href={`/projects/${post.data.relatedProject}/`}>Related project</a>}
+    </div>
+  </article>
+</BaseLayout>
