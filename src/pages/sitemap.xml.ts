@@ -4,13 +4,18 @@ import { sections } from '../data/sections';
 
 export const GET: APIRoute = async ({ site }) => {
   const base = site ?? new URL('https://staging.manarthpatel.com');
-  const projects = await getCollection('projects');
+  const [projects, posts] = await Promise.all([
+    getCollection('projects'),
+    getCollection('blog')
+  ]);
   const paths = [
     '/',
     '/projects/',
     '/labs/',
+    '/blog/',
     ...Object.keys(sections).map(section => `/${section}/`),
-    ...projects.map(project => `/projects/${project.data.slug}/`)
+    ...projects.map(project => `/projects/${project.data.slug}/`),
+    ...posts.map(post => `/blog/${post.data.slug}/`)
   ];
   const unique = [...new Set(paths)];
   const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${unique
