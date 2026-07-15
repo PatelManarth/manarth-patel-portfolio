@@ -8,6 +8,8 @@ export function getStaticPaths(){
 }
 const { section, data } = Astro.props;
 const isResume = section === 'resume';
+const primaryAction = isResume ? { label: 'Open resume PDF', href: site.resumeUrl, external: true } : data.primaryAction;
+const secondaryAction = data.secondaryAction;
 ---
 <BaseLayout title={`${data.title} | Manarth Patel`} description={data.description}>
   <section class="section shell page-hero">
@@ -68,9 +70,9 @@ const isResume = section === 'resume';
 
     {data.note && <aside class="scope-note"><strong>Scope note</strong><p>{data.note}</p></aside>}
 
-    {(data.primaryAction || data.secondaryAction) && <div class="hero-actions section-actions">
-      {data.primaryAction && <a class="button button--primary" href={data.primaryAction.href} target={data.primaryAction.external ? '_blank' : undefined} rel={data.primaryAction.external ? 'noreferrer' : undefined}>{data.primaryAction.label}</a>}
-      {data.secondaryAction && <a class="button" href={data.secondaryAction.href} target={data.secondaryAction.external ? '_blank' : undefined} rel={data.secondaryAction.external ? 'noreferrer' : undefined}>{data.secondaryAction.label}</a>}
+    {(primaryAction || secondaryAction) && <div class="hero-actions section-actions">
+      {primaryAction && <a class="button button--primary" href={primaryAction.href} target={primaryAction.external ? '_blank' : undefined} rel={primaryAction.external ? 'noreferrer' : undefined}>{primaryAction.label}</a>}
+      {secondaryAction && <a class="button" href={secondaryAction.href} target={secondaryAction.external ? '_blank' : undefined} rel={secondaryAction.external ? 'noreferrer' : undefined}>{secondaryAction.label}</a>}
     </div>}
   </section>
 </BaseLayout>
