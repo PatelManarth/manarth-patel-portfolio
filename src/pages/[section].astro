@@ -1,18 +1,76 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sections } from '../data/sections';
+import { education, experience, site } from '../data/site';
 
 export function getStaticPaths(){
-  return Object.entries(sections).map(([section,data])=>({params:{section},props:{data}}));
+  return Object.entries(sections).map(([section,data])=>({params:{section},props:{section,data}}));
 }
-const { data } = Astro.props;
+const { section, data } = Astro.props;
+const isResume = section === 'resume';
 ---
 <BaseLayout title={`${data.title} | Manarth Patel`} description={data.description}>
-  <section class="section shell">
+  <section class="section shell page-hero">
     <span class="eyebrow">{data.eyebrow}</span>
     <h1 class="page-title">{data.title}</h1>
     <p class="page-intro">{data.description}</p>
-    <div class="info-panel"><p>{data.body}</p><p class="simple-copy">This page currently establishes the shared V2 structure and will receive its content collection during migration.</p><p class="technical-copy">The route is generated through the shared Astro layout and centralized data model; content collections will replace this transitional record during migration.</p></div>
-    <div class="hero-actions"><a class="button button--primary" href="/projects/">Review projects</a><a class="button" href="/contact/">Contact</a></div>
+    {data.intro && <p class="page-support">{data.intro}</p>}
+
+    {isResume ? (
+      <>
+        <section class="content-section" aria-labelledby="resume-focus">
+          <div class="section-head"><h2 id="resume-focus">Role focus</h2><p>Current target roles and core skills are managed from one central profile file.</p></div>
+          <div class="content-grid content-grid--two">
+            <article class="content-card content-card--accent">
+              <span class="content-card__label">Target roles</span>
+              <h3>Cybersecurity and IT analysis</h3>
+              <ul>{site.roleTargets.map(role => <li>{role}</li>)}</ul>
+            </article>
+            <article class="content-card">
+              <span class="content-card__label">Core signals</span>
+              <h3>Skills represented across the portfolio</h3>
+              <div class="tags">{site.skills.map(skill => <span>{skill}</span>)}</div>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="experience-heading">
+          <div class="section-head"><h2 id="experience-heading">Experience</h2><p>Production responsibilities are separated clearly from lab-based security work.</p></div>
+          <div class="timeline">
+            {experience.map(item => <article class="timeline__item">
+              <div class="timeline__meta"><strong>{item.period}</strong><span>{item.location}</span></div>
+              <div><span class="content-card__label">{item.company}</span><h3>{item.title}</h3><p>{item.summary}</p></div>
+            </article>)}
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="education-heading">
+          <div class="section-head"><h2 id="education-heading">Education</h2></div>
+          <div class="content-grid">
+            {education.map(item => <article class="content-card"><span class="content-card__label">{item.period}</span><h3>{item.program}</h3><strong>{item.school}</strong><p>{item.detail}</p></article>)}
+          </div>
+        </section>
+      </>
+    ) : (
+      <div class="content-grid">
+        {data.cards.map(card => {
+          const cardContent = <>
+            {card.label && <span class="content-card__label">{card.label}</span>}
+            <h2>{card.title}</h2>
+            <p>{card.text}</p>
+            {card.tags?.length && <div class="tags">{card.tags.map(tag => <span>{tag}</span>)}</div>}
+            {card.href && <span class="content-card__link">Open →</span>}
+          </>;
+          return card.href ? <a class="content-card content-card--linked" href={card.href} target={card.external ? '_blank' : undefined} rel={card.external ? 'noreferrer' : undefined}>{cardContent}</a> : <article class="content-card">{cardContent}</article>;
+        })}
+      </div>
+    )}
+
+    {data.note && <aside class="scope-note"><strong>Scope note</strong><p>{data.note}</p></aside>}
+
+    {(data.primaryAction || data.secondaryAction) && <div class="hero-actions section-actions">
+      {data.primaryAction && <a class="button button--primary" href={data.primaryAction.href} target={data.primaryAction.external ? '_blank' : undefined} rel={data.primaryAction.external ? 'noreferrer' : undefined}>{data.primaryAction.label}</a>}
+      {data.secondaryAction && <a class="button" href={data.secondaryAction.href} target={data.secondaryAction.external ? '_blank' : undefined} rel={data.secondaryAction.external ? 'noreferrer' : undefined}>{data.secondaryAction.label}</a>}
+    </div>}
   </section>
 </BaseLayout>
