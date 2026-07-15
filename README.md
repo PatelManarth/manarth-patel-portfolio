@@ -1,26 +1,47 @@
-# Manarth Patel — Cybersecurity & IT Portfolio
+# Manarth Patel — Cybersecurity Evidence Console
 
-This repository contains the source code for my personal portfolio website.
+This branch contains the Astro-based V2 source for Manarth Patel's cybersecurity and IT portfolio.
 
-## Purpose
-- Showcase hands-on cybersecurity and IT lab work
-- Present SOC-focused projects, tooling, and documentation
-- Provide a single reference point for recruiters and collaborators
+## Preview
 
-## Tech Stack
-- HTML5, CSS3, JavaScript
-- Responsive, dark-themed UI
-- Optimized for GitHub Pages / Netlify
+- Staging: https://staging.manarthpatel.com
+- Production remains on the separate `main` branch until V2 is approved.
 
-## Featured Areas
-- SOC-style monitoring and log analysis
-- SIEM labs (Wazuh, Sysmon)
-- Network security (pfSense, segmentation)
-- Windows & Linux administration
-- Automation and scripting
+## Architecture
 
-## Live Site
-👉 https://patelmanarth.github.io/manarth-patel-portfolio/
+- Astro static-site generation
+- Shared header, footer, SEO layout, and responsive design system
+- Pagefind full-text search generated after every build
+- GitHub Actions deployment to GitHub Pages
+- Theme-aware animated network background
+- Mobile-first responsive layouts
 
-## Notes
-All security simulations and demonstrations were performed in isolated lab environments for learning and validation purposes.
+## Editable content
+
+- Projects: `src/content/projects/*.md`
+- Blog posts: `src/content/blog/*.md`
+- Resume, employment, education, and profile: `src/data/site.ts`
+- Services, glossary, contact, LinkedIn summaries, and resource sections: `src/data/sections.ts`
+- Navigation: `src/data/navigation.ts`
+
+These records update generated pages without duplicating layout code.
+
+## Commands
+
+```bash
+npm install
+npm run dev
+npm run check
+npm run build
+npm run preview
+```
+
+The build copies the resume PDF into Astro's public output, generates static pages, and creates the Pagefind search index.
+
+## Deployment
+
+The workflow `.github/workflows/deploy-portfolio-v2.yml` deploys only the `portfolio-v2` branch to GitHub Pages.
+
+## Public evidence rules
+
+Public project evidence must be sanitized. Do not publish credentials, tokens, private IP addresses, real usernames, live dashboards, or private operational details. Production support experience and lab-based security evidence must remain clearly distinguished.
