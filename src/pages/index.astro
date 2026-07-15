@@ -2,13 +2,21 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import ProfileCard from '../components/ProfileCard.astro';
+import '../styles/home.css';
 const projects = (await getCollection('projects')).sort((a,b)=>a.data.order-b.data.order);
 ---
 <BaseLayout>
-  <section class="section shell hero">
-    <div>
+  <section class="section shell hero hero--immersive">
+    <div class="hero__content">
       <span class="eyebrow">Interactive Cybersecurity Evidence Console</span>
       <h1>Cybersecurity &amp; IT Analyst</h1>
+      <p class="hero__headline">SOC Analysis · IAM · Microsoft Entra · Endpoint Detection · AWS Cloud Security · IT Operations</p>
+      <div class="status-strip" aria-label="Current profile status">
+        <span>Oshawa / GTA, Ontario</span>
+        <span>Open to cybersecurity, IAM, SOC and IT analyst roles</span>
+        <span>Remote · Hybrid · Onsite</span>
+      </div>
       <p class="hero-copy simple-copy">I connect day-to-day IT operations with stronger account, access, endpoint, documentation, and security practices.</p>
       <p class="hero-copy technical-copy">My portfolio connects identity controls, endpoint telemetry, detection validation, cloud IAM, investigation, remediation, and evidence mapped to professional frameworks.</p>
       <div class="mode-switch" aria-label="Explanation depth">
@@ -20,31 +28,80 @@ const projects = (await getCollection('projects')).sort((a,b)=>a.data.order-b.da
         <a class="button" href="/services/">View services</a>
         <a class="button" href="/resume/">View resume</a>
       </div>
-    </div>
-    <aside class="console-panel">
-      <h2>Evidence-first portfolio</h2>
-      <div class="console-lines">
-        <p><strong>Production base:</strong> Microsoft 365, identity, MFA, endpoint and user support</p>
-        <p><strong>Security evidence:</strong> SOC, IAM and cloud labs with documented decisions</p>
-        <p><strong>Location:</strong> Oshawa / GTA, Ontario</p>
-        <p><strong>Availability:</strong> Remote, hybrid and onsite</p>
+      <div class="terminal" aria-label="Evidence console status">
+        <div class="terminal__top"><span></span><span></span><span></span><strong>evidence-console</strong></div>
+        <div class="terminal__body">
+          <p><b>analyst@manarthpatel:~$</b> <span data-typewriter>loading evidence routes...</span><i aria-hidden="true">█</i></p>
+          <p data-console-greeting>Welcome. Choose a visitor route or explore the current project programme.</p>
+        </div>
       </div>
-    </aside>
+    </div>
+    <ProfileCard />
   </section>
 
-  <section class="section shell">
-    <div class="section-head"><h2>Choose your route</h2><p>Your choice persists across the visit and changes the recommended next step.</p></div>
+  <section class="section shell route-section">
+    <div class="section-head"><h2>Choose your route</h2><p>Your choice persists across the visit and produces a clear recommended path.</p></div>
     <div class="route-grid">
-      <button class="route-card" data-route="recruiter"><strong>Recruiter</strong><br><span>Resume, profile, evidence and contact</span></button>
-      <button class="route-card" data-route="technical"><strong>Technical manager</strong><br><span>Architecture, logs, detections and decisions</span></button>
-      <button class="route-card" data-route="learner"><strong>Cybersecurity learner</strong><br><span>Glossary, articles, simulations and labs</span></button>
-      <button class="route-card" data-route="business"><strong>Small-business visitor</strong><br><span>Services, scope, guidance and contact</span></button>
+      <button class="route-card" data-route="recruiter"><strong>Recruiter</strong><span>Resume, profile, strongest evidence and contact</span></button>
+      <button class="route-card" data-route="technical"><strong>Technical manager</strong><span>Architecture, logs, detections and decisions</span></button>
+      <button class="route-card" data-route="learner"><strong>Cybersecurity learner</strong><span>Glossary, articles, simulations and labs</span></button>
+      <button class="route-card" data-route="business"><strong>Small-business visitor</strong><span>Services, scope, practical guidance and contact</span></button>
     </div>
     <div class="route-output" data-route-output aria-live="polite"><strong>General route</strong><p>Projects → Labs → Resume → Contact</p></div>
   </section>
 
   <section class="section shell">
+    <div class="section-head"><h2>Security programme map</h2><p>Explore how current and planned evidence connects to Govern, Identify, Protect, Detect, Respond and Recover.</p></div>
+    <div class="nist-layout">
+      <div class="nist-map" aria-label="NIST CSF functions">
+        <button type="button" data-nist="govern">Govern</button>
+        <button type="button" data-nist="identify">Identify</button>
+        <button type="button" data-nist="protect">Protect</button>
+        <button type="button" data-nist="detect">Detect</button>
+        <button type="button" data-nist="respond">Respond</button>
+        <button type="button" data-nist="recover">Recover</button>
+      </div>
+      <article class="nist-detail" data-nist-detail aria-live="polite">
+        <span class="eyebrow">Framework explorer</span>
+        <h3>Choose a function</h3>
+        <p>Each function connects projects, labs, controls, evidence and decision-making.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section shell">
+    <div class="section-head"><h2>SOC triage simulator</h2><p>A synthetic educational scenario showing that analyst decisions begin with context rather than assumptions.</p></div>
+    <div class="triage-console">
+      <article class="alert-panel">
+        <span class="eyebrow">Synthetic alert</span>
+        <h3>Failed logins followed by one successful login</h3>
+        <p>Several authentication failures were followed by a successful sign-in for the same account.</p>
+        <dl class="alert-meta"><div><dt>Severity</dt><dd>Medium</dd></div><div><dt>Source</dt><dd>Authentication logs</dd></div><div><dt>Confidence</dt><dd>Unknown</dd></div><div><dt>Status</dt><dd>Needs context</dd></div></dl>
+      </article>
+      <article class="decision-panel">
+        <h3>What should the analyst do first?</h3>
+        <div class="triage-options">
+          <button type="button" data-triage-choice="disable">Disable the account immediately</button>
+          <button type="button" data-triage-choice="context">Review source IP, user, time, MFA, location and related activity</button>
+          <button type="button" data-triage-choice="ignore">Ignore it because the login succeeded</button>
+          <button type="button" data-triage-choice="restart">Restart the user's endpoint</button>
+        </div>
+        <div class="triage-feedback" data-triage-feedback aria-live="polite">Select an option to see the reasoning.</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section shell">
     <div class="section-head"><h2>Current project programme</h2><p>Statuses and progress are generated from one structured project record, not copied between pages.</p></div>
     <div class="project-grid">{projects.map(project => <ProjectCard project={project} />)}</div>
+  </section>
+
+  <section class="section shell">
+    <div class="explore-panel">
+      <div><span class="eyebrow">Explore more</span><h2>Beyond the project cards</h2><p>Browse build progress, plain-English guidance, professional activity and practical service scope.</p></div>
+      <nav class="explore-links" aria-label="Explore more sections">
+        <a href="/labs/">Lab workspace</a><a href="/services/">Services</a><a href="/blog/">Cybersecurity blog</a><a href="/glossary/">Glossary</a><a href="/linkedin/">LinkedIn activity</a>
+      </nav>
+    </div>
   </section>
 </BaseLayout>
