@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "dev": "node scripts/prepare-public.mjs && astro dev",
+    "build": "node scripts/prepare-public.mjs && astro build && pagefind --site dist",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "node scripts/prepare-public.mjs && astro check"
   },
   "dependencies": {
     "astro": "^5.0.0"
