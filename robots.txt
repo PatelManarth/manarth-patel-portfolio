@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /
-
-# Staging preview only. Production robots.txt should remain indexable.
