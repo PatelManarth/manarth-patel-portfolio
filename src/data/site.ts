@@ -8,7 +8,7 @@ export const site = {
   email: 'mpatel237@icloud.com',
   linkedin: 'https://www.linkedin.com/in/manarthpatel/',
   github: 'https://github.com/PatelManarth',
-  resumeUrl: 'https://manarthpatel.com/assets/docs/Manarth_Patel_Resume_IT_SOC.pdf',
+  resumeUrl: '/assets/docs/Manarth_Patel_Resume_IT_SOC.pdf',
   profileImage: '/assets/img/profile-placeholder.png',
   roleTargets: [
     'Cybersecurity Analyst',
