@@ -1,51 +1,5 @@
 <aside class="profile-card" aria-label="Manarth Patel profile">
-  <div class="profile-card__media">
+  <div class="profile-card__media" data-profile-media>
+    <div class="profile-card__matrix" aria-hidden="true"></div>
     <div class="profile-card__orbit profile-card__orbit--outer" aria-hidden="true"></div>
     <div class="profile-card__orbit profile-card__orbit--inner" aria-hidden="true"></div>
-    <div class="profile-card__radar" aria-hidden="true"></div>
-    <svg class="profile-card__portrait" viewBox="0 0 1024 1024" role="img" aria-label="Portrait of Manarth Patel" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <filter id="profile-white-key" x="-15%" y="-15%" width="130%" height="140%" color-interpolation-filters="sRGB">
-          <feColorMatrix in="SourceGraphic" type="matrix" values="
-            0 0 0 0 0
-            0 0 0 0 0
-            0 0 0 0 0
-            -0.2126 -0.7152 -0.0722 0 1" result="inverse-luminance" />
-          <feComponentTransfer in="inverse-luminance" result="keyed-alpha">
-            <feFuncA type="discrete" tableValues="0 0 1 1 1 1 1 1" />
-          </feComponentTransfer>
-          <feGaussianBlur in="keyed-alpha" stdDeviation="1.15" result="soft-alpha" />
-          <feComposite in="SourceGraphic" in2="soft-alpha" operator="in" result="cutout" />
-          <feDropShadow in="cutout" dx="0" dy="18" stdDeviation="17" flood-color="#000000" flood-opacity="0.44" />
-        </filter>
-        <linearGradient id="portrait-fade" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="white" />
-          <stop offset="0.82" stop-color="white" />
-          <stop offset="1" stop-color="black" />
-        </linearGradient>
-        <mask id="portrait-bottom-fade">
-          <rect width="1024" height="1024" fill="url(#portrait-fade)" />
-        </mask>
-      </defs>
-      <image href="https://manarthpatel.com/assets/img/profile-placeholder.jpg" width="1024" height="1024" preserveAspectRatio="xMidYMid slice" filter="url(#profile-white-key)" mask="url(#portrait-bottom-fade)" />
-    </svg>
-    <div class="profile-card__scan" aria-hidden="true"></div>
-    <div class="profile-card__corner profile-card__corner--tl" aria-hidden="true"></div>
-    <div class="profile-card__corner profile-card__corner--br" aria-hidden="true"></div>
-    <span class="profile-card__signal" aria-hidden="true">IDENTITY VERIFIED</span>
-  </div>
-  <div class="profile-card__body">
-    <p class="profile-card__eyebrow">Manarth Patel</p>
-    <h2>A portfolio of decisions, not just screenshots.</h2>
-    <p>Projects are documented with their scenario, architecture, evidence, analysis, remediation, limitations, and production improvements.</p>
-    <dl class="profile-card__facts">
-      <div><dt>Location</dt><dd>Oshawa / GTA, Ontario</dd></div>
-      <div><dt>Focus</dt><dd>SOC, IAM, cloud security and IT operations</dd></div>
-      <div><dt>Availability</dt><dd>Remote, hybrid and onsite</dd></div>
-    </dl>
-    <div class="profile-card__links">
-      <a class="button button--primary" href="https://www.linkedin.com/in/manarthpatel/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-      <a class="button" href="https://github.com/PatelManarth" target="_blank" rel="noreferrer">GitHub ↗</a>
-    </div>
-  </div>
-</aside>
