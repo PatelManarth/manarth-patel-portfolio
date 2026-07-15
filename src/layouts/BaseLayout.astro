@@ -2,6 +2,8 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import '../styles/content.css';
+import { site } from '../data/site';
 
 const {
   title = 'Manarth Patel | Cybersecurity & IT Analyst',
@@ -12,6 +14,22 @@ const {
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
 const canonical = new URL(Astro.url.pathname, siteBase);
 const socialImage = new URL(image, siteBase);
+const staging = siteBase.hostname.startsWith('staging.');
+const robots = noindex || staging ? 'noindex, nofollow' : 'index, follow';
+const profileSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: site.name,
+    jobTitle: site.role,
+    description: site.description,
+    url: siteBase.href,
+    image: new URL(site.profileImage, siteBase).href,
+    sameAs: [site.linkedin, site.github],
+    address: { '@type': 'PostalAddress', addressLocality: 'Oshawa', addressRegion: 'Ontario', addressCountry: 'CA' }
+  }
+};
 ---
 <!doctype html>
 <html lang="en-CA" data-theme="blue" data-depth="simple">
@@ -20,7 +38,7 @@ const socialImage = new URL(image, siteBase);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="robots" content={robots} />
     <meta name="theme-color" content="#070A0F" />
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
@@ -30,6 +48,7 @@ const socialImage = new URL(image, siteBase);
     <meta property="og:image" content={socialImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(profileSchema)} />
     <script is:inline>
       try {
         document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || 'blue';
