@@ -4,7 +4,9 @@ import { sections } from '../data/sections';
 import { education, experience, site } from '../data/site';
 
 export function getStaticPaths(){
-  return Object.entries(sections).map(([section,data])=>({params:{section},props:{section,data}}));
+  return Object.entries(sections)
+    .filter(([section]) => section !== 'blog')
+    .map(([section,data])=>({params:{section},props:{section,data}}));
 }
 const { section, data } = Astro.props;
 const isResume = section === 'resume';
@@ -60,7 +62,7 @@ const secondaryAction = data.secondaryAction;
             {card.label && <span class="content-card__label">{card.label}</span>}
             <h2>{card.title}</h2>
             <p>{card.text}</p>
-            {card.tags?.length && <div class="tags">{card.tags.map(tag => <span>{tag}</span>)}</div>}
+            {card.tags?.length ? <div class="tags">{card.tags.map(tag => <span>{tag}</span>)}</div> : null}
             {card.href && <span class="content-card__link">Open →</span>}
           </>;
           return card.href ? <a class="content-card content-card--linked" href={card.href} target={card.external ? '_blank' : undefined} rel={card.external ? 'noreferrer' : undefined}>{cardContent}</a> : <article class="content-card">{cardContent}</article>;
