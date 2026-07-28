@@ -1,27 +1,31 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-const projects = (await getCollection('projects')).sort((a,b)=>a.data.order-b.data.order);
 ---
-<BaseLayout title="Cybersecurity Lab Workspace | Manarth Patel" description="Live project build workspace showing honest milestone-based progress for cybersecurity labs.">
-  <section class="section shell">
-    <span class="eyebrow">Active Build Workspace</span>
-    <h1 class="page-title">Lab progress generated from milestones</h1>
-    <p class="page-intro">Progress is calculated from completed project milestones. Updating one project file updates this workspace, the homepage, project index, search and individual project page.</p>
-    <div class="project-grid">
-      {projects.map(project => {
-        const complete = project.data.milestones.filter(item=>item.complete).length;
-        const total = project.data.milestones.length;
-        const progress = total ? Math.round(complete / total * 100) : 0;
-        return <article class="project-card" id={project.data.slug}>
-          <div class="project-card__top"><span class={`status status--${project.data.status}`}>{project.data.status.replace('-',' ')}</span><span>{complete}/{total} milestones</span></div>
-          <h2><a href={`/projects/${project.data.slug}/`}>{project.data.title}</a></h2>
-          <p class="simple-copy">{project.data.simpleSummary}</p><p class="technical-copy">{project.data.technicalSummary}</p>
-          <div class="progress" aria-label={`${progress}% complete`}><span style={`width:${progress}%`}></span></div>
-          <ul>{project.data.milestones.map(item=><li>{item.complete ? '✓' : '○'} {item.label}</li>)}</ul>
-          <div class="card-actions"><a class="button button--primary" href={`/projects/${project.data.slug}/`}>Open project</a></div>
-        </article>;
-      })}
+<BaseLayout title="Cybersecurity Learning Lab | Manarth Patel" description="A planned, evidence-driven cybersecurity learning programme documenting practical security work, lessons, and sanitized technical evidence.">
+  <section class="section shell page-hero">
+    <span class="eyebrow">Planned Learning Programme</span>
+    <h1 class="page-title">Cybersecurity Learning Lab</h1>
+    <p class="page-intro">A planned, evidence-driven programme documenting practical cybersecurity work from foundational architecture through monitoring, investigation, remediation, and integrated incident response.</p>
+    <p class="page-support">Each stage will be shared through walkthroughs, troubleshooting notes, queries, diagrams, and sanitized evidence to support students and professionals stepping into cybersecurity.</p>
+
+    <div class="content-grid content-grid--two">
+      <article class="content-card content-card--accent">
+        <span class="content-card__label">Current status</span>
+        <h2>Planned · 0% · Evidence pending</h2>
+        <p>No lab will be marked in progress, completed, or portfolio-ready until the corresponding work and evidence exist.</p>
+      </article>
+      <article class="content-card">
+        <span class="content-card__label">Planned coverage</span>
+        <h2>Practical cybersecurity domains</h2>
+        <div class="tags">
+          <span>SIEM</span><span>Detection Engineering</span><span>Incident Response</span><span>IAM</span><span>Vulnerability Management</span><span>Cloud Security</span><span>Network Monitoring</span><span>Digital Forensics</span><span>Automation</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="hero-actions section-actions">
+      <a class="button button--primary" href="/blog/">Read the Learning Blog</a>
+      <a class="button" href="/projects/">View Completed Academic Projects</a>
     </div>
   </section>
 </BaseLayout>
