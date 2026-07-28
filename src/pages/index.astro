@@ -1,106 +1,200 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import ProfileCard from '../components/ProfileCard.astro';
 import '../styles/home.css';
-const projects = (await getCollection('projects')).sort((a,b)=>a.data.order-b.data.order);
+
+const capabilities = [
+  {
+    code: '01',
+    title: 'Security Operations and Monitoring',
+    text: 'Security-event monitoring, alert triage, log analysis, incident investigation, IOC analysis, incident documentation and response support.'
+  },
+  {
+    code: '02',
+    title: 'Identity and Access Management',
+    text: 'Active Directory, Microsoft Entra ID, user lifecycle, MFA, authentication support, groups, permissions, access reviews and least privilege.'
+  },
+  {
+    code: '03',
+    title: 'Vulnerability Management',
+    text: 'Vulnerability assessment, scan-result analysis, configuration reviews, risk evaluation, remediation tracking, fix validation and system hardening.'
+  },
+  {
+    code: '04',
+    title: 'Infrastructure and Cloud Security',
+    text: 'Windows and Linux environments, networking, Microsoft 365, firewalls, cloud-security fundamentals, troubleshooting and security-control validation.'
+  }
+];
+
+const academicProjects = [
+  {
+    title: 'Operation Hydra',
+    type: 'Academic Cybersecurity Capstone',
+    text: 'Attack-and-defence capstone covering segmented infrastructure, controlled attack simulation, centralized monitoring and defensive hardening.'
+  },
+  {
+    title: 'Honeypot and ELK Monitoring',
+    type: 'Academic Cybersecurity Project',
+    text: 'Cowrie honeypot telemetry forwarded to an ELK stack for investigation, correlation and dashboarding.'
+  },
+  {
+    title: 'Active Directory, PKI and FreeRADIUS',
+    type: 'Academic Cybersecurity Project',
+    text: 'Identity and access environment combining Active Directory, Group Policy, PKI and RADIUS-based authentication.'
+  },
+  {
+    title: 'SmartAttend',
+    type: 'Academic AI and Development Project',
+    text: 'Facial-recognition attendance application using FastAPI and MongoDB with administrative and user-facing workflows.'
+  }
+];
 ---
-<BaseLayout>
+<BaseLayout
+  title="Manarth Patel | Cyber Security Engineer"
+  description="Cyber Security Engineer with 5+ years of experience across security operations, technical support, backend development and IT infrastructure."
+>
   <section class="section shell hero hero--immersive">
     <div class="hero__content">
-      <span class="eyebrow">Interactive Cybersecurity Evidence Console</span>
-      <h1>Cybersecurity &amp; IT Analyst</h1>
-      <p class="hero__headline">SOC Analysis · IAM · Microsoft Entra · Endpoint Detection · AWS Cloud Security · IT Operations</p>
-      <div class="status-strip" aria-label="Current profile status">
-        <span>Oshawa / GTA, Ontario</span>
-        <span>Open to cybersecurity, IAM, SOC and IT analyst roles</span>
-        <span>Remote · Hybrid · Onsite</span>
+      <span class="eyebrow">Cybersecurity Engineering &amp; Security Operations</span>
+      <h1>Cyber Security Engineer</h1>
+      <p class="hero__headline">Security Operations <i aria-hidden="true">/</i> IAM <i aria-hidden="true">/</i> Vulnerability Management <i aria-hidden="true">/</i> Infrastructure &amp; Cloud Security</p>
+      <p class="hero__roles">Security Engineer <span>·</span> Security Analyst <span>·</span> SOC Analyst</p>
+
+      <div class="status-strip" aria-label="Professional profile status">
+        <span>Greater Toronto Area, Ontario, Canada</span>
+        <span>Remote · Hybrid · Onsite across Canada</span>
+        <span>Security Engineering · Analysis · Operations</span>
       </div>
-      <p class="hero-copy simple-copy">I connect day-to-day IT operations with stronger account, access, endpoint, documentation, and security practices.</p>
-      <p class="hero-copy technical-copy">My portfolio connects identity controls, endpoint telemetry, detection validation, cloud IAM, investigation, remediation, and evidence mapped to professional frameworks.</p>
-      <div class="mode-switch" aria-label="Explanation depth">
-        <button type="button" data-depth="simple">Simple view</button>
-        <button type="button" data-depth="technical">Technical view</button>
+
+      <p class="hero-copy">
+        Cyber Security Engineer with 5+ years of experience spanning security operations, technical support, backend development, and IT infrastructure. Experienced in security monitoring, alert triage, log analysis, incident investigation, vulnerability management, identity and access management, system hardening, Windows and Linux environments, networking, API security, troubleshooting, and technical documentation.
+      </p>
+
+      <div class="hero-actions" aria-label="Primary actions">
+        <a class="button button--primary" href="/resume/">View Professional Experience</a>
+        <a class="button" href="/projects/">Explore Projects</a>
+        <a class="button" href="/resume/">View Resume</a>
+        <a class="button" href="/contact/">Contact</a>
       </div>
-      <div class="hero-actions">
-        <a class="button button--primary" href="/projects/">Explore projects</a>
-        <a class="button" href="/services/">View services</a>
-        <a class="button" href="/resume/">View resume</a>
-      </div>
-      <div class="terminal" aria-label="Evidence console status">
-        <div class="terminal__top"><span></span><span></span><span></span><strong>evidence-console</strong></div>
-        <div class="terminal__body">
-          <p><b>analyst@manarthpatel:~$</b> <span data-typewriter>loading evidence routes...</span><i aria-hidden="true">█</i></p>
-          <p data-console-greeting>Welcome. Choose a visitor route or explore the current project programme.</p>
+
+      <div class="hero-signal" aria-label="Professional focus areas">
+        <span class="hero-signal__pulse" aria-hidden="true"></span>
+        <div>
+          <strong>Professional profile online</strong>
+          <p>Security operations, identity, vulnerability management and infrastructure security.</p>
         </div>
       </div>
     </div>
     <ProfileCard />
   </section>
 
-  <section class="section shell route-section">
-    <div class="section-head"><h2>Choose your route</h2><p>Your choice persists across the visit and produces a clear recommended path.</p></div>
-    <div class="route-grid">
-      <button class="route-card" data-route="recruiter"><strong>Recruiter</strong><span>Resume, profile, strongest evidence and contact</span></button>
-      <button class="route-card" data-route="technical"><strong>Technical manager</strong><span>Architecture, logs, detections and decisions</span></button>
-      <button class="route-card" data-route="learner"><strong>Cybersecurity learner</strong><span>Glossary, articles, simulations and labs</span></button>
-      <button class="route-card" data-route="business"><strong>Small-business visitor</strong><span>Services, scope, practical guidance and contact</span></button>
-    </div>
-    <div class="route-output" data-route-output aria-live="polite"><strong>General route</strong><p>Projects → Labs → Resume → Contact</p></div>
-  </section>
-
-  <section class="section shell">
-    <div class="section-head"><h2>Security programme map</h2><p>Explore how current and planned evidence connects to Govern, Identify, Protect, Detect, Respond and Recover.</p></div>
-    <div class="nist-layout">
-      <div class="nist-map" aria-label="NIST CSF functions">
-        <button type="button" data-nist="govern">Govern</button>
-        <button type="button" data-nist="identify">Identify</button>
-        <button type="button" data-nist="protect">Protect</button>
-        <button type="button" data-nist="detect">Detect</button>
-        <button type="button" data-nist="respond">Respond</button>
-        <button type="button" data-nist="recover">Recover</button>
+  <section class="section shell" id="capabilities" data-reveal>
+    <div class="section-head section-head--split">
+      <div>
+        <span class="eyebrow">Core capabilities</span>
+        <h2>Security work across the full technical environment</h2>
       </div>
-      <article class="nist-detail" data-nist-detail aria-live="polite">
-        <span class="eyebrow">Framework explorer</span>
-        <h3>Choose a function</h3>
-        <p>Each function connects projects, labs, controls, evidence and decision-making.</p>
-      </article>
+      <p>Professional capability areas aligned with the master cybersecurity resume, presented without exposing confidential client systems or operational details.</p>
+    </div>
+    <div class="capability-grid">
+      {capabilities.map(capability => (
+        <article class="capability-card">
+          <span class="capability-card__code" aria-hidden="true">{capability.code}</span>
+          <h3>{capability.title}</h3>
+          <p>{capability.text}</p>
+          <span class="capability-card__line" aria-hidden="true"></span>
+        </article>
+      ))}
     </div>
   </section>
 
-  <section class="section shell">
-    <div class="section-head"><h2>SOC triage simulator</h2><p>A synthetic educational scenario showing that analyst decisions begin with context rather than assumptions.</p></div>
-    <div class="triage-console">
-      <article class="alert-panel">
-        <span class="eyebrow">Synthetic alert</span>
-        <h3>Failed logins followed by one successful login</h3>
-        <p>Several authentication failures were followed by a successful sign-in for the same account.</p>
-        <dl class="alert-meta"><div><dt>Severity</dt><dd>Medium</dd></div><div><dt>Source</dt><dd>Authentication logs</dd></div><div><dt>Confidence</dt><dd>Unknown</dd></div><div><dt>Status</dt><dd>Needs context</dd></div></dl>
-      </article>
-      <article class="decision-panel">
-        <h3>What should the analyst do first?</h3>
-        <div class="triage-options">
-          <button type="button" data-triage-choice="disable">Disable the account immediately</button>
-          <button type="button" data-triage-choice="context">Review source IP, user, time, MFA, location and related activity</button>
-          <button type="button" data-triage-choice="ignore">Ignore it because the login succeeded</button>
-          <button type="button" data-triage-choice="restart">Restart the user's endpoint</button>
+  <section class="section shell" data-reveal>
+    <div class="background-snapshot">
+      <div class="background-snapshot__copy">
+        <span class="eyebrow">Professional foundation</span>
+        <h2>Experience across security, infrastructure and development</h2>
+        <p>Manarth’s professional background combines cybersecurity engineering, technical support, infrastructure operations, web-application testing and backend development. This broader technical foundation supports investigations and security decisions across identities, endpoints, networks, applications and backend systems.</p>
+        <a class="button button--primary" href="/resume/">View complete professional experience</a>
+      </div>
+      <div class="background-snapshot__map" aria-label="Connected professional domains">
+        <span>Security Operations</span>
+        <span>Identity</span>
+        <span>Infrastructure</span>
+        <span>Applications</span>
+        <span>Technical Support</span>
+        <i aria-hidden="true"></i>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell" data-reveal>
+    <div class="section-head section-head--split">
+      <div>
+        <span class="eyebrow">Completed academic work</span>
+        <h2>Featured technical projects</h2>
+      </div>
+      <p>Selected academic projects demonstrate completed work across cybersecurity operations, identity, infrastructure, monitoring, artificial intelligence and application development.</p>
+    </div>
+    <div class="academic-grid">
+      {academicProjects.map((project, index) => (
+        <article class="academic-card">
+          <div class="academic-card__top">
+            <span>{project.type}</span>
+            <b aria-hidden="true">0{index + 1}</b>
+          </div>
+          <h3>{project.title}</h3>
+          <p>{project.text}</p>
+          <a href="/projects/" aria-label={`Explore ${project.title}`}>Explore project <span aria-hidden="true">↗</span></a>
+        </article>
+      ))}
+    </div>
+    <div class="section-action"><a class="button" href="/projects/">Explore all academic projects</a></div>
+  </section>
+
+  <section class="section shell" data-reveal>
+    <div class="learning-lab">
+      <div class="learning-lab__signal" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="learning-lab__copy">
+        <span class="eyebrow">Planned public learning programme</span>
+        <h2>Cybersecurity Learning Lab</h2>
+        <p>A planned, evidence-driven programme documenting practical cybersecurity work from foundational architecture through security monitoring, investigation, remediation and integrated incident response.</p>
+        <p>Each stage will be shared through walkthroughs, troubleshooting notes, queries, diagrams and sanitized evidence to support students and professionals stepping into cybersecurity.</p>
+        <div class="lab-status" aria-label="Learning lab status">
+          <span>Planned</span>
+          <span>0%</span>
+          <span>Evidence pending</span>
         </div>
-        <div class="triage-feedback" data-triage-feedback aria-live="polite">Select an option to see the reasoning.</div>
-      </article>
+        <div class="hero-actions">
+          <a class="button button--primary" href="/labs/">Explore the Lab Programme</a>
+          <a class="button" href="/blog/">Read the Learning Blog</a>
+        </div>
+      </div>
+      <div class="learning-lab__visual" aria-hidden="true">
+        <div class="lab-orbit lab-orbit--one"></div>
+        <div class="lab-orbit lab-orbit--two"></div>
+        <div class="lab-core">LAB</div>
+        <span class="lab-node lab-node--one">SIEM</span>
+        <span class="lab-node lab-node--two">IAM</span>
+        <span class="lab-node lab-node--three">DFIR</span>
+        <span class="lab-node lab-node--four">CLOUD</span>
+      </div>
     </div>
   </section>
 
-  <section class="section shell">
-    <div class="section-head"><h2>Current project programme</h2><p>Statuses and progress are generated from one structured project record, not copied between pages.</p></div>
-    <div class="project-grid">{projects.map(project => <ProjectCard project={project} />)}</div>
-  </section>
-
-  <section class="section shell">
-    <div class="explore-panel">
-      <div><span class="eyebrow">Explore more</span><h2>Beyond the project cards</h2><p>Browse build progress, plain-English guidance, professional activity and practical service scope.</p></div>
-      <nav class="explore-links" aria-label="Explore more sections">
-        <a href="/labs/">Lab workspace</a><a href="/services/">Services</a><a href="/blog/">Cybersecurity blog</a><a href="/glossary/">Glossary</a><a href="/linkedin/">LinkedIn activity</a>
+  <section class="section shell" data-reveal>
+    <div class="profile-cta">
+      <div>
+        <span class="eyebrow">Explore the complete profile</span>
+        <h2>Professional experience, technical capability and documented project work</h2>
+        <p>Review Manarth’s professional experience, technical capabilities, completed academic projects and evolving cybersecurity evidence portfolio.</p>
+      </div>
+      <nav class="profile-cta__actions" aria-label="Professional profile links">
+        <a class="button button--primary" href="/resume/">View Resume</a>
+        <a class="button" href="/resume/">Professional Experience</a>
+        <a class="button" href="https://www.linkedin.com/in/manarthpatel/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        <a class="button" href="/contact/">Contact</a>
       </nav>
     </div>
   </section>
