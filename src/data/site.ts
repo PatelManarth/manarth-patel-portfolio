@@ -1,82 +1,102 @@
 export const site = {
   name: 'Manarth Patel',
-  role: 'Cybersecurity & IT Analyst',
+  role: 'Cyber Security Engineer',
   description:
-    'Cybersecurity-focused IT analyst based in Oshawa / GTA with experience in identity and access support, Microsoft 365, endpoint troubleshooting, documentation, and hands-on security labs.',
-  location: 'Oshawa / GTA, Ontario, Canada',
+    'Cyber Security Engineer with 5+ years of experience spanning security operations, technical support, backend development, and IT infrastructure.',
+  location: 'Greater Toronto Area, Ontario, Canada',
   availability: 'Open to remote, hybrid, and onsite opportunities across Canada',
-  email: 'mpatel237@icloud.com',
+  email: 'manarthpatel108@outlook.com',
   linkedin: 'https://www.linkedin.com/in/manarthpatel/',
   github: 'https://github.com/PatelManarth',
   resumeUrl: '/assets/docs/Manarth_Patel_Resume_IT_SOC.pdf',
   profileImage: '/assets/img/profile-placeholder.png',
   roleTargets: [
+    'Security Engineer',
+    'Security Analyst',
+    'SOC Analyst',
     'Cybersecurity Analyst',
-    'IAM Analyst',
-    'IT Security Analyst',
     'Security Operations Analyst',
-    'Junior SOC Analyst',
-    'IT Analyst with security responsibility'
+    'IAM Analyst',
+    'Vulnerability Management Analyst',
+    'IT Security Analyst',
+    'Infrastructure Security Analyst'
   ],
   skills: [
-    'Microsoft 365',
-    'Microsoft Entra ID',
-    'Active Directory',
-    'MFA and access support',
-    'Windows endpoint support',
-    'Wazuh',
-    'Splunk',
-    'Sysmon',
-    'Nmap',
-    'Wireshark',
-    'Security documentation'
+    'Security monitoring',
+    'Alert triage',
+    'Log analysis',
+    'Incident investigation',
+    'Identity and access management',
+    'Vulnerability management',
+    'Windows and Linux environments',
+    'Network security',
+    'System hardening',
+    'API security',
+    'Technical troubleshooting',
+    'Technical documentation'
   ]
 } as const;
 
 export const experience = [
   {
-    company: 'KMP',
-    title: 'IT Analyst',
-    period: 'Current',
-    location: 'Canada',
-    summary:
-      'Supports Microsoft 365, user accounts, MFA, access requests, Windows endpoints, troubleshooting, documentation, and security-minded IT operations.'
-  },
-  {
-    company: 'Convenience Retail',
-    title: 'Customer Service Associate',
-    period: 'May 2024 – Present',
+    company: 'Confidential Canadian Financial Services Organization',
+    title: 'Cyber Security Engineer - Full-time Contract',
+    period: 'October 2025 – Present',
     location: 'Ontario, Canada',
     summary:
-      'Handles customer service, cash operations, issue resolution, confidentiality, and dependable shift coverage in a fast-paced environment.'
+      'Supports security monitoring, alert triage, log analysis, investigations, vulnerability management, access and authentication reviews, remediation coordination, security-control validation, and technical documentation within a collaborative team environment.'
+  },
+  {
+    company: 'Local Convenience Store',
+    title: 'Lead Sales',
+    period: 'May 2024 – September 2025',
+    location: 'Oshawa, Ontario, Canada',
+    summary:
+      'Supported store operations, customer service, POS transactions, inventory activities, issue resolution, and team collaboration in a fast-paced environment.'
+  },
+  {
+    company: 'Business Web Solutions',
+    title: 'Web Development Intern',
+    period: 'January 2023 – June 2023',
+    location: 'India',
+    summary:
+      'Supported backend API testing, authentication-workflow validation, request and response testing, input-validation reviews, access-control findings, remediation recommendations, and technical documentation.'
+  },
+  {
+    company: 'Chatkazz',
+    title: 'Technical Support',
+    period: 'November 2019 – May 2022',
+    location: 'India',
+    summary:
+      'Supported POS systems, Windows workstations, printers, peripheral devices, routers, LAN and Wi-Fi, user accounts, troubleshooting, system-log review, root-cause analysis, and documentation.'
   },
   {
     company: 'GenieApp Solutions',
-    title: 'Junior Backend Developer',
-    period: 'Jun 2023 – Nov 2023',
-    location: 'India',
+    title: 'Backend Developer Intern',
+    period: 'June 2021 – September 2021',
+    location: 'Remote, India',
     summary:
-      'Worked on backend application support, databases, APIs, troubleshooting, and development documentation.'
+      'Worked with Python, FastAPI, REST APIs, MongoDB, request validation, JSON responses, API testing, error handling, application logs, debugging, Git, and technical documentation.'
   }
 ] as const;
 
 export const education = [
   {
     school: 'Durham College',
-    program: 'Cybersecurity Graduate Certificate',
+    program: 'Cybersecurity Post-Graduate Certificate',
     period: '2025',
-    detail: 'Security operations, network security, forensics, access control, governance, and hands-on labs.'
+    detail: 'Security operations, network security, digital forensics, access control, governance, and hands-on academic projects.'
   },
   {
     school: 'Durham College',
-    program: 'Artificial Intelligence Analysis, Design and Implementation',
+    program: 'Artificial Intelligence Analysis, Design and Implementation Post-Graduate Certificate',
     period: '2024',
     detail: 'Machine learning, application development, Python, APIs, data workflows, and capstone projects.'
   },
   {
-    school: 'CHARUSAT',
-    program: 'Bachelor of Technology in Information Technology',
+    school: 'CHARUSAT University',
+    program: 'Bachelor of Technology Engineering in Information Technology',
     period: '2019 – 2023',
-    detail: 'Information systems, networking, databases, software development, and student leadership.'
+    detail: 'Information technology, networking, databases, software development, and student leadership.'
   }
 ] as const;
