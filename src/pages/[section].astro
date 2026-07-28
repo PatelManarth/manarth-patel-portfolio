@@ -23,23 +23,23 @@ const secondaryAction = data.secondaryAction;
     {isResume ? (
       <>
         <section class="content-section" aria-labelledby="resume-focus">
-          <div class="section-head"><h2 id="resume-focus">Role focus</h2><p>Current target roles and core skills are managed from one central profile file.</p></div>
+          <div class="section-head"><h2 id="resume-focus">Role focus</h2><p>Security-focused roles supported by professional experience across operations, identity, vulnerability management, infrastructure, development, and technical support.</p></div>
           <div class="content-grid content-grid--two">
             <article class="content-card content-card--accent">
               <span class="content-card__label">Target roles</span>
-              <h3>Cybersecurity and IT analysis</h3>
+              <h3>Cybersecurity engineering and analysis</h3>
               <ul>{site.roleTargets.map(role => <li>{role}</li>)}</ul>
             </article>
             <article class="content-card">
-              <span class="content-card__label">Core signals</span>
-              <h3>Skills represented across the portfolio</h3>
+              <span class="content-card__label">Core capabilities</span>
+              <h3>Professional skills</h3>
               <div class="tags">{site.skills.map(skill => <span>{skill}</span>)}</div>
             </article>
           </div>
         </section>
 
         <section class="content-section" aria-labelledby="experience-heading">
-          <div class="section-head"><h2 id="experience-heading">Experience</h2><p>Production responsibilities are separated clearly from lab-based security work.</p></div>
+          <div class="section-head"><h2 id="experience-heading">Professional Experience</h2><p>Experience across cybersecurity, technical support, application testing, backend development, and customer-facing operations.</p></div>
           <div class="timeline">
             {experience.map(item => <article class="timeline__item">
               <div class="timeline__meta"><strong>{item.period}</strong><span>{item.location}</span></div>
