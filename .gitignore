@@ -4,3 +4,10 @@ dist/
 public/pagefind/
 .DS_Store
 *.log
+
+# Keep private planning and review material outside the public repository.
+.private/
+private/
+notes-private/
+*.private.md
+*.private.txt
