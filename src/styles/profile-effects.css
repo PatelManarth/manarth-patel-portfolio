@@ -1,0 +1,169 @@
+.profile-card__portrait-overlay,
+.profile-card__portrait-texture{
+  position:absolute;
+  inset:18px;
+  z-index:4;
+  overflow:hidden;
+  border-radius:20px;
+  pointer-events:none;
+}
+
+.profile-card__portrait-overlay{
+  background:
+    linear-gradient(90deg,transparent 49.8%,rgba(var(--accent-rgb),.24) 50%,transparent 50.2%),
+    linear-gradient(transparent 49.8%,rgba(var(--accent-rgb),.19) 50%,transparent 50.2%);
+  mix-blend-mode:screen;
+}
+
+.profile-card__portrait-overlay::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(var(--accent-rgb),.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--accent-rgb),.07) 1px,transparent 1px);
+  background-size:34px 34px;
+  opacity:.72;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.78),rgba(0,0,0,.22) 86%,transparent);
+  animation:portraitOverlayGrid 16s linear infinite;
+}
+
+.profile-card__portrait-overlay::after{
+  content:"";
+  position:absolute;
+  left:-15%;
+  top:-40%;
+  width:130%;
+  height:42%;
+  background:linear-gradient(180deg,transparent,rgba(var(--accent-rgb),.24),rgba(255,255,255,.08),transparent);
+  filter:blur(1px);
+  opacity:.7;
+  animation:portraitOverlaySweep 5.8s ease-in-out infinite;
+}
+
+.profile-card__portrait-texture{
+  z-index:5;
+  background:
+    repeating-linear-gradient(180deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px),
+    radial-gradient(circle at 50% 40%,transparent 0 44%,rgba(var(--accent-rgb),.08) 72%,rgba(0,0,0,.24) 100%);
+  mix-blend-mode:screen;
+  opacity:.72;
+}
+
+.profile-card__target{
+  position:absolute;
+  left:50%;
+  top:42%;
+  border:1px solid rgba(var(--accent-rgb),.34);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+
+.profile-card__target--outer{
+  width:72%;
+  aspect-ratio:1;
+  border-style:dashed;
+  animation:portraitTargetSpin 22s linear infinite;
+}
+
+.profile-card__target--inner{
+  width:42%;
+  aspect-ratio:1;
+  opacity:.72;
+  animation:portraitTargetSpinReverse 16s linear infinite;
+}
+
+.profile-card__target--inner::before,
+.profile-card__target--inner::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  background:rgba(var(--accent-rgb),.48);
+  transform:translate(-50%,-50%);
+}
+
+.profile-card__target--inner::before{width:132%;height:1px}
+.profile-card__target--inner::after{width:1px;height:132%}
+
+.profile-card__axis{
+  position:absolute;
+  left:50%;
+  top:42%;
+  background:linear-gradient(90deg,transparent,rgba(var(--accent-rgb),.42),transparent);
+  transform:translate(-50%,-50%);
+  opacity:.6;
+}
+.profile-card__axis--horizontal{width:88%;height:1px}
+.profile-card__axis--vertical{width:1px;height:82%;background:linear-gradient(transparent,rgba(var(--accent-rgb),.34),transparent)}
+
+.profile-card__node{
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 16px rgba(var(--accent-rgb),.92);
+  animation:portraitNodePulse 2.8s ease-in-out infinite;
+}
+.profile-card__node--one{left:18%;top:22%}
+.profile-card__node--two{right:14%;top:34%;animation-delay:.5s}
+.profile-card__node--three{left:22%;bottom:18%;animation-delay:1s}
+.profile-card__node--four{right:19%;bottom:27%;animation-delay:1.5s}
+
+.profile-card__data-bars{
+  position:absolute;
+  bottom:8%;
+  width:58px;
+  height:30px;
+  opacity:.58;
+  background:repeating-linear-gradient(90deg,rgba(var(--accent-rgb),.8) 0 3px,transparent 3px 8px);
+  mask-image:linear-gradient(to top,#000,transparent);
+  animation:portraitBars 2.6s ease-in-out infinite alternate;
+}
+.profile-card__data-bars--left{left:5%}
+.profile-card__data-bars--right{right:5%;transform:scaleX(-1);animation-delay:.8s}
+
+.profile-card__scan{z-index:6!important;mix-blend-mode:screen;opacity:.7}
+.profile-card__corner{z-index:7!important}
+.profile-card__signal{z-index:8!important}
+
+@keyframes portraitOverlayGrid{to{background-position:34px 34px}}
+@keyframes portraitOverlaySweep{0%{transform:translateY(-20%)}55%,100%{transform:translateY(330%)}}
+@keyframes portraitTargetSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes portraitTargetSpinReverse{to{transform:translate(-50%,-50%) rotate(-360deg)}}
+@keyframes portraitNodePulse{0%,100%{opacity:.42;transform:scale(.82)}50%{opacity:1;transform:scale(1.3)}}
+@keyframes portraitBars{from{height:20px;opacity:.35}to{height:42px;opacity:.72}}
+
+@media(max-width:1020px){
+  .profile-card__portrait-overlay,
+  .profile-card__portrait-texture{inset:16px}
+}
+
+@media(max-width:720px){
+  .profile-card__portrait-overlay,
+  .profile-card__portrait-texture{inset:12px;border-radius:17px}
+  .profile-card__target--outer{width:76%}
+  .profile-card__target--inner{width:46%}
+  .profile-card__data-bars{width:44px;height:24px}
+}
+
+@media(max-width:520px){
+  .profile-card__portrait-overlay,
+  .profile-card__portrait-texture{inset:10px}
+  .profile-card__node{width:6px;height:6px}
+  .profile-card__data-bars{display:none}
+}
+
+@media(max-width:390px){
+  .profile-card__portrait-overlay,
+  .profile-card__portrait-texture{inset:9px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .profile-card__portrait-overlay::before,
+  .profile-card__portrait-overlay::after,
+  .profile-card__target,
+  .profile-card__node,
+  .profile-card__data-bars{animation:none!important}
+}
