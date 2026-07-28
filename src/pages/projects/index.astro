@@ -1,26 +1,65 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
-const projects = (await getCollection('projects')).sort((a,b)=>a.data.order-b.data.order);
+
+const projects = [
+  {
+    title: 'Operation Hydra',
+    type: 'Academic Cybersecurity Capstone',
+    text: 'Attack-and-defence capstone covering segmented infrastructure, controlled attack simulation, centralized monitoring, investigation, and defensive hardening.'
+  },
+  {
+    title: 'Honeypot and ELK Monitoring',
+    type: 'Academic Cybersecurity Project',
+    text: 'Cowrie honeypot telemetry forwarded to an ELK stack for investigation, correlation, and dashboarding.'
+  },
+  {
+    title: 'Active Directory, PKI and FreeRADIUS',
+    type: 'Academic Cybersecurity Project',
+    text: 'Identity and access environment combining Active Directory, Group Policy, PKI, and RADIUS-based authentication.'
+  },
+  {
+    title: 'Digital Forensics Investigation',
+    type: 'Academic Cybersecurity Project',
+    text: 'Forensic examination using recognized acquisition and analysis tools with evidence handling, artefact review, and structured reporting.'
+  },
+  {
+    title: 'ISO 27001 Statement of Applicability',
+    type: 'Academic Governance Project',
+    text: 'A structured Statement of Applicability exercise covering scope, control selection, justification, implementation status, and governance considerations.'
+  },
+  {
+    title: 'Enterprise Network Security and IPsec',
+    type: 'Academic Infrastructure Project',
+    text: 'Enterprise network design covering segmentation, IPsec, AAA, switching security, and infrastructure hardening.'
+  },
+  {
+    title: 'QUIXI',
+    type: 'Academic AI and Development Project',
+    text: 'Machine-learning dating application with clustering workflows, a mobile interface, backend services, and data-driven matching concepts.'
+  },
+  {
+    title: 'SmartAttend',
+    type: 'Academic AI and Development Project',
+    text: 'Facial-recognition attendance application using FastAPI and MongoDB with administrative and user-facing workflows.'
+  },
+  {
+    title: 'Dangerous Object Detection',
+    type: 'Academic AI and Development Project',
+    text: 'YOLOv8-based object-detection project with FastAPI, Streamlit, cloud deployment, and automated delivery workflows.'
+  }
+];
 ---
-<BaseLayout title="Cybersecurity Projects | Manarth Patel" description="Evidence-focused cybersecurity projects covering endpoint detection, Microsoft Entra IAM, AWS cloud security, investigation and remediation.">
-  <section class="section shell">
-    <span class="eyebrow">Project Programme</span>
-    <h1 class="page-title">Projects built around evidence of thinking</h1>
-    <p class="page-intro">Each project uses the same structured record for its status, tools, summaries, milestones, search result and individual detail page.</p>
-    <div class="filter-bar" aria-label="Project filters">
-      <button class="is-active" type="button" data-project-filter="all">All</button>
-      <button type="button" data-project-filter="SOC">SOC</button>
-      <button type="button" data-project-filter="IAM">IAM</button>
-      <button type="button" data-project-filter="Cloud Security">Cloud</button>
+<BaseLayout title="Academic Projects | Manarth Patel" description="Completed academic projects across cybersecurity, infrastructure, digital forensics, governance, artificial intelligence, and application development.">
+  <section class="section shell page-hero">
+    <span class="eyebrow">Completed Academic Work</span>
+    <h1 class="page-title">Technical projects across security, infrastructure, AI, and development</h1>
+    <p class="page-intro">These projects were completed through academic programmes and are presented separately from professional employment and the planned Cybersecurity Learning Lab.</p>
+    <div class="content-grid">
+      {projects.map(project => <article class="content-card">
+        <span class="content-card__label">{project.type}</span>
+        <h2>{project.title}</h2>
+        <p>{project.text}</p>
+      </article>)}
     </div>
-    <div class="project-grid" data-project-grid>{projects.map(project => <div data-project-track={project.data.track}><ProjectCard project={project} /></div>)}</div>
   </section>
-  <script is:inline>
-    document.querySelectorAll('[data-project-filter]').forEach(button=>button.addEventListener('click',()=>{
-      document.querySelectorAll('[data-project-filter]').forEach(item=>item.classList.toggle('is-active',item===button));
-      document.querySelectorAll('[data-project-track]').forEach(card=>card.hidden=button.dataset.projectFilter!=='all'&&card.dataset.projectTrack!==button.dataset.projectFilter);
-    }));
-  </script>
 </BaseLayout>
