@@ -15,22 +15,37 @@ const textExtensions = new Set([
   '.astro', '.ts', '.js', '.mjs', '.md', '.mdx', '.html', '.svg', '.json', '.txt', '.xml'
 ]);
 
+// These rules intentionally contain only generic release-quality checks.
+// Project-specific private values must never be stored in this repository.
 const rules = [
-  { id: 'internal-resume-reference', pattern: /\bmaster(?: cybersecurity)? resume\b/i },
-  { id: 'approval-workflow-language', pattern: /\b(?:approved wording|approved copy|approval process|line[- ]by[- ]line approval)\b/i },
-  { id: 'internal-project-language', pattern: /\b(?:portfolio-v2|phase 1|phase 2|staging-only|internal planning|internal reference|source of truth)\b/i },
-  { id: 'implementation-note', pattern: /\b(?:one central profile file|same structured record|independent markdown records|updating one project file|managed from one central|without changing (?:the )?(?:page )?layout)\b/i },
-  { id: 'interview-process-language', pattern: /\b(?:interview-defendable|production responsibilities are separated)\b/i },
-  { id: 'private-client-language', pattern: /\b(?:KMP Innovations|Northern Credit Union)\b/i },
-  { id: 'privacy-explanation-leak', pattern: /\bconfidential client systems or operational details\b/i },
-  { id: 'old-public-email', pattern: /mpatel237@icloud\.com/i },
-  { id: 'old-public-location', pattern: /Oshawa\s*\/\s*GTA/i },
-  { id: 'old-primary-title', pattern: /Cybersecurity\s*&\s*IT Analyst/i },
-  { id: 'old-target-title', pattern: /\bJunior SOC Analyst\b/i },
-  { id: 'unearned-certification', pattern: /\b(?:CompTIA Security\+|Splunk Core Certified User)\b/i },
-  { id: 'immigration-status', pattern: /\b(?:PGWP|work permit)\b/i },
-  { id: 'publication-directive', pattern: /\b(?:do not publish|not for public|private only|internal only|for review only)\b/i },
-  { id: 'unfinished-placeholder', pattern: /\b(?:lorem ipsum|TODO|TBD)\b/i }
+  {
+    id: 'editorial-workflow-language',
+    pattern: /\b(?:master resume|approved wording|approved copy|approval process|line[- ]by[- ]line approval)\b/i
+  },
+  {
+    id: 'development-workflow-language',
+    pattern: /\b(?:portfolio-v\d+|phase \d+|staging-only|internal planning|internal reference|source of truth)\b/i
+  },
+  {
+    id: 'implementation-detail-language',
+    pattern: /\b(?:one central profile file|same structured record|independent markdown records|updating one project file|managed from one central|without changing (?:the )?(?:page )?layout)\b/i
+  },
+  {
+    id: 'publication-directive',
+    pattern: /\b(?:do not publish|not for public|private only|internal only|for review only)\b/i
+  },
+  {
+    id: 'unfinished-placeholder',
+    pattern: /\b(?:lorem ipsum|TODO|TBD|replace me|sample text)\b/i
+  },
+  {
+    id: 'local-development-address',
+    pattern: /\b(?:localhost|127\.0\.0\.1)(?::\d+)?\b/i
+  },
+  {
+    id: 'debug-output',
+    pattern: /\b(?:console\.debug|debugger;)\b/i
+  }
 ];
 
 async function collectFiles(directory) {
@@ -78,12 +93,11 @@ for (const file of files) {
 }
 
 if (violations.length) {
-  console.error('\nPublic-content audit failed. Remove or rewrite the following text before deployment:\n');
+  console.error('\nPublic-content audit failed. Review and rewrite the following lines before deployment:\n');
   for (const violation of violations) {
     console.error(`${violation.file}:${violation.line} [${violation.rule}] ${violation.excerpt}`);
   }
-  console.error('\nReview docs/PUBLIC_CONTENT_CHECKLIST.md before committing public copy.\n');
   process.exit(1);
 }
 
-console.log(`Public-content audit passed: ${files.length} text files checked against ${rules.length} release rules.`);
+console.log(`Public-content audit passed: ${files.length} text files checked against ${rules.length} generic release rules.`);
