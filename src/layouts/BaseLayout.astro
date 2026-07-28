@@ -6,8 +6,8 @@ import '../styles/content.css';
 import { site } from '../data/site';
 
 const {
-  title = 'Manarth Patel | Cybersecurity & IT Analyst',
-  description = 'Interactive cybersecurity portfolio for Manarth Patel covering SOC analysis, IAM, cloud security, endpoint detection, IT operations, and documented evidence.',
+  title = 'Manarth Patel | Cyber Security Engineer',
+  description = 'Cyber Security Engineer with experience across security operations, identity and access management, vulnerability management, infrastructure, technical support, and backend development.',
   image = '/assets/img/og-preview.svg',
   noindex = false
 } = Astro.props;
@@ -27,7 +27,7 @@ const profileSchema = {
     url: siteBase.href,
     image: new URL(site.profileImage, siteBase).href,
     sameAs: [site.linkedin, site.github],
-    address: { '@type': 'PostalAddress', addressLocality: 'Oshawa', addressRegion: 'Ontario', addressCountry: 'CA' }
+    address: { '@type': 'PostalAddress', addressRegion: 'Ontario', addressCountry: 'CA' }
   }
 };
 ---
@@ -64,8 +64,8 @@ const profileSchema = {
     <div class="background-vignette" aria-hidden="true"></div>
     <canvas class="network-canvas" data-network aria-hidden="true"></canvas>
     <div class="site-hud shell" aria-hidden="true">
-      <span class="site-hud__status"><i></i> CONSOLE ONLINE</span>
-      <span>MANARTHPATEL.COM · CYBERSECURITY + IT</span>
+      <span class="site-hud__status"><i></i> PROFILE ONLINE</span>
+      <span>MANARTHPATEL.COM · CYBER SECURITY ENGINEER</span>
     </div>
     <Header pathname={Astro.url.pathname} />
     <main id="content"><slot /></main>
@@ -73,7 +73,7 @@ const profileSchema = {
     <dialog class="search-dialog" data-search-dialog aria-label="Search this website">
       <form method="dialog" class="search-panel">
         <div class="search-head">
-          <input type="search" data-search-input placeholder="Search projects, skills, articles, services..." aria-label="Search website" />
+          <input type="search" data-search-input placeholder="Search experience, projects, skills, labs, and articles..." aria-label="Search website" />
           <button value="close" aria-label="Close search">×</button>
         </div>
         <div class="search-results" data-search-results aria-live="polite"></div>
