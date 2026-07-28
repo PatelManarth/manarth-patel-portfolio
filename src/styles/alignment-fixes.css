@@ -1,0 +1,48 @@
+/* Final alignment overrides for the profile visual and compact navigation controls. */
+.profile-card{justify-self:center;margin-inline:auto}
+.profile-card__media{display:grid!important;place-items:center!important;padding:0!important;overflow:hidden}
+.profile-card__portrait{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  margin:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+.profile-card:hover .profile-card__portrait{transform:none!important}
+.profile-card__corner{z-index:1!important}
+.profile-card__radar,.profile-card__orbit,.profile-card__matrix{z-index:1!important}
+.profile-card__portrait{z-index:3!important}
+.profile-card__scan{z-index:2!important}
+.profile-card__signal{z-index:4!important}
+
+@media(max-width:1020px){
+  .nav-actions{align-items:center!important}
+  .search-trigger,.theme-toggle,.menu-toggle{display:grid!important;place-items:center!important;align-content:center!important;justify-content:center!important;padding:0!important;line-height:1!important}
+  .nav-control__icon,.menu-icon{display:grid!important;place-items:center!important;margin:0!important}
+  .nav-control__icon svg{display:block!important;margin:0!important}
+  .menu-icon i{left:1px!important}
+  .profile-card{width:min(100%,620px)!important}
+  .profile-card__media{aspect-ratio:1/1.04!important}
+}
+
+@media(max-width:720px){
+  .profile-card{width:100%!important}
+  .profile-card__media{aspect-ratio:1/1.08!important}
+  .profile-card__portrait{object-position:center center!important}
+}
+
+@media(max-width:520px){
+  .nav-actions{display:grid!important;grid-template-columns:repeat(3,40px)!important;gap:6px!important}
+  .search-trigger,.theme-toggle,.menu-toggle{width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important}
+  .profile-card__media{aspect-ratio:1/1.1!important}
+}
+
+@media(max-width:390px){
+  .nav-actions{grid-template-columns:repeat(3,38px)!important;gap:5px!important}
+  .search-trigger,.theme-toggle,.menu-toggle{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important}
+}
