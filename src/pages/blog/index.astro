@@ -2,24 +2,31 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const posts = (await getCollection('blog')).sort((a,b) => b.data.updated.getTime() - a.data.updated.getTime());
+const posts = (await getCollection('blog'))
+  .filter(post => post.data.status === 'published')
+  .sort((a,b) => b.data.updated.getTime() - a.data.updated.getTime());
 ---
-<BaseLayout title="Cybersecurity Blog | Manarth Patel" description="Evidence-linked cybersecurity writing by Manarth Patel covering SOC analysis, IAM, cloud security, detection engineering, and practical security concepts.">
+<BaseLayout title="Cybersecurity Blog | Manarth Patel" description="Practical cybersecurity writing covering security operations, identity, vulnerability management, infrastructure, cloud security, and documented technical lessons.">
   <section class="section shell page-hero">
-    <span class="eyebrow">Knowledge Base</span>
+    <span class="eyebrow">Learning and Documentation</span>
     <h1 class="page-title">Cybersecurity Blog</h1>
-    <p class="page-intro">Articles are independent Markdown records. Drafts and planned topics can be updated without changing page layout, navigation, search, or other content.</p>
-    <div class="content-grid">
-      {posts.map(post => <article class="content-card">
-        <span class="content-card__label">{post.data.status.replace('-', ' ')}</span>
-        <h2>{post.data.title}</h2>
-        <p>{post.data.summary}</p>
-        <div class="tags">{post.data.tags.map(tag => <span>{tag}</span>)}</div>
-        <div class="card-actions">
-          <a class="button button--primary" href={`/blog/${post.data.slug}/`}>Open article</a>
-          {post.data.relatedProject && <a class="button" href={`/projects/${post.data.relatedProject}/`}>Related project</a>}
-        </div>
-      </article>)}
-    </div>
+    <p class="page-intro">Practical articles, walkthroughs, troubleshooting notes, diagrams, queries, and lessons from completed technical work.</p>
+    {posts.length ? (
+      <div class="content-grid">
+        {posts.map(post => <article class="content-card">
+          <span class="content-card__label">Published</span>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.summary}</p>
+          <div class="tags">{post.data.tags.map(tag => <span>{tag}</span>)}</div>
+          <div class="card-actions"><a class="button button--primary" href={`/blog/${post.data.slug}/`}>Open article</a></div>
+        </article>)}
+      </div>
+    ) : (
+      <article class="content-card content-card--accent">
+        <span class="content-card__label">Coming later</span>
+        <h2>Articles will be published after the underlying work is completed and reviewed.</h2>
+        <p>The learning programme is currently planned. Published articles will appear here once they contain useful, accurate, and documented technical content.</p>
+      </article>
+    )}
   </section>
 </BaseLayout>
