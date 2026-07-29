@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/experience.css';
+
+const currentResponsibilities = [
+  'Review security events, alerts and related activity to support triage, investigation and documented response.',
+  'Analyze logs, indicators of compromise, authentication activity, endpoint events, user activity and network context.',
+  'Support vulnerability scanning, risk review, remediation tracking, security-fix validation and configuration assessment.',
+  'Contribute to identity and access reviews, incident-response activities, technical documentation, escalation and team coordination.'
+];
+
+const previousRoles = [
+  {
+    title: 'Lead Sales',
+    organization: 'Local Convenience Store',
+    period: 'May 2024 – September 2025',
+    location: 'Ontario, Canada',
+    summary: 'Handled customer service, cash operations, issue resolution, confidentiality, shift responsibility and day-to-day operational support in a fast-paced environment.',
+    tags: ['Customer Service', 'Operations', 'Issue Resolution']
+  },
+  {
+    title: 'Web Development Intern',
+    organization: 'Business Web Solutions',
+    period: 'January 2023 – June 2023',
+    location: 'India',
+    summary: 'Supported web-development tasks, application testing, troubleshooting, documentation and collaboration on development work.',
+    tags: ['Web Development', 'Testing', 'Documentation']
+  },
+  {
+    title: 'Technical Support',
+    organization: 'Chatkazz',
+    period: 'November 2019 – May 2022',
+    location: 'India',
+    summary: 'Provided user support, investigated application and system issues, guided users through technical problems and documented resolutions.',
+    tags: ['Technical Support', 'Troubleshooting', 'User Guidance']
+  },
+  {
+    title: 'Backend Developer Intern',
+    organization: 'GenieApp Solutions',
+    period: 'June 2021 – September 2021',
+    location: 'Remote, India',
+    summary: 'Worked with Python, FastAPI, MongoDB, REST APIs, JSON, Postman and Git while supporting input validation, error handling and backend troubleshooting.',
+    tags: ['Python', 'FastAPI', 'MongoDB']
+  }
+];
+
+const domains = [
+  { code: '01', title: 'Identities', text: 'Authentication activity, accounts, access decisions, permissions and review context.' },
+  { code: '02', title: 'Endpoints', text: 'Windows and Linux systems, endpoint activity, troubleshooting and hardening.' },
+  { code: '03', title: 'Networks', text: 'Traffic, connectivity, routers, firewalls and investigation context.' },
+  { code: '04', title: 'Applications', text: 'Web applications, APIs, validation, authentication flows and testing.' },
+  { code: '05', title: 'Backend Systems', text: 'FastAPI, MongoDB, REST APIs, data handling and technical troubleshooting.' }
+];
+---
+<BaseLayout
+  title="Professional Experience | Manarth Patel"
+  description="Professional experience across cybersecurity engineering, technical support, backend development, web technologies and customer-facing operations."
+>
+  <div class="experience-page">
+    <section class="shell experience-hero">
+      <div class="experience-hero__copy">
+        <span class="eyebrow">Professional Experience</span>
+        <h1 class="page-title">Security experience supported by a broad technical background</h1>
+        <p class="experience-hero__lead">Experience across cybersecurity engineering, technical support, backend development, web technologies and customer-facing operations.</p>
+        <p class="page-intro">This background supports practical technical work across identities, endpoints, networks, applications and backend systems.</p>
+        <div class="experience-hero__actions">
+          <a class="button button--primary" href="/resume/">View Resume</a>
+          <a class="button" href="/about/">About Manarth</a>
+          <a class="button" href="/projects/">Explore Projects</a>
+          <a class="button" href="/contact/">Contact</a>
+        </div>
+      </div>
+
+      <div class="experience-hero__visual" aria-hidden="true">
+        <div class="experience-track"></div>
+        <div class="experience-marker experience-marker--one"><span class="experience-marker__dot">01</span><div><strong>Cybersecurity Engineering</strong><span>Security operations and investigation support</span></div></div>
+        <div class="experience-marker experience-marker--two"><span class="experience-marker__dot">02</span><div><strong>Technical Operations</strong><span>Systems, users and troubleshooting</span></div></div>
+        <div class="experience-marker experience-marker--three"><span class="experience-marker__dot">03</span><div><strong>Development</strong><span>Applications, APIs and backend systems</span></div></div>
+        <div class="experience-marker experience-marker--four"><span class="experience-marker__dot">04</span><div><strong>Customer Operations</strong><span>Service, reliability and issue resolution</span></div></div>
+      </div>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <article class="current-role">
+        <div class="current-role__head">
+          <div>
+            <span class="current-role__status">Current Role</span>
+            <h2>Cyber Security Engineer - Full-time Contract</h2>
+            <p class="current-role__organization">Confidential Canadian Financial Services Organization</p>
+          </div>
+          <div class="current-role__meta">
+            <span>Period</span><strong>October 2025 – Present</strong>
+            <span>Location</span><strong>Ontario, Canada</strong>
+          </div>
+        </div>
+        <p class="current-role__summary">Supports security monitoring, investigation, vulnerability-management, identity-review and incident-response activities within a collaborative environment using documented procedures, escalation paths and team review.</p>
+        <div class="current-role__grid">
+          {currentResponsibilities.map(item => <div class="current-role__item"><p>{item}</p></div>)}
+        </div>
+      </article>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <div class="experience-section-head">
+        <div>
+          <span class="eyebrow">Career Timeline</span>
+          <h2>Experience across security, support and development</h2>
+        </div>
+        <p>Previous roles contribute practical experience in troubleshooting, user support, application testing, backend development, documentation and operational responsibility.</p>
+      </div>
+
+      <div class="career-timeline">
+        {previousRoles.map(role => (
+          <article class="career-role">
+            <div class="career-role__meta">
+              <strong>{role.period}</strong>
+              <span>{role.location}</span>
+            </div>
+            <div>
+              <h3>{role.title}</h3>
+              <p class="career-role__organization">{role.organization}</p>
+              <p class="career-role__summary">{role.summary}</p>
+              <div class="career-role__tags">{role.tags.map(tag => <span>{tag}</span>)}</div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <div class="experience-section-head">
+        <div>
+          <span class="eyebrow">Connected Technical Domains</span>
+          <h2>Understanding how systems and activity connect</h2>
+        </div>
+        <p>A broad technical background provides context when reviewing security activity, troubleshooting systems and documenting findings.</p>
+      </div>
+      <div class="experience-domains">
+        {domains.map(domain => (
+          <article class="experience-domain">
+            <span>{domain.code}</span>
+            <h3>{domain.title}</h3>
+            <p>{domain.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <div class="experience-cta">
+        <div>
+          <span class="eyebrow">Continue Exploring</span>
+          <h2>Review the complete professional profile</h2>
+          <p>Explore technical capabilities, completed projects, education and ways to connect.</p>
+        </div>
+        <nav class="experience-cta__actions" aria-label="Experience page navigation">
+          <a class="button button--primary" href="/resume/">View Resume</a>
+          <a class="button" href="/about/">About</a>
+          <a class="button" href="/projects/">Projects</a>
+          <a class="button" href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
