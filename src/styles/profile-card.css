@@ -1,0 +1,109 @@
+.hero--immersive .profile-card{
+  overflow:visible;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  isolation:isolate;
+}
+
+.hero--immersive .profile-card::before{
+  inset:-7% -8% 24%;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 46%,rgba(var(--accent-rgb),.22),transparent 38%),
+    radial-gradient(circle at 28% 30%,rgba(var(--accent-rgb),.12),transparent 34%);
+  filter:blur(12px);
+  opacity:.9;
+}
+
+.hero--immersive .profile-card__media{
+  min-height:520px;
+  overflow:visible;
+  border:0;
+  border-radius:34px;
+  background:transparent;
+  isolation:isolate;
+}
+
+.hero--immersive .profile-card__media::before{
+  inset:5% 2% 2%;
+  border-radius:34px;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    radial-gradient(circle at 50% 44%,rgba(var(--accent-rgb),.13),transparent 58%);
+  background-size:38px 38px,38px 38px,auto;
+  mask-image:radial-gradient(ellipse at 50% 45%,#000 16%,rgba(0,0,0,.78) 50%,transparent 82%);
+  opacity:.7;
+}
+
+.hero--immersive .profile-card__media::after{
+  content:"";
+  position:absolute;
+  inset:auto -8% -9% -8%;
+  height:38%;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(6,9,14,.78) 74%,rgba(6,9,14,.96));
+  filter:blur(3px);
+}
+
+.hero--immersive .profile-card__matrix{
+  inset:2% 0 0;
+  opacity:.22;
+  mask-image:radial-gradient(ellipse at 50% 45%,#000 8%,transparent 72%);
+}
+
+.hero--immersive .profile-card__radar,
+.hero--immersive .profile-card__orbit{
+  opacity:.55;
+}
+
+.hero--immersive .profile-card__scan{
+  z-index:5;
+  opacity:.16;
+  mask-image:linear-gradient(180deg,transparent 8%,#000 26%,#000 66%,transparent 88%);
+}
+
+.hero--immersive .profile-card__portrait{
+  bottom:-2%;
+  width:min(112%,590px);
+  opacity:1;
+  filter:drop-shadow(0 28px 30px rgba(0,0,0,.44));
+}
+
+.hero--immersive .profile-card:hover .profile-card__portrait{
+  filter:drop-shadow(0 32px 36px rgba(0,0,0,.5)) drop-shadow(0 0 24px rgba(var(--accent-rgb),.14));
+}
+
+.hero--immersive .profile-card__body{
+  margin-top:-10px;
+  border:1px solid rgba(var(--accent-rgb),.24);
+  border-radius:26px;
+  background:linear-gradient(145deg,rgba(8,13,21,.74),rgba(8,13,21,.48));
+  box-shadow:0 28px 80px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.055);
+  backdrop-filter:blur(18px) saturate(130%);
+}
+
+@media(max-width:1020px){
+  .hero--immersive .profile-card__media{min-height:490px}
+  .hero--immersive .profile-card__portrait{width:min(118%,570px)}
+}
+
+@media(max-width:720px){
+  .hero--immersive .profile-card__media{min-height:420px}
+  .hero--immersive .profile-card__portrait{width:min(122%,520px);bottom:-2%}
+  .hero--immersive .profile-card__body{margin-top:-6px}
+}
+
+@media(max-width:420px){
+  .hero--immersive .profile-card__media{min-height:365px}
+  .hero--immersive .profile-card__portrait{width:min(128%,480px);bottom:-3%}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero--immersive .profile-card__media::before,
+  .hero--immersive .profile-card__matrix,
+  .hero--immersive .profile-card__scan,
+  .hero--immersive .profile-card__orbit{animation:none!important}
+}
