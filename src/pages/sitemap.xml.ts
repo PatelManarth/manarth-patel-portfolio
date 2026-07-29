@@ -7,6 +7,8 @@ export const GET: APIRoute = async ({ site }) => {
   const posts = (await getCollection('blog')).filter(post => post.data.status === 'published');
   const paths = [
     '/',
+    '/about/',
+    '/experience/',
     '/projects/',
     '/labs/',
     '/blog/',
