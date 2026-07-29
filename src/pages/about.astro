@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/about.css';
+
+const perspectives = [
+  {
+    code: '01',
+    title: 'Identities',
+    text: 'Accounts, authentication, MFA, access decisions, permissions and identity activity.'
+  },
+  {
+    code: '02',
+    title: 'Endpoints',
+    text: 'Windows and Linux systems, user activity, endpoint events, troubleshooting and hardening.'
+  },
+  {
+    code: '03',
+    title: 'Networks',
+    text: 'Traffic, connectivity, firewalls, routers, segmentation and technical investigation context.'
+  },
+  {
+    code: '04',
+    title: 'Applications',
+    text: 'Web applications, APIs, authentication flows, input validation and application troubleshooting.'
+  },
+  {
+    code: '05',
+    title: 'Backend Systems',
+    text: 'FastAPI, MongoDB, REST APIs, data handling, error analysis and supporting system behaviour.'
+  },
+  {
+    code: '06',
+    title: 'Security Monitoring',
+    text: 'Alerts, logs, indicators, user activity, system behaviour and investigation documentation.'
+  }
+];
+
+const principles = [
+  {
+    code: '01',
+    title: 'Evidence before assumptions',
+    text: 'Review available logs, alerts, system activity and technical context before reaching a conclusion.'
+  },
+  {
+    code: '02',
+    title: 'Clear documentation',
+    text: 'Record observations, troubleshooting steps, findings, decisions and follow-up actions clearly.'
+  },
+  {
+    code: '03',
+    title: 'Collaborative review',
+    text: 'Work through documented procedures, escalation paths, team review and cross-functional coordination.'
+  },
+  {
+    code: '04',
+    title: 'Practical remediation',
+    text: 'Focus on realistic corrective actions, validation, system hardening and reduced operational risk.'
+  }
+];
+
+const directions = [
+  'Security Engineer',
+  'Security Analyst',
+  'SOC Analyst',
+  'Identity and Access Management',
+  'Vulnerability Management',
+  'Infrastructure Security'
+];
+---
+<BaseLayout
+  title="About Manarth Patel | Cyber Security Engineer"
+  description="Learn about Manarth Patel, a Cyber Security Engineer with experience across security operations, infrastructure, technical support and backend development."
+>
+  <div class="about-page">
+    <section class="shell about-hero">
+      <div class="about-hero__copy">
+        <span class="eyebrow">Professional Profile</span>
+        <h1 class="page-title">About Manarth Patel</h1>
+        <p class="about-hero__lead">Cyber Security Engineer with experience across security operations, infrastructure, technical support and backend development.</p>
+        <p class="page-intro">His background combines cybersecurity operations with a broader understanding of identities, endpoints, networks, applications and backend systems.</p>
+        <div class="about-hero__actions">
+          <a class="button button--primary" href="/resume/">View Professional Experience</a>
+          <a class="button" href="/projects/">Explore Projects</a>
+          <a class="button" href="/resume/">View Resume</a>
+          <a class="button" href="/contact/">Contact</a>
+        </div>
+      </div>
+
+      <div class="about-hero__visual" aria-hidden="true">
+        <div class="about-profile-ring"></div>
+        <div class="about-profile-core">
+          <strong>Manarth Patel</strong>
+          <span>Cyber Security Engineer</span>
+        </div>
+        <span class="about-profile-node about-profile-node--one">Identities</span>
+        <span class="about-profile-node about-profile-node--two">Endpoints</span>
+        <span class="about-profile-node about-profile-node--three">Networks</span>
+        <span class="about-profile-node about-profile-node--four">Applications</span>
+      </div>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <div class="about-overview">
+        <div class="about-overview__copy">
+          <span class="eyebrow">Professional Overview</span>
+          <h2>Security experience supported by a broad technical foundation</h2>
+          <p>Manarth Patel is a Cyber Security Engineer with 5+ years of experience across security operations, backend development, technical support, and IT infrastructure. His professional background includes security-event monitoring, alert triage, log analysis, security investigations, vulnerability management, identity and access management, incident-response support, system troubleshooting, and technical documentation.</p>
+          <p>His cybersecurity experience includes reviewing security alerts and events, investigating indicators of compromise, authentication activity, endpoint events, user activity, network traffic, and system behaviour. He has also supported vulnerability scanning, risk assessment, remediation tracking, security-fix validation, configuration reviews, access-control reviews, and improvements to monitoring and detection use cases.</p>
+          <p>Alongside cybersecurity operations, Manarth has experience supporting Windows and Linux environments, user accounts, endpoints, networking, POS systems, routers, hardware and software troubleshooting, system logs, and root-cause analysis. His development background includes Python, FastAPI, REST APIs, MongoDB, API testing, input validation, authentication and authorization workflows, error handling, and application troubleshooting.</p>
+          <p>This combined security, infrastructure, support, and development background allows him to understand technical issues across users, endpoints, identities, networks, applications, and backend systems. His work is performed within collaborative environments using team review, documented procedures, escalation paths, and cross-functional coordination.</p>
+        </div>
+
+        <div class="about-overview__facts" aria-label="Professional profile summary">
+          <div class="about-overview__fact">
+            <span>Current Positioning</span>
+            <strong>Cyber Security Engineer</strong>
+          </div>
+          <div class="about-overview__fact">
+            <span>Experience</span>
+            <strong>5+ years across security, support, infrastructure and development</strong>
+          </div>
+          <div class="about-overview__fact">
+            <span>Primary Focus</span>
+            <strong>Security operations, IAM, vulnerability management and infrastructure security</strong>
+          </div>
+          <div class="about-overview__fact">
+            <span>Location</span>
+            <strong>Greater Toronto Area, Ontario, Canada</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <div class="about-section-head">
+        <div>
+          <span class="eyebrow">Technical Perspective</span>
+          <h2>Understanding security across connected systems</h2>
+        </div>
+        <p>Security investigations and technical decisions often depend on understanding how activity moves across identities, endpoints, networks, applications and backend systems.</p>
+      </div>
+
+      <div class="perspective-map">
+        {perspectives.map(item => (
+          <article class="perspective-card">
+            <span>{item.code}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <div class="about-section-head">
+        <div>
+          <span class="eyebrow">Working Approach</span>
+          <h2>Practical, documented and collaborative</h2>
+        </div>
+        <p>His working style emphasizes technical context, repeatable processes, clear communication and realistic corrective action.</p>
+      </div>
+
+      <div class="approach-grid">
+        {principles.map(item => (
+          <article class="approach-card">
+            <span>{item.code}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <div class="direction-panel">
+        <div>
+          <span class="eyebrow">Professional Direction</span>
+          <h2>Cybersecurity engineering and analysis roles</h2>
+          <p>Manarth’s experience and technical background support opportunities in security engineering, security analysis, security operations, identity and access management, vulnerability management and infrastructure security.</p>
+        </div>
+        <div class="direction-tags" aria-label="Relevant professional roles">
+          {directions.map(direction => <span>{direction}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <div class="about-cta">
+        <div>
+          <span class="eyebrow">Continue Exploring</span>
+          <h2>Review the complete professional profile</h2>
+          <p>Explore professional experience, technical capabilities, completed projects and ways to connect.</p>
+        </div>
+        <nav class="about-cta__actions" aria-label="Profile navigation">
+          <a class="button button--primary" href="/resume/">Professional Experience</a>
+          <a class="button" href="/skills/">Skills</a>
+          <a class="button" href="/projects/">Projects</a>
+          <a class="button" href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
