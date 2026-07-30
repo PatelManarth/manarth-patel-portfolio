@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { skillHref } from '../data/skills';
 import '../styles/experience.css';
 
 const currentResponsibilities = [
@@ -9,8 +10,18 @@ const currentResponsibilities = [
   'Contribute to identity and access reviews, incident-response activities, technical documentation, escalation and team coordination.'
 ];
 
+const currentSkills = [
+  ['Security Monitoring', 'security-monitoring'],
+  ['Alert Triage', 'alert-triage'],
+  ['Log Analysis', 'log-analysis'],
+  ['Incident Investigation', 'incident-investigation'],
+  ['Vulnerability Management', 'vulnerability-management'],
+  ['Identity & Access Management', 'identity-access-management']
+];
+
 const previousRoles = [
   {
+    id: 'experience-local-convenience-store',
     title: 'Lead Sales',
     organization: 'Local Convenience Store',
     period: 'May 2024 – September 2025',
@@ -20,9 +31,10 @@ const previousRoles = [
       'Supported shift operations, issue resolution and dependable day-to-day service.',
       'Maintained professionalism, confidentiality and clear communication with customers and coworkers.'
     ],
-    tags: ['Customer Service', 'Operations', 'Issue Resolution']
+    tags: [['Customer Service', 'technical-support'], ['Operations', 'technical-support'], ['Issue Resolution', 'technical-troubleshooting']]
   },
   {
+    id: 'experience-business-web-solutions',
     title: 'Web Development Intern',
     organization: 'Business Web Solutions',
     period: 'January 2023 – June 2023',
@@ -32,9 +44,10 @@ const previousRoles = [
       'Assisted with documentation and collaboration on development work.',
       'Contributed to practical problem-solving across web and application workflows.'
     ],
-    tags: ['Web Development', 'Testing', 'Documentation']
+    tags: [['Web Development', 'api-security'], ['Testing', 'application-testing'], ['Documentation', 'technical-documentation']]
   },
   {
+    id: 'experience-chatkazz',
     title: 'Technical Support',
     organization: 'Chatkazz',
     period: 'November 2019 – May 2022',
@@ -44,9 +57,10 @@ const previousRoles = [
       'Guided users through technical problems and documented resolutions.',
       'Supported day-to-day troubleshooting across operational and technical needs.'
     ],
-    tags: ['Technical Support', 'Troubleshooting', 'User Guidance']
+    tags: [['Technical Support', 'technical-support'], ['Troubleshooting', 'technical-troubleshooting'], ['User Guidance', 'technical-support']]
   },
   {
+    id: 'experience-genieapp-solutions',
     title: 'Backend Developer Intern',
     organization: 'GenieApp Solutions',
     period: 'June 2021 – September 2021',
@@ -56,16 +70,16 @@ const previousRoles = [
       'Supported input validation, error handling and backend troubleshooting.',
       'Assisted with API testing, JSON handling, Postman workflows and Git-based development.'
     ],
-    tags: ['Python', 'FastAPI', 'MongoDB']
+    tags: [['Python', 'python'], ['FastAPI', 'fastapi'], ['MongoDB', 'mongodb']]
   }
 ];
 
 const domains = [
-  { code: '01', title: 'Identities', text: 'Authentication activity, accounts, access decisions, permissions and review context.' },
-  { code: '02', title: 'Endpoints', text: 'Windows and Linux systems, endpoint activity, troubleshooting and hardening.' },
-  { code: '03', title: 'Networks', text: 'Traffic, connectivity, routers, firewalls and investigation context.' },
-  { code: '04', title: 'Applications', text: 'Web applications, APIs, validation, authentication flows and testing.' },
-  { code: '05', title: 'Backend Systems', text: 'FastAPI, MongoDB, REST APIs, data handling and technical troubleshooting.' }
+  { code: '01', title: 'Identities', text: 'Authentication activity, accounts, access decisions, permissions and review context.', href: skillHref('identity-access-management') },
+  { code: '02', title: 'Endpoints', text: 'Windows and Linux systems, endpoint activity, troubleshooting and hardening.', href: skillHref('endpoint-troubleshooting') },
+  { code: '03', title: 'Networks', text: 'Traffic, connectivity, routers, firewalls and investigation context.', href: skillHref('network-security') },
+  { code: '04', title: 'Applications', text: 'Web applications, APIs, validation, authentication flows and testing.', href: skillHref('api-security') },
+  { code: '05', title: 'Backend Systems', text: 'FastAPI, MongoDB, REST APIs, data handling and technical troubleshooting.', href: skillHref('fastapi') }
 ];
 ---
 <BaseLayout
@@ -81,6 +95,7 @@ const domains = [
         <p class="page-intro">This foundation supports practical work across identities, endpoints, networks, applications and backend systems.</p>
         <div class="experience-hero__actions">
           <a class="button button--primary" href="/resume/">View Resume</a>
+          <a class="button" href="/skills/">Explore Skills</a>
           <a class="button" href="/about/">About Manarth</a>
           <a class="button" href="/projects/">Explore Projects</a>
           <a class="button" href="/contact/">Contact</a>
@@ -97,7 +112,7 @@ const domains = [
     </section>
 
     <section class="section shell" data-reveal>
-      <article class="current-role">
+      <article class="current-role" id="experience-cyber-security-engineer">
         <div class="current-role__head">
           <div>
             <span class="current-role__status">Current Role</span>
@@ -113,6 +128,9 @@ const domains = [
         <div class="current-role__grid">
           {currentResponsibilities.map(item => <div class="current-role__item"><p>{item}</p></div>)}
         </div>
+        <div class="career-role__tags current-role__skills" aria-label="Related current-role skills">
+          {currentSkills.map(([label, slug]) => <a href={skillHref(slug)}>{label}</a>)}
+        </div>
       </article>
     </section>
 
@@ -127,7 +145,7 @@ const domains = [
 
       <div class="career-timeline">
         {previousRoles.map(role => (
-          <article class="career-role">
+          <article class="career-role" id={role.id}>
             <div class="career-role__meta">
               <strong>{role.period}</strong>
               <span>{role.location}</span>
@@ -138,7 +156,7 @@ const domains = [
               <ul class="career-role__highlights">
                 {role.highlights.map(item => <li>{item}</li>)}
               </ul>
-              <div class="career-role__tags">{role.tags.map(tag => <span>{tag}</span>)}</div>
+              <div class="career-role__tags">{role.tags.map(([label, slug]) => <a href={skillHref(slug)}>{label}</a>)}</div>
             </div>
           </article>
         ))}
@@ -155,11 +173,11 @@ const domains = [
       </div>
       <div class="experience-domains">
         {domains.map(domain => (
-          <article class="experience-domain">
+          <a class="experience-domain" href={domain.href}>
             <span>{domain.code}</span>
             <h3>{domain.title}</h3>
             <p>{domain.text}</p>
-          </article>
+          </a>
         ))}
       </div>
     </section>
@@ -173,6 +191,7 @@ const domains = [
         </div>
         <nav class="experience-cta__actions" aria-label="Experience page navigation">
           <a class="button button--primary" href="/resume/">View Resume</a>
+          <a class="button" href="/skills/">Skills</a>
           <a class="button" href="/about/">About</a>
           <a class="button" href="/projects/">Projects</a>
           <a class="button" href="/contact/">Contact</a>
