@@ -15,7 +15,11 @@ const previousRoles = [
     organization: 'Local Convenience Store',
     period: 'May 2024 – September 2025',
     location: 'Ontario, Canada',
-    summary: 'Handled customer service, cash operations, issue resolution, confidentiality, shift responsibility and day-to-day operational support in a fast-paced environment.',
+    highlights: [
+      'Handled customer service, cash operations and daily store support in a fast-paced environment.',
+      'Supported shift operations, issue resolution and dependable day-to-day service.',
+      'Maintained professionalism, confidentiality and clear communication with customers and coworkers.'
+    ],
     tags: ['Customer Service', 'Operations', 'Issue Resolution']
   },
   {
@@ -23,7 +27,11 @@ const previousRoles = [
     organization: 'Business Web Solutions',
     period: 'January 2023 – June 2023',
     location: 'India',
-    summary: 'Supported web-development tasks, application testing, troubleshooting, documentation and collaboration on development work.',
+    highlights: [
+      'Supported web-development tasks, application testing and troubleshooting.',
+      'Assisted with documentation and collaboration on development work.',
+      'Contributed to practical problem-solving across web and application workflows.'
+    ],
     tags: ['Web Development', 'Testing', 'Documentation']
   },
   {
@@ -31,7 +39,11 @@ const previousRoles = [
     organization: 'Chatkazz',
     period: 'November 2019 – May 2022',
     location: 'India',
-    summary: 'Provided user support, investigated application and system issues, guided users through technical problems and documented resolutions.',
+    highlights: [
+      'Provided user support and investigated application and system issues.',
+      'Guided users through technical problems and documented resolutions.',
+      'Supported day-to-day troubleshooting across operational and technical needs.'
+    ],
     tags: ['Technical Support', 'Troubleshooting', 'User Guidance']
   },
   {
@@ -39,7 +51,11 @@ const previousRoles = [
     organization: 'GenieApp Solutions',
     period: 'June 2021 – September 2021',
     location: 'Remote, India',
-    summary: 'Worked with Python, FastAPI, MongoDB, REST APIs, JSON, Postman and Git while supporting input validation, error handling and backend troubleshooting.',
+    highlights: [
+      'Worked with Python, FastAPI, MongoDB and REST APIs.',
+      'Supported input validation, error handling and backend troubleshooting.',
+      'Assisted with API testing, JSON handling, Postman workflows and Git-based development.'
+    ],
     tags: ['Python', 'FastAPI', 'MongoDB']
   }
 ];
@@ -60,9 +76,9 @@ const domains = [
     <section class="shell experience-hero">
       <div class="experience-hero__copy">
         <span class="eyebrow">Professional Experience</span>
-        <h1 class="page-title">Security experience supported by a broad technical background</h1>
-        <p class="experience-hero__lead">Experience across cybersecurity engineering, technical support, backend development, web technologies and customer-facing operations.</p>
-        <p class="page-intro">This background supports practical technical work across identities, endpoints, networks, applications and backend systems.</p>
+        <h1 class="page-title">Experience across security, support and development</h1>
+        <p class="experience-hero__lead">Professional experience spanning cybersecurity engineering, technical support, backend development and customer-facing operations.</p>
+        <p class="page-intro">This foundation supports practical work across identities, endpoints, networks, applications and backend systems.</p>
         <div class="experience-hero__actions">
           <a class="button button--primary" href="/resume/">View Resume</a>
           <a class="button" href="/about/">About Manarth</a>
@@ -104,7 +120,7 @@ const domains = [
       <div class="experience-section-head">
         <div>
           <span class="eyebrow">Career Timeline</span>
-          <h2>Experience across security, support and development</h2>
+          <h2>Previous roles and technical foundations</h2>
         </div>
         <p>Previous roles contribute practical experience in troubleshooting, user support, application testing, backend development, documentation and operational responsibility.</p>
       </div>
@@ -119,7 +135,9 @@ const domains = [
             <div>
               <h3>{role.title}</h3>
               <p class="career-role__organization">{role.organization}</p>
-              <p class="career-role__summary">{role.summary}</p>
+              <ul class="career-role__highlights">
+                {role.highlights.map(item => <li>{item}</li>)}
+              </ul>
               <div class="career-role__tags">{role.tags.map(tag => <span>{tag}</span>)}</div>
             </div>
           </article>
