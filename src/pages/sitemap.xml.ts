@@ -9,6 +9,7 @@ export const GET: APIRoute = async ({ site }) => {
     '/',
     '/about/',
     '/experience/',
+    '/skills/',
     '/projects/',
     '/labs/',
     '/blog/',
