@@ -1,5 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { skillHref } from '../../data/skills';
+
+const plannedSkills = [
+  ['SIEM', 'security-monitoring'],
+  ['Detection Engineering', 'indicator-analysis'],
+  ['Incident Response', 'incident-response-support'],
+  ['IAM', 'identity-access-management'],
+  ['Vulnerability Management', 'vulnerability-management'],
+  ['Cloud Security', 'cloud-security-fundamentals'],
+  ['Network Monitoring', 'network-security'],
+  ['Digital Forensics', 'incident-investigation'],
+  ['Automation', 'python']
+];
 ---
 <BaseLayout title="Cybersecurity Learning Lab | Manarth Patel" description="A planned, evidence-driven cybersecurity learning programme documenting practical security work, lessons, and sanitized technical evidence.">
   <section class="section shell page-hero">
@@ -14,11 +27,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <h2>Planned · 0% · Evidence pending</h2>
         <p>No lab will be marked in progress, completed, or portfolio-ready until the corresponding work and evidence exist.</p>
       </article>
-      <article class="content-card">
+      <article class="content-card" id="planned-coverage">
         <span class="content-card__label">Planned coverage</span>
         <h2>Practical cybersecurity domains</h2>
         <div class="tags">
-          <span>SIEM</span><span>Detection Engineering</span><span>Incident Response</span><span>IAM</span><span>Vulnerability Management</span><span>Cloud Security</span><span>Network Monitoring</span><span>Digital Forensics</span><span>Automation</span>
+          {plannedSkills.map(([label, slug]) => <a href={skillHref(slug)}>{label}</a>)}
         </div>
       </article>
     </div>
@@ -26,6 +39,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="hero-actions section-actions">
       <a class="button button--primary" href="/blog/">Read the Learning Blog</a>
       <a class="button" href="/projects/">View Completed Academic Projects</a>
+      <a class="button" href="/skills/">Explore Related Skills</a>
     </div>
   </section>
 </BaseLayout>
