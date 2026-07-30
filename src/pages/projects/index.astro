@@ -1,51 +1,70 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { skillHref } from '../../data/skills';
 
 const projects = [
   {
+    id: 'operation-hydra',
     title: 'Operation Hydra',
     type: 'Academic Cybersecurity Capstone',
-    text: 'Attack-and-defence capstone covering segmented infrastructure, controlled attack simulation, centralized monitoring, investigation, and defensive hardening.'
+    text: 'Attack-and-defence capstone covering segmented infrastructure, controlled attack simulation, centralized monitoring, investigation, and defensive hardening.',
+    skills: [['Security Monitoring', 'security-monitoring'], ['Incident Investigation', 'incident-investigation'], ['System Hardening', 'system-hardening']]
   },
   {
+    id: 'honeypot-elk-monitoring',
     title: 'Honeypot and ELK Monitoring',
     type: 'Academic Cybersecurity Project',
-    text: 'Cowrie honeypot telemetry forwarded to an ELK stack for investigation, correlation, and dashboarding.'
+    text: 'Cowrie honeypot telemetry forwarded to an ELK stack for investigation, correlation, and dashboarding.',
+    skills: [['Log Analysis', 'log-analysis'], ['ELK Stack', 'elk-stack'], ['Security Monitoring', 'security-monitoring']]
   },
   {
+    id: 'active-directory-pki-freeradius',
     title: 'Active Directory, PKI and FreeRADIUS',
     type: 'Academic Cybersecurity Project',
-    text: 'Identity and access environment combining Active Directory, Group Policy, PKI, and RADIUS-based authentication.'
+    text: 'Identity and access environment combining Active Directory, Group Policy, PKI, and RADIUS-based authentication.',
+    skills: [['Identity & Access Management', 'identity-access-management'], ['Active Directory', 'active-directory'], ['Multi-Factor Authentication', 'multi-factor-authentication']]
   },
   {
+    id: 'digital-forensics-investigation',
     title: 'Digital Forensics Investigation',
     type: 'Academic Cybersecurity Project',
-    text: 'Forensic examination using recognized acquisition and analysis tools with evidence handling, artefact review, and structured reporting.'
+    text: 'Forensic examination using recognized acquisition and analysis tools with evidence handling, artefact review, and structured reporting.',
+    skills: [['Incident Investigation', 'incident-investigation'], ['Technical Documentation', 'technical-documentation']]
   },
   {
+    id: 'iso-27001-statement-applicability',
     title: 'ISO 27001 Statement of Applicability',
     type: 'Academic Governance Project',
-    text: 'A structured Statement of Applicability exercise covering scope, control selection, justification, implementation status, and governance considerations.'
+    text: 'A structured Statement of Applicability exercise covering scope, control selection, justification, implementation status, and governance considerations.',
+    skills: [['Configuration Reviews', 'configuration-reviews'], ['Technical Documentation', 'technical-documentation']]
   },
   {
+    id: 'enterprise-network-security-ipsec',
     title: 'Enterprise Network Security and IPsec',
     type: 'Academic Infrastructure Project',
-    text: 'Enterprise network design covering segmentation, IPsec, AAA, switching security, and infrastructure hardening.'
+    text: 'Enterprise network design covering segmentation, IPsec, AAA, switching security, and infrastructure hardening.',
+    skills: [['Network Security', 'network-security'], ['Firewalls', 'firewalls'], ['System Hardening', 'system-hardening']]
   },
   {
+    id: 'quixi',
     title: 'QUIXI',
     type: 'Academic AI and Development Project',
-    text: 'Machine-learning dating application with clustering workflows, a mobile interface, backend services, and data-driven matching concepts.'
+    text: 'Machine-learning dating application with clustering workflows, a mobile interface, backend services, and data-driven matching concepts.',
+    skills: [['Python', 'python'], ['Application Testing', 'application-testing']]
   },
   {
+    id: 'smartattend',
     title: 'SmartAttend',
     type: 'Academic AI and Development Project',
-    text: 'Facial-recognition attendance application using FastAPI and MongoDB with administrative and user-facing workflows.'
+    text: 'Facial-recognition attendance application using FastAPI and MongoDB with administrative and user-facing workflows.',
+    skills: [['FastAPI', 'fastapi'], ['MongoDB', 'mongodb'], ['Python', 'python']]
   },
   {
+    id: 'dangerous-object-detection',
     title: 'Dangerous Object Detection',
     type: 'Academic AI and Development Project',
-    text: 'YOLOv8-based object-detection project with FastAPI, Streamlit, cloud deployment, and automated delivery workflows.'
+    text: 'YOLOv8-based object-detection project with FastAPI, Streamlit, cloud deployment, and automated delivery workflows.',
+    skills: [['FastAPI', 'fastapi'], ['Cloud-Security Fundamentals', 'cloud-security-fundamentals'], ['Git', 'git']]
   }
 ];
 ---
@@ -55,10 +74,13 @@ const projects = [
     <h1 class="page-title">Technical projects across security, infrastructure, AI, and development</h1>
     <p class="page-intro">These projects were completed through academic programmes and are presented separately from professional employment and the planned Cybersecurity Learning Lab.</p>
     <div class="content-grid">
-      {projects.map(project => <article class="content-card">
+      {projects.map(project => <article class="content-card" id={project.id}>
         <span class="content-card__label">{project.type}</span>
         <h2>{project.title}</h2>
         <p>{project.text}</p>
+        <div class="tags" aria-label={`Related skills for ${project.title}`}>
+          {project.skills.map(([label, slug]) => <a href={skillHref(slug)}>{label}</a>)}
+        </div>
       </article>)}
     </div>
   </section>
