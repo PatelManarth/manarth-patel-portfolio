@@ -1,37 +1,44 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { skillHref } from '../data/skills';
 import '../styles/about.css';
 
 const perspectives = [
   {
     code: '01',
     title: 'Identities',
-    text: 'Accounts, authentication, MFA, access decisions, permissions and identity activity.'
+    text: 'Accounts, authentication, MFA, access decisions, permissions and identity activity.',
+    href: skillHref('identity-access-management')
   },
   {
     code: '02',
     title: 'Endpoints',
-    text: 'Windows and Linux systems, user activity, endpoint events, troubleshooting and hardening.'
+    text: 'Windows and Linux systems, user activity, endpoint events, troubleshooting and hardening.',
+    href: skillHref('endpoint-troubleshooting')
   },
   {
     code: '03',
     title: 'Networks',
-    text: 'Traffic, connectivity, firewalls, routers, segmentation and technical investigation context.'
+    text: 'Traffic, connectivity, firewalls, routers, segmentation and technical investigation context.',
+    href: skillHref('network-security')
   },
   {
     code: '04',
     title: 'Applications',
-    text: 'Web applications, APIs, authentication flows, input validation and application troubleshooting.'
+    text: 'Web applications, APIs, authentication flows, input validation and application troubleshooting.',
+    href: skillHref('api-security')
   },
   {
     code: '05',
     title: 'Backend Systems',
-    text: 'FastAPI, MongoDB, REST APIs, data handling, error analysis and supporting system behaviour.'
+    text: 'FastAPI, MongoDB, REST APIs, data handling, error analysis and supporting system behaviour.',
+    href: skillHref('fastapi')
   },
   {
     code: '06',
     title: 'Security Monitoring',
-    text: 'Alerts, logs, indicators, user activity, system behaviour and investigation documentation.'
+    text: 'Alerts, logs, indicators, user activity, system behaviour and investigation documentation.',
+    href: skillHref('security-monitoring')
   }
 ];
 
@@ -59,12 +66,12 @@ const principles = [
 ];
 
 const directions = [
-  'Security Engineer',
-  'Security Analyst',
-  'SOC Analyst',
-  'Identity and Access Management',
-  'Vulnerability Management',
-  'Infrastructure Security'
+  ['Security Engineer', 'security-monitoring'],
+  ['Security Analyst', 'incident-investigation'],
+  ['SOC Analyst', 'alert-triage'],
+  ['Identity and Access Management', 'identity-access-management'],
+  ['Vulnerability Management', 'vulnerability-management'],
+  ['Infrastructure Security', 'network-security']
 ];
 ---
 <BaseLayout
@@ -80,6 +87,7 @@ const directions = [
         <p class="page-intro">His background combines cybersecurity operations with a broader understanding of identities, endpoints, networks, applications and backend systems.</p>
         <div class="about-hero__actions">
           <a class="button button--primary" href="/experience/">View Professional Experience</a>
+          <a class="button" href="/skills/">Explore Skills</a>
           <a class="button" href="/projects/">Explore Projects</a>
           <a class="button" href="/resume/">View Resume</a>
           <a class="button" href="/contact/">Contact</a>
@@ -131,7 +139,7 @@ const directions = [
       </div>
     </section>
 
-    <section class="section shell" data-reveal>
+    <section class="section shell" id="technical-perspective" data-reveal>
       <div class="about-section-head">
         <div>
           <span class="eyebrow">Technical Perspective</span>
@@ -142,11 +150,11 @@ const directions = [
 
       <div class="perspective-map">
         {perspectives.map(item => (
-          <article class="perspective-card">
+          <a class="perspective-card" href={item.href}>
             <span>{item.code}</span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
-          </article>
+          </a>
         ))}
       </div>
     </section>
@@ -179,7 +187,7 @@ const directions = [
           <p>Manarth’s experience and technical background support opportunities in security engineering, security analysis, security operations, identity and access management, vulnerability management and infrastructure security.</p>
         </div>
         <div class="direction-tags" aria-label="Relevant professional roles">
-          {directions.map(direction => <span>{direction}</span>)}
+          {directions.map(([label, slug]) => <a href={skillHref(slug)}>{label}</a>)}
         </div>
       </div>
     </section>
@@ -193,6 +201,7 @@ const directions = [
         </div>
         <nav class="about-cta__actions" aria-label="Profile navigation">
           <a class="button button--primary" href="/experience/">Professional Experience</a>
+          <a class="button" href="/skills/">Skills</a>
           <a class="button" href="/projects/">Projects</a>
           <a class="button" href="/contact/">Contact</a>
         </nav>
