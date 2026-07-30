@@ -3,6 +3,7 @@ export type NavItem = { label: string; href: string; children?: NavItem[] };
 export const navigation: NavItem[] = [
   { label: 'About', href: '/about/' },
   { label: 'Experience', href: '/experience/' },
+  { label: 'Skills', href: '/skills/' },
   {
     label: 'Work', href: '/projects/', children: [
       { label: 'Projects', href: '/projects/' },
