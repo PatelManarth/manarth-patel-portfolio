@@ -1,28 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProfileCard from '../components/ProfileCard.astro';
+import { skillHref } from '../data/skills';
 import '../styles/home.css';
 
 const capabilities = [
   {
     code: '01',
     title: 'Security Operations and Monitoring',
-    text: 'Security-event monitoring, alert triage, log analysis, incident investigation, IOC analysis, incident documentation and response support.'
+    text: 'Security-event monitoring, alert triage, log analysis, incident investigation, IOC analysis, incident documentation and response support.',
+    href: skillHref('security-monitoring')
   },
   {
     code: '02',
     title: 'Identity and Access Management',
-    text: 'Active Directory, Microsoft Entra ID, user lifecycle, MFA, authentication support, groups, permissions, access reviews and least privilege.'
+    text: 'Active Directory, Microsoft Entra ID, user lifecycle, MFA, authentication support, groups, permissions, access reviews and least privilege.',
+    href: skillHref('identity-access-management')
   },
   {
     code: '03',
     title: 'Vulnerability Management',
-    text: 'Vulnerability assessment, scan-result analysis, configuration reviews, risk evaluation, remediation tracking, fix validation and system hardening.'
+    text: 'Vulnerability assessment, scan-result analysis, configuration reviews, risk evaluation, remediation tracking, fix validation and system hardening.',
+    href: skillHref('vulnerability-management')
   },
   {
     code: '04',
     title: 'Infrastructure and Cloud Security',
-    text: 'Windows and Linux environments, networking, Microsoft 365, firewalls, cloud-security fundamentals, troubleshooting and security-control validation.'
+    text: 'Windows and Linux environments, networking, Microsoft 365, firewalls, cloud-security fundamentals, troubleshooting and security-control validation.',
+    href: skillHref('network-security')
   }
 ];
 
@@ -30,22 +35,26 @@ const academicProjects = [
   {
     title: 'Operation Hydra',
     type: 'Academic Cybersecurity Capstone',
-    text: 'Attack-and-defence capstone covering segmented infrastructure, controlled attack simulation, centralized monitoring and defensive hardening.'
+    text: 'Attack-and-defence capstone covering segmented infrastructure, controlled attack simulation, centralized monitoring and defensive hardening.',
+    href: '/projects/#operation-hydra'
   },
   {
     title: 'Honeypot and ELK Monitoring',
     type: 'Academic Cybersecurity Project',
-    text: 'Cowrie honeypot telemetry forwarded to an ELK stack for investigation, correlation and dashboarding.'
+    text: 'Cowrie honeypot telemetry forwarded to an ELK stack for investigation, correlation and dashboarding.',
+    href: '/projects/#honeypot-elk-monitoring'
   },
   {
     title: 'Active Directory, PKI and FreeRADIUS',
     type: 'Academic Cybersecurity Project',
-    text: 'Identity and access environment combining Active Directory, Group Policy, PKI and RADIUS-based authentication.'
+    text: 'Identity and access environment combining Active Directory, Group Policy, PKI and RADIUS-based authentication.',
+    href: '/projects/#active-directory-pki-freeradius'
   },
   {
     title: 'SmartAttend',
     type: 'Academic AI and Development Project',
-    text: 'Facial-recognition attendance application using FastAPI and MongoDB with administrative and user-facing workflows.'
+    text: 'Facial-recognition attendance application using FastAPI and MongoDB with administrative and user-facing workflows.',
+    href: '/projects/#smartattend'
   }
 ];
 ---
@@ -72,6 +81,7 @@ const academicProjects = [
 
       <div class="hero-actions" aria-label="Primary actions">
         <a class="button button--primary" href="/experience/">View Professional Experience</a>
+        <a class="button" href="/skills/">Explore Skills</a>
         <a class="button" href="/projects/">Explore Projects</a>
         <a class="button" href="/resume/">View Resume</a>
         <a class="button" href="/contact/">Contact</a>
@@ -98,12 +108,12 @@ const academicProjects = [
     </div>
     <div class="capability-grid">
       {capabilities.map(capability => (
-        <article class="capability-card">
+        <a class="capability-card" href={capability.href}>
           <span class="capability-card__code" aria-hidden="true">{capability.code}</span>
           <h3>{capability.title}</h3>
           <p>{capability.text}</p>
           <span class="capability-card__line" aria-hidden="true"></span>
-        </article>
+        </a>
       ))}
     </div>
   </section>
@@ -117,11 +127,11 @@ const academicProjects = [
         <a class="button button--primary" href="/experience/">View complete professional experience</a>
       </div>
       <div class="background-snapshot__map" aria-label="Connected professional domains">
-        <span>Security Operations</span>
-        <span>Identity</span>
-        <span>Infrastructure</span>
-        <span>Applications</span>
-        <span>Technical Support</span>
+        <a href={skillHref('security-monitoring')}>Security Operations</a>
+        <a href={skillHref('identity-access-management')}>Identity</a>
+        <a href={skillHref('network-security')}>Infrastructure</a>
+        <a href={skillHref('api-security')}>Applications</a>
+        <a href={skillHref('technical-support')}>Technical Support</a>
         <i aria-hidden="true"></i>
       </div>
     </div>
@@ -144,7 +154,7 @@ const academicProjects = [
           </div>
           <h3>{project.title}</h3>
           <p>{project.text}</p>
-          <a href="/projects/" aria-label={`Explore ${project.title}`}>Explore project <span aria-hidden="true">↗</span></a>
+          <a href={project.href} aria-label={`Explore ${project.title}`}>Explore project <span aria-hidden="true">↗</span></a>
         </article>
       ))}
     </div>
@@ -193,6 +203,7 @@ const academicProjects = [
       <nav class="profile-cta__actions" aria-label="Professional profile links">
         <a class="button button--primary" href="/resume/">View Resume</a>
         <a class="button" href="/experience/">Professional Experience</a>
+        <a class="button" href="/skills/">Skills</a>
         <a class="button" href="https://www.linkedin.com/in/manarthpatel/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
         <a class="button" href="/contact/">Contact</a>
       </nav>
