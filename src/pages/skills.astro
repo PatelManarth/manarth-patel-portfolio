@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { skillCategories, skills } from '../data/skills';
+import '../styles/skills.css';
+
+const skillsByCategory = skillCategories.map(category => ({
+  ...category,
+  skills: skills.filter(skill => skill.category === category.slug)
+}));
+---
+<BaseLayout
+  title="Skills & Technical Capabilities | Manarth Patel"
+  description="Explore Manarth Patel's cybersecurity, infrastructure, application, support and technical capabilities with links to related professional experience, academic projects and planned labs."
+>
+  <div class="skills-page">
+    <section class="shell skills-hero">
+      <div class="skills-hero__copy">
+        <span class="eyebrow">Technical Capability Map</span>
+        <h1 class="page-title">Skills connected to experience, projects and labs</h1>
+        <p class="skills-hero__lead">Each skill connects to the places where it appears across the portfolio, including professional experience, completed academic work and planned learning labs.</p>
+        <p class="page-intro">Hover, focus or tap a skill to review the related context, then open the exact section for more detail.</p>
+        <div class="skills-hero__actions">
+          <a class="button button--primary" href="#skill-directory">Explore Skills</a>
+          <a class="button" href="/experience/">Professional Experience</a>
+          <a class="button" href="/projects/">Academic Projects</a>
+          <a class="button" href="/labs/">Learning Labs</a>
+        </div>
+      </div>
+
+      <div class="skills-hero__visual" aria-hidden="true">
+        <div class="skills-orbit skills-orbit--outer"></div>
+        <div class="skills-orbit skills-orbit--inner"></div>
+        <div class="skills-core"><strong>SKILLS</strong><span>Connected evidence</span></div>
+        <span class="skills-node skills-node--one">Experience</span>
+        <span class="skills-node skills-node--two">Projects</span>
+        <span class="skills-node skills-node--three">Labs</span>
+        <span class="skills-node skills-node--four">Profile</span>
+      </div>
+    </section>
+
+    <section class="section shell" id="skill-directory" data-reveal>
+      <div class="skills-section-head">
+        <div>
+          <span class="eyebrow">Skill Directory</span>
+          <h2>Technical capabilities by domain</h2>
+        </div>
+        <p>Context labels distinguish professional experience, completed academic work, profile summaries and planned lab coverage.</p>
+      </div>
+
+      <nav class="skills-category-nav" aria-label="Skill categories">
+        {skillsByCategory.map(category => <a href={`#${category.slug}`}>{category.title}</a>)}
+      </nav>
+
+      <div class="skills-categories">
+        {skillsByCategory.map((category, categoryIndex) => (
+          <section class="skills-category" id={category.slug} aria-labelledby={`${category.slug}-title`}>
+            <header class="skills-category__head">
+              <span aria-hidden="true">{String(categoryIndex + 1).padStart(2, '0')}</span>
+              <div>
+                <h2 id={`${category.slug}-title`}>{category.title}</h2>
+                <p>{category.description}</p>
+              </div>
+            </header>
+
+            <div class="skills-grid">
+              {category.skills.map(skill => (
+                <details class="skill-card" id={skill.slug}>
+                  <summary>
+                    <span class="skill-card__name">{skill.name}</span>
+                    <span class="skill-card__count">{skill.references.length} related {skill.references.length === 1 ? 'reference' : 'references'}</span>
+                  </summary>
+                  <div class="skill-card__body">
+                    <p>{skill.summary}</p>
+                    <div class="skill-card__references">
+                      <span class="skill-card__label">Where this skill appears</span>
+                      {skill.references.map(reference => (
+                        <a href={reference.href} class={`skill-reference skill-reference--${reference.context.toLowerCase().replace(' ', '-')}`}>
+                          <span>{reference.context}</span>
+                          <strong>{reference.label}</strong>
+                          <p>{reference.detail}</p>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section class="section shell" data-reveal>
+      <div class="skills-cta">
+        <div>
+          <span class="eyebrow">Continue Exploring</span>
+          <h2>Review the technical context behind each capability</h2>
+          <p>Open professional experience, completed academic projects, planned labs or the downloadable résumé.</p>
+        </div>
+        <nav class="skills-cta__actions" aria-label="Skills page navigation">
+          <a class="button button--primary" href="/experience/">Experience</a>
+          <a class="button" href="/projects/">Projects</a>
+          <a class="button" href="/labs/">Labs</a>
+          <a class="button" href="/resume/">Resume</a>
+        </nav>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
