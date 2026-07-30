@@ -4,10 +4,12 @@
   "type": "module",
   "scripts": {
     "content:audit": "node scripts/content-audit.mjs",
+    "links:audit": "node scripts/link-audit.mjs",
     "dev": "node scripts/content-audit.mjs && node scripts/prepare-public.mjs && astro dev",
-    "build": "node scripts/content-audit.mjs && node scripts/prepare-public.mjs && astro build && pagefind --site dist",
+    "build": "node scripts/content-audit.mjs && node scripts/prepare-public.mjs && astro build && pagefind --site dist && node scripts/link-audit.mjs",
     "preview": "astro preview",
-    "check": "node scripts/content-audit.mjs && node scripts/prepare-public.mjs && astro check"
+    "check": "node scripts/content-audit.mjs && node scripts/prepare-public.mjs && astro check",
+    "prepush": "npm run check && npm run build"
   },
   "dependencies": {
     "astro": "^5.0.0"
