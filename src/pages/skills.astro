@@ -18,7 +18,7 @@ const skillsByCategory = skillCategories.map(category => ({
         <span class="eyebrow">Technical Capability Map</span>
         <h1 class="page-title">Skills connected to experience, projects and labs</h1>
         <p class="skills-hero__lead">Each skill connects to the places where it appears across the portfolio, including professional experience, completed academic work and planned learning labs.</p>
-        <p class="page-intro">Hover, focus or tap a skill to review the related context, then open the exact section for more detail.</p>
+        <p class="page-intro">Hover or focus on a skill to preview its context. Select it to keep the related references open.</p>
         <div class="skills-hero__actions">
           <a class="button button--primary" href="#skill-directory">Explore Skills</a>
           <a class="button" href="/experience/">Professional Experience</a>
@@ -53,7 +53,7 @@ const skillsByCategory = skillCategories.map(category => ({
 
       <div class="skills-categories">
         {skillsByCategory.map((category, categoryIndex) => (
-          <section class="skills-category" id={category.slug} aria-labelledby={`${category.slug}-title`}>
+          <section class="skills-category" id={category.slug} aria-labelledby={`${category.slug}-title`} data-skill-category>
             <header class="skills-category__head">
               <span aria-hidden="true">{String(categoryIndex + 1).padStart(2, '0')}</span>
               <div>
@@ -62,17 +62,39 @@ const skillsByCategory = skillCategories.map(category => ({
               </div>
             </header>
 
-            <div class="skills-grid">
+            <div class="skills-grid" role="list">
               {category.skills.map(skill => (
-                <details class="skill-card" id={skill.slug}>
-                  <summary>
-                    <span class="skill-card__name">{skill.name}</span>
-                    <span class="skill-card__count">{skill.references.length} related {skill.references.length === 1 ? 'reference' : 'references'}</span>
-                  </summary>
-                  <div class="skill-card__body">
-                    <p>{skill.summary}</p>
-                    <div class="skill-card__references">
-                      <span class="skill-card__label">Where this skill appears</span>
+                <button
+                  class="skill-card"
+                  id={skill.slug}
+                  type="button"
+                  role="listitem"
+                  data-skill-trigger={skill.slug}
+                  aria-expanded="false"
+                  aria-controls={`skill-detail-${skill.slug}`}
+                >
+                  <span class="skill-card__name">{skill.name}</span>
+                  <span class="skill-card__count">{skill.references.length} related {skill.references.length === 1 ? 'reference' : 'references'}</span>
+                  <span class="skill-card__toggle" aria-hidden="true">+</span>
+                </button>
+              ))}
+            </div>
+
+            <div class="skills-detail-region" aria-live="polite">
+              <p class="skills-detail-hint" data-skill-hint>Hover, focus or select a skill above to review where it appears across the portfolio.</p>
+              {category.skills.map(skill => (
+                <article class="skill-detail" id={`skill-detail-${skill.slug}`} data-skill-panel={skill.slug} hidden>
+                  <div class="skill-detail__head">
+                    <div>
+                      <span class="skill-card__label">Selected skill</span>
+                      <h3>{skill.name}</h3>
+                    </div>
+                    <a href={`#${skill.slug}`}>Direct link</a>
+                  </div>
+                  <p>{skill.summary}</p>
+                  <div class="skill-card__references">
+                    <span class="skill-card__label">Where this skill appears</span>
+                    <div class="skill-reference-grid">
                       {skill.references.map(reference => (
                         <a href={reference.href} class={`skill-reference skill-reference--${reference.context.toLowerCase().replace(' ', '-')}`}>
                           <span>{reference.context}</span>
@@ -82,7 +104,7 @@ const skillsByCategory = skillCategories.map(category => ({
                       ))}
                     </div>
                   </div>
-                </details>
+                </article>
               ))}
             </div>
           </section>
@@ -106,4 +128,70 @@ const skillsByCategory = skillCategories.map(category => ({
       </div>
     </section>
   </div>
+
+  <script>
+    const hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    document.querySelectorAll('[data-skill-category]').forEach(category => {
+      const triggers = [...category.querySelectorAll('[data-skill-trigger]')];
+      const panels = [...category.querySelectorAll('[data-skill-panel]')];
+      const hint = category.querySelector('[data-skill-hint]');
+      let pinnedSlug = null;
+
+      const showSkill = slug => {
+        triggers.forEach(trigger => {
+          const active = trigger.dataset.skillTrigger === slug;
+          trigger.classList.toggle('is-active', active);
+          trigger.setAttribute('aria-expanded', String(active));
+          const toggle = trigger.querySelector('.skill-card__toggle');
+          if (toggle) toggle.textContent = active ? '−' : '+';
+        });
+
+        panels.forEach(panel => {
+          panel.hidden = panel.dataset.skillPanel !== slug;
+        });
+
+        if (hint) hint.hidden = Boolean(slug);
+      };
+
+      triggers.forEach(trigger => {
+        const slug = trigger.dataset.skillTrigger;
+
+        trigger.addEventListener('mouseenter', () => {
+          if (hoverCapable.matches && !pinnedSlug) showSkill(slug);
+        });
+
+        trigger.addEventListener('focus', () => {
+          if (!pinnedSlug) showSkill(slug);
+        });
+
+        trigger.addEventListener('click', () => {
+          if (pinnedSlug === slug) {
+            pinnedSlug = null;
+            showSkill(null);
+            return;
+          }
+
+          pinnedSlug = slug;
+          showSkill(slug);
+        });
+      });
+
+      category.addEventListener('mouseleave', () => {
+        if (hoverCapable.matches && !pinnedSlug) showSkill(null);
+      });
+
+      category.addEventListener('focusout', event => {
+        if (!category.contains(event.relatedTarget) && !pinnedSlug) showSkill(null);
+      });
+
+      category.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        pinnedSlug = null;
+        showSkill(null);
+        const activeTrigger = category.querySelector('[data-skill-trigger].is-active');
+        activeTrigger?.focus();
+      });
+    });
+  </script>
 </BaseLayout>
